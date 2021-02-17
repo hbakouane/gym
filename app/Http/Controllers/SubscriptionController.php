@@ -14,7 +14,7 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        //
+        return view('subscriptions.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        //
+        return view('subscriptions.create');
     }
 
     /**
@@ -35,7 +35,17 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required|integer',
+            'duration' => 'required'
+        ]);
+        $data = $request->only(['name', 'price', 'duration']);
+        $data['created_by'] = auth()->id();
+        $subscribtion = new Subscription();
+        $subscribtion->create($data)->save();
+
+        return redirect()->back()->with('status', __('Subscription added succesfully.'));
     }
 
     /**

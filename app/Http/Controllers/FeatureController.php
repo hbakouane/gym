@@ -14,7 +14,7 @@ class FeatureController extends Controller
      */
     public function index()
     {
-        //
+        return view('features.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class FeatureController extends Controller
      */
     public function create()
     {
-        //
+        return view('features.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class FeatureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // This action has been replaced by App/Http/Livewire/Features/Form@save
     }
 
     /**

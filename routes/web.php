@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\FeatureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +26,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => ['auth']], function () {
    Route::resource('/members', MemberController::class);
+   Route::resource('/subscriptions', SubscriptionController::class);
+   Route::resource('/features', FeatureController::class);
 });
