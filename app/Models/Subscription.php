@@ -9,6 +9,8 @@ class Subscription extends Model
 {
     use HasFactory;
 
+    public $fillable = ['name', 'price', 'duration', 'created_by'];
+
     public function features()
     {
         return $this->morphToMany('App\Models\Feature', 'featureable')->withTimestamps();

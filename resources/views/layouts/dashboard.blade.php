@@ -7,15 +7,36 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/libs/css/style.css">
-    <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-    <link rel="stylesheet" href="assets/vendor/vector-map/jqvmap.css">
-    <link rel="stylesheet" href="assets/vendor/jvectormap/jquery-jvectormap-2.0.2.css">
-    <link rel="stylesheet" href="assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
-    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link href="{{ url('assets/vendor/fonts/circular-std/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('assets/libs/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/vendor/vector-map/jqvmap.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/vendor/jvectormap/jquery-jvectormap-2.0.2.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+
+    <!-- Livewire -->
+    @livewireStyles
+
+    <!-- Toastr Css !-->
+    @toastr_css
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+    <!-- Data tables Css -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+
+    <!-- Page infos -->
+    @php
+        $page = $page ?? __('Dashboard');
+        $breadcumbs = $breadcumbs ?? [$page => route('home')];
+        $route = \Request::route()->getName();
+    @endphp
+    <!-- / Page infos -->
+    <title>{{ $website->name ?? 'Gym CRM' . ' - ' . $page }}</title>
 </head>
 
 <body>
@@ -137,13 +158,6 @@
     <!-- ============================================================== -->
     <!-- end navbar -->
     <!-- ============================================================== -->
-    <!-- Page infos -->
-    @php
-        $page = __('Dashboard');
-        $breadcumbs = [$page => route('home')];
-        $route = \Request::route()->getName();
-    @endphp
-    <!-- / Page infos -->
     <!-- ============================================================== -->
     <!-- left sidebar -->
     <!-- ============================================================== -->
@@ -165,33 +179,34 @@
                         <li class="nav-item ">
                             <a class="nav-link @if(Str::startsWith($route, 'members')) active @endif()" href="{{ route('members.index') }}"><i class="fa fa-fw fa-user-circle"></i>{{ __('Membres') }} <span class="badge badge-success">6</span></a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link @if(Str::startsWith($route, 'subscription')) active @endif()" href="{{ route('members.index') }}"><i class="fa fa-fw fa-user-circle"></i>{{ __('Membres') }} <span class="badge badge-success">6</span></a>
-                        </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>UI Elements</a>
-                            <div id="submenu-2" class="collapse submenu" style="">
+                            <a class="nav-link @if(Str::startsWith($route, 'features') or Str::startsWith($route, 'subscriptions')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-fw fa-money-check"></i>{{ __('Plans') }}</a>
+                            <div id="submenu-2" class="collapse submenu @if(Str::startsWith($route, 'features') or Str::startsWith($route, 'subscriptions')) show @endif()" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="pages/cards.html">Cards <span class="badge badge-secondary">New</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/general.html">General</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/carousel.html">Carousel</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/listgroup.html">List Group</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/typography.html">Typography</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/accordions.html">Accordions</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="pages/tabs.html">Tabs</a>
+                                        <a class="nav-link collapsed @if(Str::startsWith($route, 'features')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#features_menu" aria-controls="features_menu">{{ __('Features') }}</a>
+                                        <div id="features_menu" class="submenu collapse @if(Str::startsWith($route, 'features')) show @endif()" style="">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link @if(Str::startsWith($route, 'features.index')) active @endif()" href="{{ route('features.index') }}">{{ __('All features') }}</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link @if(Str::startsWith($route, 'features.create')) active @endif()" href="{{ route('features.create') }}">{{ __('Add features') }}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <a class="nav-link collapsed @if(Str::startsWith($route, 'subscriptions')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#subscriptions_menu" aria-controls="subscriptions_menu">{{ __('Subscriptions') }}</a>
+                                        <div id="subscriptions_menu" class="submenu collapse @if(Str::startsWith($route, 'subscriptions')) show @endif()" style="">
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item">
+                                                    <a class="nav-link @if(Str::startsWith($route, 'subscriptions.index')) active @endif()" href="{{ route('subscriptions.index') }}">{{ __('All subscriptions') }}</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link @if(Str::startsWith($route, 'subscriptions.create')) active @endif()" href="{{ route('subscriptions.create') }}">{{ __('Add subscriptions') }}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
@@ -425,383 +440,10 @@
                 </div>
             </div>
             <!-- ============================================================== -->
+            @include('partials.session')
             <!-- pagehader  -->
             <!-- ============================================================== -->
-            <div class="row">
-                <!-- metric -->
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="text-muted">Customers</h5>
-                            <div class="metric-value d-inline-block">
-                                <h1 class="mb-1 text-primary">32,100 </h1>
-                            </div>
-                            <div class="metric-label d-inline-block float-right text-success">
-                                <i class="fa fa-fw fa-caret-up"></i><span>5.27%</span>
-                            </div>
-                        </div>
-                        <div id="sparkline-1"></div>
-                    </div>
-                </div>
-                <!-- /. metric -->
-                <!-- metric -->
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="text-muted">Order</h5>
-                            <div class="metric-value d-inline-block">
-                                <h1 class="mb-1 text-primary">4,200 </h1>
-                            </div>
-                            <div class="metric-label d-inline-block float-right text-danger">
-                                <i class="fa fa-fw fa-caret-down"></i><span>1.08%</span>
-                            </div>
-                        </div>
-                        <div id="sparkline-2"></div>
-                    </div>
-                </div>
-                <!-- /. metric -->
-                <!-- metric -->
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="text-muted">Revenue</h5>
-                            <div class="metric-value d-inline-block">
-                                <h1 class="mb-1 text-primary">$5,656</h1>
-                            </div>
-                            <div class="metric-label d-inline-block float-right text-danger">
-                                <i class="fa fa-fw fa-caret-down"></i><span>7.00%</span>
-                            </div>
-                        </div>
-                        <div id="sparkline-3">
-                        </div>
-                    </div>
-                </div>
-                <!-- /. metric -->
-                <!-- metric -->
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="text-muted">Growth</h5>
-                            <div class="metric-value d-inline-block">
-                                <h1 class="mb-1 text-primary">+28.45% </h1>
-                            </div>
-                            <div class="metric-label d-inline-block float-right text-success">
-                                <i class="fa fa-fw fa-caret-up"></i><span>4.87%</span>
-                            </div>
-                        </div>
-                        <div id="sparkline-4"></div>
-                    </div>
-                </div>
-                <!-- /. metric -->
-            </div>
-            <!-- ============================================================== -->
-            <!-- revenue  -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <div class="col-xl-8 col-lg-12 col-md-8 col-sm-12 col-12">
-                    <div class="card">
-                        <h5 class="card-header">Revenue</h5>
-                        <div class="card-body">
-                            <canvas id="revenue" width="400" height="150"></canvas>
-                        </div>
-                        <div class="card-body border-top">
-                            <div class="row">
-                                <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 p-3">
-                                    <h4> Today's Earning: $2,800.30</h4>
-                                    <p>Suspendisse potenti. Done csit amet rutrum.
-                                    </p>
-                                </div>
-                                <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
-                                    <h2 class="font-weight-normal mb-3"><span>$48,325</span>                                                    </h2>
-                                    <div class="mb-0 mt-3 legend-item">
-                                        <span class="fa-xs text-primary mr-1 legend-title "><i class="fa fa-fw fa-square-full"></i></span>
-                                        <span class="legend-text">Current Week</span></div>
-                                </div>
-                                <div class="offset-xl-1 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 p-3">
-                                    <h2 class="font-weight-normal mb-3">
-
-                                        <span>$59,567</span>
-                                    </h2>
-                                    <div class="text-muted mb-0 mt-3 legend-item"> <span class="fa-xs text-secondary mr-1 legend-title"><i class="fa fa-fw fa-square-full"></i></span><span class="legend-text">Previous Week</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end reveune  -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- total sale  -->
-                <!-- ============================================================== -->
-                <div class="col-xl-4 col-lg-12 col-md-4 col-sm-12 col-12">
-                    <div class="card">
-                        <h5 class="card-header">Total Sale</h5>
-                        <div class="card-body">
-                            <canvas id="total-sale" width="220" height="155"></canvas>
-                            <div class="chart-widget-list">
-                                <p>
-                                    <span class="fa-xs text-primary mr-1 legend-title"><i class="fa fa-fw fa-square-full"></i></span><span class="legend-text"> Direct</span>
-                                    <span class="float-right">$300.56</span>
-                                </p>
-                                <p>
-                                    <span class="fa-xs text-secondary mr-1 legend-title"><i class="fa fa-fw fa-square-full"></i></span>
-                                    <span class="legend-text">Affilliate</span>
-                                    <span class="float-right">$135.18</span>
-                                </p>
-                                <p>
-                                    <span class="fa-xs text-brand mr-1 legend-title"><i class="fa fa-fw fa-square-full"></i></span> <span class="legend-text">Sponsored</span>
-                                    <span class="float-right">$48.96</span>
-                                </p>
-                                <p class="mb-0">
-                                    <span class="fa-xs text-info mr-1 legend-title"><i class="fa fa-fw fa-square-full"></i></span> <span class="legend-text"> E-mail</span>
-                                    <span class="float-right">$154.02</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end total sale  -->
-                <!-- ============================================================== -->
-            </div>
-            <div class="row">
-                <!-- ============================================================== -->
-                <!-- top selling products  -->
-                <!-- ============================================================== -->
-                <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <h5 class="card-header">Top Selling Products</h5>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead class="bg-light">
-                                    <tr class="border-0">
-                                        <th class="border-0">#</th>
-                                        <th class="border-0">Image</th>
-                                        <th class="border-0">Product Name</th>
-                                        <th class="border-0">Product Id</th>
-                                        <th class="border-0">Quantity</th>
-                                        <th class="border-0">Price</th>
-                                        <th class="border-0">Order Time</th>
-                                        <th class="border-0">Customer</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            <div class="m-r-10"><img src="assets/images/product-pic.jpg" alt="user" class="rounded" width="45"></div>
-                                        </td>
-                                        <td>Product #1 </td>
-                                        <td>id000001 </td>
-                                        <td>20</td>
-                                        <td>$80.00</td>
-                                        <td>27-08-2018 01:22:12</td>
-                                        <td>Patricia J. King </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>
-                                            <div class="m-r-10"><img src="assets/images/product-pic-2.jpg" alt="user" class="rounded" width="45"></div>
-                                        </td>
-                                        <td>Product #2 </td>
-                                        <td>id000002 </td>
-                                        <td>12</td>
-                                        <td>$180.00</td>
-                                        <td>25-08-2018 21:12:56</td>
-                                        <td>Rachel J. Wicker </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>
-                                            <div class="m-r-10"><img src="assets/images/product-pic-3.jpg" alt="user" class="rounded" width="45"></div>
-                                        </td>
-                                        <td>Product #3 </td>
-                                        <td>id000003 </td>
-                                        <td>23</td>
-                                        <td>$820.00</td>
-                                        <td>24-08-2018 14:12:77</td>
-                                        <td>Michael K. Ledford </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>
-                                            <div class="m-r-10"><img src="assets/images/product-pic-4.jpg" alt="user" class="rounded" width="45"></div>
-                                        </td>
-                                        <td>Product #4 </td>
-                                        <td>id000004 </td>
-                                        <td>34</td>
-                                        <td>$340.00</td>
-                                        <td>23-08-2018 09:12:35</td>
-                                        <td>Michael K. Ledford </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="8"><a href="#" class="btn btn-outline-light float-right">View Details</a></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end top selling products  -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- revenue locations  -->
-                <!-- ============================================================== -->
-                <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <h5 class="card-header">Revenue by Location</h5>
-                        <div class="card-body">
-                            <div id="locationmap" style="width:100%; height:200px"></div>
-                        </div>
-                        <div class="card-body border-top">
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="sell-ratio">
-                                        <h5 class="mb-1 mt-0 font-weight-normal">New York</h5>
-                                        <div class="progress-w-percent">
-                                            <span class="progress-value">72k </span>
-                                            <div class="progress progress-sm">
-                                                <div class="progress-bar" role="progressbar" style="width: 72%;" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="sell-ratio">
-                                        <h5 class="mb-1 mt-0 font-weight-normal">San Francisco</h5>
-                                        <div class="progress-w-percent">
-                                            <span class="progress-value">39k</span>
-                                            <div class="progress progress-sm">
-                                                <div class="progress-bar" role="progressbar" style="width: 39%;" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="sell-ratio">
-                                        <h5 class="mb-1 mt-0 font-weight-normal">Sydney</h5>
-                                        <div class="progress-w-percent">
-                                            <span class="progress-value">25k </span>
-                                            <div class="progress progress-sm">
-                                                <div class="progress-bar" role="progressbar" style="width: 39%;" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="sell-ratio">
-                                        <h5 class="mb-1 mt-0 font-weight-normal">Singapore</h5>
-                                        <div class="progress-w-percent mb-0">
-                                            <span class="progress-value">61k </span>
-                                            <div class="progress progress-sm">
-                                                <div class="progress-bar" role="progressbar" style="width: 61%;" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end revenue locations  -->
-                <!-- ============================================================== -->
-            </div>
-            <div class="row">
-                <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <!-- ============================================================== -->
-                    <!-- social source  -->
-                    <!-- ============================================================== -->
-                    <div class="card">
-                        <h5 class="card-header"> Sales By Social Source</h5>
-                        <div class="card-body p-0">
-                            <ul class="social-sales list-group list-group-flush">
-                                <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle facebook-bgcolor mr-2"><i class="fab fa-facebook-f"></i></span><span class="social-sales-name">Facebook</span><span class="social-sales-count text-dark">120 Sales</span>
-                                </li>
-                                <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle twitter-bgcolor mr-2"><i class="fab fa-twitter"></i></span><span class="social-sales-name">Twitter</span><span class="social-sales-count text-dark">99 Sales</span>
-                                </li>
-                                <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle instagram-bgcolor mr-2"><i class="fab fa-instagram"></i></span><span class="social-sales-name">Instagram</span><span class="social-sales-count text-dark">76 Sales</span>
-                                </li>
-                                <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle pinterest-bgcolor mr-2"><i class="fab fa-pinterest-p"></i></span><span class="social-sales-name">Pinterest</span><span class="social-sales-count text-dark">56 Sales</span>
-                                </li>
-                                <li class="list-group-item social-sales-content"><span class="social-sales-icon-circle googleplus-bgcolor mr-2"><i class="fab fa-google-plus-g"></i></span><span class="social-sales-name">Google Plus</span><span class="social-sales-count text-dark">36 Sales</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="#" class="btn-primary-link">View Details</a>
-                        </div>
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- end social source  -->
-                    <!-- ============================================================== -->
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <!-- ============================================================== -->
-                    <!-- sales traffice source  -->
-                    <!-- ============================================================== -->
-                    <div class="card">
-                        <h5 class="card-header"> Sales By Traffic Source</h5>
-                        <div class="card-body p-0">
-                            <ul class="traffic-sales list-group list-group-flush">
-                                <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Direct</span><span class="traffic-sales-amount">$4000.00  <span class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1 text-success">5.86%</span></span>
-                                </li>
-                                <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Search<span class="traffic-sales-amount">$3123.00  <span class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1 text-success">5.86%</span></span>
-                                        </span>
-                                </li>
-                                <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Social<span class="traffic-sales-amount ">$3099.00  <span class="icon-circle-small icon-box-xs text-success ml-4 bg-success-light"><i class="fa fa-fw fa-arrow-up"></i></span><span class="ml-1 text-success">5.86%</span></span>
-                                        </span>
-                                </li>
-                                <li class="traffic-sales-content list-group-item"><span class="traffic-sales-name">Referrals<span class="traffic-sales-amount ">$2220.00   <span class="icon-circle-small icon-box-xs text-danger ml-4 bg-danger-light"><i class="fa fa-fw fa-arrow-down"></i></span><span class="ml-1 text-danger">4.02%</span></span>
-                                        </span>
-                                </li>
-                                <li class="traffic-sales-content list-group-item "><span class="traffic-sales-name">Email<span class="traffic-sales-amount">$1567.00   <span class="icon-circle-small icon-box-xs text-danger ml-4 bg-danger-light"><i class="fa fa-fw fa-arrow-down"></i></span><span class="ml-1 text-danger">3.86%</span></span>
-                                        </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="#" class="btn-primary-link">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end sales traffice source  -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- sales traffic country source  -->
-                <!-- ============================================================== -->
-                <div class="col-xl-3 col-lg-12 col-md-6 col-sm-12 col-12">
-                    <div class="card">
-                        <h5 class="card-header">Sales By Country Traffic Source</h5>
-                        <div class="card-body p-0">
-                            <ul class="country-sales list-group list-group-flush">
-                                <li class="country-sales-content list-group-item"><span class="mr-2"><i class="flag-icon flag-icon-us" title="us" id="us"></i> </span>
-                                    <span class="">United States</span><span class="float-right text-dark">78%</span>
-                                </li>
-                                <li class="list-group-item country-sales-content"><span class="mr-2"><i class="flag-icon flag-icon-ca" title="ca" id="ca"></i></span><span class="">Canada</span><span class="float-right text-dark">7%</span>
-                                </li>
-                                <li class="list-group-item country-sales-content"><span class="mr-2"><i class="flag-icon flag-icon-ru" title="ru" id="ru"></i></span><span class="">Russia</span><span class="float-right text-dark">4%</span>
-                                </li>
-                                <li class="list-group-item country-sales-content"><span class=" mr-2"><i class="flag-icon flag-icon-in" title="in" id="in"></i></span><span class="">India</span><span class="float-right text-dark">12%</span>
-                                </li>
-                                <li class="list-group-item country-sales-content"><span class=" mr-2"><i class="flag-icon flag-icon-fr" title="fr" id="fr"></i></span><span class="">France</span><span class="float-right text-dark">16%</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="#" class="btn-primary-link">View Details</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end sales traffice country source  -->
-                <!-- ============================================================== -->
-            </div>
+            @yield('content')
         </div>
         <!-- ============================================================== -->
         <!-- footer -->
@@ -835,25 +477,44 @@
 <!-- ============================================================== -->
 <!-- Optional JavaScript -->
 <!-- jquery 3.3.1 js-->
-<script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<script src="{{ url('assets/vendor/jquery/jquery-3.3.1.min.js') }}"></script>
 <!-- bootstrap bundle js-->
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<script src="{{ url('assets/vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
 <!-- slimscroll js-->
-<script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+<script src="{{ url('assets/vendor/slimscroll/jquery.slimscroll.js') }}"></script>
 <!-- chartjs js-->
-<script src="assets/vendor/charts/charts-bundle/Chart.bundle.js"></script>
-<script src="assets/vendor/charts/charts-bundle/chartjs.js"></script>
+<script src="{{ url('assets/vendor/charts/charts-bundle/Chart.bundle.js') }}"></script>
+<script src="{{ url('assets/vendor/charts/charts-bundle/chartjs.js') }}"></script>
 
+<!-- Livewire -->
+@livewireScripts
+<!-- Toastr Js -->
+@jquery
+@toastr_js
+@toastr_render
 <!-- main js-->
-<script src="assets/libs/js/main-js.js"></script>
+<script src="{{ url('assets/libs/js/main-js.js') }}"></script>
+
 <!-- jvactormap js-->
-<script src="assets/vendor/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-<script src="assets/vendor/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="{{ url('assets/vendor/jvectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
+<script src="{{ url('assets/vendor/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+
 <!-- sparkline js-->
-<script src="assets/vendor/charts/sparkline/jquery.sparkline.js"></script>
-<script src="assets/vendor/charts/sparkline/spark-js.js"></script>
+<script src="{{ url('assets/vendor/charts/sparkline/jquery.sparkline.js') }}"></script>
+<script src="{{ url('assets/vendor/charts/sparkline/spark-js.js') }}"></script>
+
 <!-- dashboard sales js-->
-<script src="assets/libs/js/dashboard-sales.js"></script>
+<script src="{{ url('assets/libs/js/dashboard-sales.js') }}"></script>
+
+<!-- Data tables Js -->
+<script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready( function () {
+        $('#datatable').DataTable();
+    } );
+</script>
+
 </body>
 
 </html>
