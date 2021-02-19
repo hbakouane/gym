@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => '{project_id}'], function () {
    Route::resource('/members', MemberController::class);
    Route::resource('/subscriptions', SubscriptionController::class);
    Route::resource('/features', FeatureController::class);

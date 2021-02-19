@@ -63,6 +63,14 @@
                         </select>
                     </label>
                 </div>
+                <div class="form-group">
+                    <label>{{ __('plan.Features') }}</label> <br>
+                    <select multiple class="form-control" name="features[]">
+                        @foreach($features as $feature)
+                            <option value="{{ $feature->id }}">{{ $feature->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-main text-light">{{ __('Save') }}</button>
             </form>
         </div>
