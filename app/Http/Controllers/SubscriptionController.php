@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Featureable;
 use App\Models\Feature;
+use App\Models\Project;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
@@ -15,14 +16,14 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($prefix)
     {
-        // This method will return 404 if the project_id doesn't belong to the authenticated user
-        $prefix = $this->getPrefixOrFail();
+        // This method will return 404 if the project id doesn't belong to the authenticated user
+        $prefix = Project::getProjectIdOrFail();
 
         // Get subscriptions
-        $subscriptions = Subscription::where('project_id', $prefix)->get();
-        return view('subscriptions.index', ['subscriptions', $subscriptions]);
+        $subscriptions = Subscription::with('features', 'user')->where('project_id', $prefix->id)->get();
+        return view('subscriptions.index', ['subscriptions' => $subscriptions]);
     }
 
     /**
@@ -51,9 +52,10 @@ class SubscriptionController extends Controller
             'duration' => 'required',
             'features' => 'required'
         ]);
-        // For more security
+        // For more security we'll use only
         $data = $request->only(['name', 'price', 'duration', 'features']);
         $data['created_by'] = auth()->id();
+        $data['project_id'] = Project::getProjectId();
 
         // Store the subscription
         $subscription = new Subscription();
@@ -70,7 +72,8 @@ class SubscriptionController extends Controller
             $featurable->create([
                 'feature_id' => $feature,
                 'featureable_type' => 'App\Models\Subscription',
-                'featureable_id' => $last->id
+                'featureable_id' => $last->id,
+                'project_id' => $data['project_id']
             ])->save();
         }
 

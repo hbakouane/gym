@@ -4,9 +4,9 @@
     @php
         $page = __('Add feature');
         $breadcumbs = [
-            __('Dashboard') => route('home'),
-            __('Features') => route('features.index'),
-            __('Add') => route('features.create')
+            __('Dashboard') => route('home', $prefix),
+            __('Features') => route('features.index', $prefix),
+            __('Add') => route('features.create', $prefix)
         ];
     @endphp
 
@@ -16,7 +16,7 @@
         </div>
         <div class="card-body">
             @include('partials.errors')
-            @livewire('features.form')
+            @livewire('features.form', ['prefix' => $prefix])
         </div>
     </div>
 @endsection

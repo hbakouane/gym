@@ -9,7 +9,7 @@ class Feature extends Model
 {
     use HasFactory;
 
-    public $fillable = ['name', 'description'];
+    public $fillable = ['name', 'description', 'project_id'];
 
     public function subscriptions()
     {

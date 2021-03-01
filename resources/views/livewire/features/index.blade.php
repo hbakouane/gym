@@ -12,7 +12,7 @@
     <button id="toastr_btn" type="button" wire:click="$toggle('toastr')"></button>
     <div class="card">
         <h5 class="card-header">
-            {{ __('plan.Features') }} <a href="{{ route('features.create') }}" class="btn mr-0 btn-primary btn-sm"><i class="fa fa-plus-circle"></i></a>
+            {{ __('plan.Features') }} <a href="{{ route('features.create', $prefix) }}" class="btn mr-0 btn-primary btn-sm"><i class="fa fa-plus-circle"></i></a>
         </h5>
         <div class="card-body">
             <div class="table-responsive">

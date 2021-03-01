@@ -3,7 +3,7 @@
 @section('content')
     @php
         $page = "Subscriptions";
-        $breadcumbs = [__('Dashboard') => route('home'), __('Add subscriptions') => route('subscriptions.index')];
+        $breadcumbs = [__('Dashboard') => route('home', $prefix), __('Add subscriptions') => route('subscriptions.index', $prefix)];
     @endphp
     <div class="card">
         <div class="card-header">
@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
             @include('partials.errors')
-            <form method="POST" action="{{ route('subscriptions.store') }}">
+            <form method="POST" action="{{ route('subscriptions.store', $prefix) }}">
                 @csrf
                 <div class="form-group">
                     <label class="w-100">{{ __('Name') }}

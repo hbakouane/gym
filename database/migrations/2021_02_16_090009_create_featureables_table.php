@@ -18,7 +18,7 @@ class CreateFeatureablesTable extends Migration
             $table->foreignId('feature_id')->constrained();
             $table->morphs('featureable');
 
-            $table->foreignId('project_id')->constrained();
+            $table->foreignId('project_id')->nullable()->constrained();
 
             $table->timestamps();
         });
