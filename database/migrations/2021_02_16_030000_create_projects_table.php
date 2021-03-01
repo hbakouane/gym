@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFeatureablesTable extends Migration
+class CreateProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateFeatureablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('featureables', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('feature_id')->constrained();
-            $table->morphs('featureable');
-
-            $table->foreignId('project_id')->nullable()->constrained();
-
+            $table->foreignId('user_id')->constrained();
+            $table->string('project')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateFeatureablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('featureables');
+        Schema::dropIfExists('projects');
     }
 }

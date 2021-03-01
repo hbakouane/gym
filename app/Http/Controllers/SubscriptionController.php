@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Featureable;
+use App\Models\Feature;
+use App\Models\Project;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class SubscriptionController extends Controller
 {
@@ -12,9 +16,14 @@ class SubscriptionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($prefix)
     {
-        return view('subscriptions.index');
+        // This method will return 404 if the project id doesn't belong to the authenticated user
+        $prefix = Project::getProjectIdOrFail();
+
+        // Get subscriptions
+        $subscriptions = Subscription::with('features', 'user')->where('project_id', $prefix->id)->get();
+        return view('subscriptions.index', ['subscriptions' => $subscriptions]);
     }
 
     /**
@@ -24,7 +33,8 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        return view('subscriptions.create');
+        $features = Feature::all();
+        return view('subscriptions.create', ['features' => $features]);
     }
 
     /**
@@ -35,17 +45,39 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the request
         $request->validate([
             'name' => 'required',
             'price' => 'required|integer',
-            'duration' => 'required'
+            'duration' => 'required',
+            'features' => 'required'
         ]);
-        $data = $request->only(['name', 'price', 'duration']);
+        // For more security we'll use only
+        $data = $request->only(['name', 'price', 'duration', 'features']);
         $data['created_by'] = auth()->id();
-        $subscribtion = new Subscription();
-        $subscribtion->create($data)->save();
+        $data['project_id'] = Project::getProjectId();
 
-        return redirect()->back()->with('status', __('Subscription added succesfully.'));
+        // Store the subscription
+        $subscription = new Subscription();
+        $subscription->create($data)->save();
+
+        // Get the latest record id from subscriptions
+        $last = Subscription::where('created_by', auth()->id())->
+                              orderBy('id', 'ASC')
+                              ->first();
+
+        // Store into the featureables table
+        $featurable = new Featureable();
+        foreach ($data['features'] as $feature) {
+            $featurable->create([
+                'feature_id' => $feature,
+                'featureable_type' => 'App\Models\Subscription',
+                'featureable_id' => $last->id,
+                'project_id' => $data['project_id']
+            ])->save();
+        }
+
+        return redirect()->back()->with('status', __('plan.Subscription added successfully.'));
     }
 
     /**

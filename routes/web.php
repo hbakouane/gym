@@ -22,10 +22,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['prefix' => '{project_id}', 'middleware' => ['auth']], function () {
+   Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
    Route::resource('/members', MemberController::class);
    Route::resource('/subscriptions', SubscriptionController::class);
    Route::resource('/features', FeatureController::class);
+});
+
+Route::fallback(function () {
+    return "404";
 });

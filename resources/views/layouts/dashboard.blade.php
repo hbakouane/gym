@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -32,7 +31,7 @@
     <!-- Page infos -->
     @php
         $page = $page ?? __('Dashboard');
-        $breadcumbs = $breadcumbs ?? [$page => route('home')];
+        $breadcumbs = $breadcumbs ?? [$page => route('home', $prefix)];
         $route = \Request::route()->getName();
     @endphp
     <!-- / Page infos -->
@@ -174,10 +173,10 @@
                             Menu
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link @if($route === "home") active @endif()" href="{{ route('home') }}"><i class="fa fa-fw fa-user-circle"></i>{{ __('Dashboard') }} <span class="badge badge-success">6</span></a>
+                            <a class="nav-link @if($route === "home") active @endif()" href="{{ route('home', $prefix) }}"><i class="fa fa-fw fa-user-circle"></i>{{ __('Dashboard') }} <span class="badge badge-success">6</span></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link @if(Str::startsWith($route, 'members')) active @endif()" href="{{ route('members.index') }}"><i class="fa fa-fw fa-user-circle"></i>{{ __('Membres') }} <span class="badge badge-success">6</span></a>
+                            <a class="nav-link @if(Str::startsWith($route, 'members')) active @endif()" href="{{ route('members.index', $prefix) }}"><i class="fa fa-fw fa-user-circle"></i>{{ __('Membres') }} <span class="badge badge-success">6</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @if(Str::startsWith($route, 'features') or Str::startsWith($route, 'subscriptions')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-fw fa-money-check"></i>{{ __('Plans') }}</a>
@@ -188,10 +187,10 @@
                                         <div id="features_menu" class="submenu collapse @if(Str::startsWith($route, 'features')) show @endif()" style="">
                                             <ul class="nav flex-column">
                                                 <li class="nav-item">
-                                                    <a class="nav-link @if(Str::startsWith($route, 'features.index')) active @endif()" href="{{ route('features.index') }}">{{ __('All features') }}</a>
+                                                    <a class="nav-link @if(Str::startsWith($route, 'features.index')) active @endif()" href="{{ route('features.index', $prefix) }}">{{ __('All features') }}</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link @if(Str::startsWith($route, 'features.create')) active @endif()" href="{{ route('features.create') }}">{{ __('Add features') }}</a>
+                                                    <a class="nav-link @if(Str::startsWith($route, 'features.create')) active @endif()" href="{{ route('features.create', $prefix) }}">{{ __('Add features') }}</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -200,10 +199,10 @@
                                         <div id="subscriptions_menu" class="submenu collapse @if(Str::startsWith($route, 'subscriptions')) show @endif()" style="">
                                             <ul class="nav flex-column">
                                                 <li class="nav-item">
-                                                    <a class="nav-link @if(Str::startsWith($route, 'subscriptions.index')) active @endif()" href="{{ route('subscriptions.index') }}">{{ __('All subscriptions') }}</a>
+                                                    <a class="nav-link @if(Str::startsWith($route, 'subscriptions.index')) active @endif()" href="{{ route('subscriptions.index', $prefix) }}">{{ __('All subscriptions') }}</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link @if(Str::startsWith($route, 'subscriptions.create')) active @endif()" href="{{ route('subscriptions.create') }}">{{ __('Add subscriptions') }}</a>
+                                                    <a class="nav-link @if(Str::startsWith($route, 'subscriptions.create')) active @endif()" href="{{ route('subscriptions.create', $prefix) }}">{{ __('Add subscriptions') }}</a>
                                                 </li>
                                             </ul>
                                         </div>
