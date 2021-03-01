@@ -22,7 +22,10 @@ class SubscriptionController extends Controller
         $prefix = Project::getProjectIdOrFail();
 
         // Get subscriptions
-        $subscriptions = Subscription::with('features', 'user')->where('project_id', $prefix->id)->get();
+        $subscriptions = Subscription::with('features', 'user')
+                                        ->where('project_id', $prefix->id)
+                                        ->orderBy('id', 'DESC')
+                                        ->get();
         return view('subscriptions.index', ['subscriptions' => $subscriptions]);
     }
 

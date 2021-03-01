@@ -36,7 +36,7 @@
                         @endforeach
                     </div>
                     <div class="card-footer text-muted">
-                        <p>Created by <a href="">{{ $subscription->user->name }}</a></p>
+                        <p>{{ __('general.Created by') }} <a href="">{{ $subscription->user->name }}</a> | {{ $subscription->created_at->diffForHumans() }}</p>
                     </div>
                 </div>
             </div>
