@@ -31,7 +31,7 @@
     <!-- Page infos -->
     @php
         $page = $page ?? __('Dashboard');
-        $breadcumbs = $breadcumbs ?? [$page => route('home', $prefix)];
+        $breadcumbs = $breadcumbs ?? [$page => route('home', $prefix ?? session()->get('prefix'))];
         $route = \Request::route()->getName();
     @endphp
     <!-- / Page infos -->

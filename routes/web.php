@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\Auth\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/user/settings', [UserController::class, 'show'])->name('user.settings.show');
+    Route::post('/user/settings', [UserController::class, 'store'])->name('user.settings.store');
+});
 
 Route::group(['prefix' => '{project_id}', 'middleware' => ['auth']], function () {
    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
