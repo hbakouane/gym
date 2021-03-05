@@ -11,4 +11,6 @@ return [
     'day' => 'day',
     'Created by' => 'Created by',
     'Updated by' => 'Updated by',
+    'Settings' => 'Settings',
+    'Save' => 'Save',
 ];
