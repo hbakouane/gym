@@ -39,11 +39,6 @@
                                 <div class="d-flex justify-content-center">
                                     <input type="file" class="btn btn-primary mt-2" wire:model="profile_img">
                                 </div>
-                                <div x-show="isUploading">
-                                    <div class="spinner-border" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="col-md-6">

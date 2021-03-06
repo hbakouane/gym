@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Projects;
 
+use App\Models\Project;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -22,7 +24,6 @@ class CreateProject extends Component
     public $Zip;
 
     // Step3
-    public $UserName;
     public $UserPhone;
     public $UserAddress;
     public $UserCity;
@@ -61,7 +62,6 @@ class CreateProject extends Component
     public function saveStepTwo()
     {
         $this->validate([
-            'UserName' => 'required',
             'UserPhone' => 'required',
             'UserAddress' => 'required',
             'UserCity' => 'required',
@@ -75,6 +75,28 @@ class CreateProject extends Component
     {
         $this->step3 = false;
         $this->step4 = true;
+
+        // Save the project information
+        $project = new Project();
+        $project->create([
+            'user_id' => auth()->id(),
+            'name' => $this->ProjectName,
+            'project' => $this->Project,
+            'country' => $this->Country,
+            'city' => $this->City,
+            'address' => $this->Address,
+            'zip' => $this->Zip,
+            'plan_id' => 1
+        ])->save();
+
+        // Save the user information
+        $user = auth()->user();
+        $user->update([
+            'phone' => $this->UserPhone,
+            'address' => $this->UserAddress,
+            'city' => $this->UserCity,
+            'country' => $this->UserCountry
+        ]);
     }
 
 }

@@ -7,6 +7,7 @@ return [
     'Skip' => 'Skip',
     'Previous' => 'Previous',
     'Next' => 'Next',
+    'Finish' => 'Finish',
     'Project Name' => 'Project Name',
     'Project Id' => 'Project Id',
     'Country' => 'Country',

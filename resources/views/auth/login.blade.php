@@ -59,8 +59,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8 bg-side">
-            Hell
-        </div>
+        <div class="col-md-8 bg-side"></div>
     </div>
 @endsection

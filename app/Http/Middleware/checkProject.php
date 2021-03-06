@@ -27,6 +27,13 @@ class checkProject
                     ->to(route('project.create'))
                     ->with('You do not own this project, create yours.');
         }
+
+        // After checking if the user has a project or not, let's check if the current project is his own
+        $project_from_request = Project::where('project', request('project_id'))->where('user_id', auth()->id())->first();
+        if (! $project_from_request) {
+            $auth_user_project = Project::where('user_id', auth()->id())->first()->project;
+            return redirect()->to(route('home', $auth_user_project));
+        }
         return $next($request);
     }
 }
