@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Project;
+use App\Models\Subscription;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -14,7 +17,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        //
+        return view('members.index');
     }
 
     /**
@@ -24,7 +27,10 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        $project_id = Project::getProjectId();
+        $project = Project::find($project_id)->first();
+        $subscriptions = Subscription::where('project_id', $project_id)->get();
+        return view('members.create', ['subscriptions' => $subscriptions]);
     }
 
     /**

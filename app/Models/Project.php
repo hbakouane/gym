@@ -27,4 +27,9 @@ class Project extends Model
         }
         return $project;
     }
+
+    public function subscription()
+    {
+        return $this->hasMany('App\Models\Subscription');
+    }
 }

@@ -20,4 +20,9 @@ class Subscription extends Model
     {
         return $this->belongsTo('App\Models\User', 'created_by');
     }
+
+    public function project()
+    {
+        return $this->belongsTo('App\Models\Project');
+    }
 }
