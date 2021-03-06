@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    public $fillable = ['user_id', 'project_id'];
+    public $fillable = ['user_id', 'project', 'name', 'country', 'city', 'address', 'zip', 'plan_id'];
 
     public static function getProjectId()
     {

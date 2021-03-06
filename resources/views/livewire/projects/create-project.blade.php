@@ -327,16 +327,6 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label class="w-100 text-left">{{ __('project.Full name') }}
-                                                                <input type="text" class="{{ handleErrorClass($errors, 'UserName') }} form-control input" wire:model="UserName">
-                                                            </label>
-                                                            @error('UserName')
-                                                            <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Phone') }}
                                                                 <input type="text" class="{{ handleErrorClass($errors, 'UserPhone') }} form-control input" wire:model="UserPhone">
                                                             </label>
@@ -401,7 +391,7 @@
                                                         <button class="btn btn-main text-light" type="button" wire:click="handleToggle('step2', 'step3')">{{ __('project.Previous') }}</button>
                                                     </div>
                                                     <div class="col-md-2">
-                                                        <button class="btn btn-main text-light" type="submit">{{ __('project.Continue') }}</button>
+                                                        <button class="btn btn-main text-light" type="submit">{{ __('project.Finish') }}</button>
                                                     </div>
                                                 </div>
                                             </form>

@@ -11,6 +11,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-10">
+                    @include('partials.errors')
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
@@ -20,7 +21,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope"></i></span>
                             </div>
-                            <input type="email" id="email" name="email" class="form-control input" placeholder="{{ __('E-Mail Address') }}">
+                            <input type="email" id="email" name="email" value="{{ request('email') }}" class="form-control input" placeholder="{{ __('E-Mail Address') }}">
                         </div>
 
                         <div class="input-group mb-3">

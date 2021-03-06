@@ -22,6 +22,7 @@ class CreateProjectsTable extends Migration
             $table->string('city')->nullable();
             $table->string('address')->nullable();
             $table->string('zip')->nullable();
+            $table->string('currency')->nullable();
             $table->string('plan_id')->nullable();
             $table->timestamps();
         });
