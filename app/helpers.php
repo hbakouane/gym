@@ -14,3 +14,13 @@ if (!function_exists('makeProfileImg')) {
         return $src;
     }
 }
+
+if (!function_exists('handleErrorClass')) {
+    function handleErrorClass($errors, string $field) {
+        if ($errors->has($field)) {
+            return 'is-invalid';
+        } else {
+            return 'is-valid';
+        }
+    }
+}

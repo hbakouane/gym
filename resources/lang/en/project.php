@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'Create a Project' => 'Create a Project',
+    'Create your project now.' => 'Create your project now.',
+    'Continue' => 'Continue',
+    'Skip' => 'Skip',
+    'Previous' => 'Previous',
+    'Next' => 'Next',
+    'Project Name' => 'Project Name',
+    'Project Id' => 'Project Id',
+    'Country' => 'Country',
+    'Address' => 'Address',
+    'Zip' => 'Zip',
+    'City' => 'City',
+    'Tell us a little about your project.' => 'Tell us a little about your project.',
+    'Tell us a little about your self.' => 'Tell us a little about your self.',
+    'Full name' => 'Full name',
+    'Phone' => 'Phone',
+    'Project created successfully!' => 'Project created successfully!',
+    'Project created successfully.' => 'Project created successfully.',
+    'Preparing the project environment . . .' => 'Preparing the project environment . . .',
+    'Creating your project . . .' => 'Creating your project . . .',
+    'Redirecting to dashboard . . . ' => 'Redirecting to dashboard . . . ',
+];

@@ -26,9 +26,10 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/settings', [UserController::class, 'show'])->name('user.settings.show');
     Route::post('/user/settings', [UserController::class, 'store'])->name('user.settings.store');
+    Route::view('/project/create', 'projects.create')->name('project.create');
 });
 
-Route::group(['prefix' => '{project_id}', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => '{project_id}', 'middleware' => ['auth', 'checkProject']], function () {
    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
    Route::resource('/members', MemberController::class);
    Route::resource('/subscriptions', SubscriptionController::class);

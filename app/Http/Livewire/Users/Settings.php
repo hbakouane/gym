@@ -90,7 +90,7 @@ class Settings extends Component
             'address' => $this->address,
             'country'=> $this->country,
             'city'=> $this->city,
-            'profile_img'=> $img_url ?? $this->profile_img,
+            'profile_img'=> $img_url ?? $user->profile_img,
         ]);
         $this->message = __('settings.Information changed successfully.');
         return $this->toastr = true;
