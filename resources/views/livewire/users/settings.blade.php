@@ -19,11 +19,6 @@
             </div>
         </div>
         <script>
-            let seconds = 5;
-            setInterval(() => {
-                seconds--;
-                document.querySelector('#seconds').textContent = seconds;
-            }, 1000)
             setTimeout(() => {
                 {{ \Illuminate\Support\Facades\Auth::logout() }}
                 window.location.href = "{{ route('login') }}";
