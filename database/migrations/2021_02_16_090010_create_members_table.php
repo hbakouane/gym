@@ -16,20 +16,26 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string('cni')->nullable();
+            $table->string('photo')->nullable();
+            $table->string('email')->nullable();
             $table->string('address')->nullable();
+            $table->string('country')->nullable();
             $table->string('city')->nullable();
             $table->string('zip')->nullable();
-            $table->string('country')->nullable();
 
             $table->foreignId('subscription_id')->constrained();
             $table->foreignId('project_id')->constrained();
 
+            $table->longText('note');
+
             $table->string('started_at')->nullable();
             $table->string('ended_at')->nullable();
             $table->string('status')->nullable();
+
             $table->softDeletes();
+
             $table->timestamps();
         });
     }

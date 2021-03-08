@@ -28,7 +28,6 @@ class MemberController extends Controller
     public function create()
     {
         $project_id = Project::getProjectId();
-        $project = Project::find($project_id)->first();
         $subscriptions = Subscription::where('project_id', $project_id)->get();
         return view('members.create', ['subscriptions' => $subscriptions]);
     }

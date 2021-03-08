@@ -3,6 +3,7 @@
 return [
     'Actions' => 'Actions',
     'New' => 'New',
+    'Create' => 'Create',
     'Delete' => 'Delete',
     'Dashboard' => 'Dashboard',
     'month' => 'month',
@@ -13,4 +14,5 @@ return [
     'Updated by' => 'Updated by',
     'Settings' => 'Settings',
     'Save' => 'Save',
+    'Cancel' => 'Cancel',
 ];
