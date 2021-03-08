@@ -28,6 +28,9 @@
     <!-- Data tables Css -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 
+    <!-- FilePond -->
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+
     <!-- Page infos -->
     @php
         $page = $page ?? __('Dashboard');
@@ -406,11 +409,16 @@
 <!-- Data tables Js -->
 <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 
+<!-- FilePond -->
+<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
 <script>
     $(document).ready( function () {
         $('#datatable').DataTable();
     } );
 </script>
+
+@yield('scripts')
 
 </body>
 

@@ -23,5 +23,11 @@ return [
     'Last name' => 'Last name',
     'Username' => 'Username',
     'Email' => 'Email',
-
+    'Phone' => 'Phone',
+    'Address' => 'Address',
+    'ID' => 'ID',
+    'Zip' => 'Zip',
+    'City' => 'City',
+    'Country' => 'Country',
+    'Photo' => 'Photo',
 ];

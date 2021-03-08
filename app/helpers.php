@@ -16,11 +16,11 @@ if (!function_exists('makeProfileImg')) {
 }
 
 if (!function_exists('handleErrorClass')) {
-    function handleErrorClass($errors, string $field) {
+    function handleErrorClass($errors, string $field, $success = null, $danger = null) {
         if ($errors->has($field)) {
-            return 'is-invalid';
+            return $danger ?? 'is-invalid';
         } else {
-            return 'is-valid';
+            return $success ?? 'is-valid';
         }
     }
 }

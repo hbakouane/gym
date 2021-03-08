@@ -253,7 +253,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Project Name') }}
-                                                                <input type="text" class="{{ handleErrorClass($errors, 'ProjectName') }} form-control input" wire:model="ProjectName">
+                                                                <input type="text" class="{{ handleErrorClass($errors, 'ProjectName', ' ') }} form-control input" wire:model="ProjectName">
                                                             </label>
                                                             @error('ProjectName')
                                                             <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
@@ -263,7 +263,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Project Id') }}
-                                                                <input type="text" class="{{ handleErrorClass($errors, 'Project') }} form-control input" wire:model="Project">
+                                                                <input type="text" class="{{ handleErrorClass($errors, 'Project', ' ') }} form-control input" wire:model="Project">
                                                             </label>
                                                             @error('Project')
                                                             <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
@@ -273,7 +273,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Country') }}
-                                                                <select wire:model="Country" class="{{ handleErrorClass($errors, 'Country') }} form-control" style="height: 49px">
+                                                                <select wire:model="Country" class="{{ handleErrorClass($errors, 'Country', ' ') }} form-control" style="height: 49px">
                                                                     @include('partials.countries')
                                                                 </select>
                                                             </label>
@@ -285,7 +285,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.City') }}
-                                                                <input type="text" class="{{ handleErrorClass($errors, 'City') }} form-control input" wire:model="City">
+                                                                <input type="text" class="{{ handleErrorClass($errors, 'City', ' ') }} form-control input" wire:model="City">
                                                             </label>
                                                             @error('City')
                                                             <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
@@ -295,7 +295,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Address') }}
-                                                                <input type="text" class="{{ handleErrorClass($errors, 'Address') }} form-control input" wire:model="Address">
+                                                                <input type="text" class="{{ handleErrorClass($errors, 'Address', ' ') }} form-control input" wire:model="Address">
                                                             </label>
                                                             @error('Address')
                                                             <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
@@ -305,7 +305,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Zip') }}
-                                                                <input type="text" class="{{ handleErrorClass($errors, 'Zip') }} form-control input" wire:model="Zip">
+                                                                <input type="text" class="{{ handleErrorClass($errors, 'Zip', ' ') }} form-control input" wire:model="Zip">
                                                             </label>
                                                             @error('Zip')
                                                             <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
@@ -328,7 +328,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Phone') }}
-                                                                <input type="text" class="{{ handleErrorClass($errors, 'UserPhone') }} form-control input" wire:model="UserPhone">
+                                                                <input type="text" class="{{ handleErrorClass($errors, 'UserPhone', ' ') }} form-control input" wire:model="UserPhone">
                                                             </label>
                                                             @error('UserPhone')
                                                             <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
@@ -338,7 +338,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Address') }}
-                                                                <input type="text" class="{{ handleErrorClass($errors, 'UserAddress') }} form-control input" wire:model="UserAddress">
+                                                                <input type="text" class="{{ handleErrorClass($errors, 'UserAddress', ' ') }} form-control input" wire:model="UserAddress">
                                                             </label>
                                                             @error('UserAddress')
                                                             <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
@@ -348,7 +348,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Country') }}
-                                                                <select class="{{ handleErrorClass($errors, 'UserCountry') }} form-control" style="height: 49px" wire:model="UserCountry">
+                                                                <select class="{{ handleErrorClass($errors, 'UserCountry', ' ') }} form-control" style="height: 49px" wire:model="UserCountry">
                                                                     @include('partials.countries')
                                                                 </select>
                                                             </label>
@@ -360,7 +360,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.City') }}
-                                                                <input type="text" class="{{ handleErrorClass($errors, 'UserCity') }} form-control input" wire:model="UserCity">
+                                                                <input type="text" class="{{ handleErrorClass($errors, 'UserCity', ' ') }} form-control input" wire:model="UserCity">
                                                             </label>
                                                             @error('UserCity')
                                                             <p class="text-left"><small class="text-danger">{{ $message }}</small></p>

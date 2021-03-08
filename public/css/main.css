@@ -23,6 +23,9 @@
     height: 40px;
     border-radius: 12px;
 }
+.text-main {
+    color: #050a27 !important;
+}
 .btn-main:hover, .btn-main:focus, .btn-primary.btn-main:focus {
     background: #1b1f53 !important;
 }
