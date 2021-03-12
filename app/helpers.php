@@ -1,12 +1,14 @@
 <?php
 
 if (!function_exists('makeProfileImg')) {
-    function makeProfileImg($path = null) {
+    function makeProfileImg($path = null, $unknown = false) {
         $user = auth()->user();
         if (empty($user->profile_img)) {
             $src = url('images/profile.jpg');
         } elseif (!empty($path)) {
             $src = $path;
+        } elseif ($unknown) {
+            $src = url('images/profile.jpg');
         } else {
             $src = $user->profile_img;
         }

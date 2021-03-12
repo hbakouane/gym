@@ -15,4 +15,11 @@ return [
     'Settings' => 'Settings',
     'Save' => 'Save',
     'Cancel' => 'Cancel',
+    'Search' => 'Search',
+    'Show' => 'Show',
+    'Add' => 'Add',
+    'Edit' => 'Edit',
+    'Member deleted successfully.' => 'Member deleted successfully.',
+    'Are you sure?' => 'Are you sure?',
+    'Results' => 'Results',
 ];

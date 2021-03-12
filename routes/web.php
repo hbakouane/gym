@@ -36,8 +36,6 @@ Route::group(['prefix' => '{project_id}', 'middleware' => ['auth', 'checkProject
    Route::post('/user/settings', [UserController::class, 'store'])->name('user.settings.store');
 });
 
-Route::post('/upload', [\App\Http\Controllers\UploadController::class, 'upload']);
-
 Route::fallback(function () {
     return "404";
 });

@@ -50,4 +50,8 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Subscription');
     }
+
+    public function project() {
+        return $this->hasMany('App\Models\Projects');
+    }
 }

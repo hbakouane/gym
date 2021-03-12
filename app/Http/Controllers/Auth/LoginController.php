@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -34,9 +35,17 @@ class LoginController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
-        $this->redirectTo = route('project.create');
+        $project = Project::whereHas('user', function (Builder $query) use ($request) {
+            $query->where('email', $request->email);
+        })->first();
+        if ($project) {
+            session('project', $project->project);
+            $this->redirectTo = route('home', $project->project);
+        } else {
+            $this->redirectTo = route('project.create');
+        }
         $this->middleware('guest')->except('logout');
     }
 }
