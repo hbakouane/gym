@@ -1,4 +1,6 @@
 <div>
+    @include('partials.toastr')
+    @include('partials.errors')
     <form wire:submit.prevent="store" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4 mx-auto">
@@ -22,7 +24,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="w-100">{{ __('auth.Photo') }}
-                                    <input class="form-control" type="file" name="photo" id="photo">
+                                    <input wire:model="photo" class="form-control" type="file">
                                 </label>
                             </div>
                         </div>
@@ -39,13 +41,8 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label class="w-100">{{ __('auth.Address') }}
-                                <input class="form-control input" wire:model="name" placeholder="{{ __('auth.Address') }}">
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <label class="w-100">{{ __('auth.Zip') }}
-                                <input class="form-control input" wire:model="zip" placeholder="{{ __('auth.Zip') }}">
+                            <label class="w-100">{{ __('auth.Country') }}
+                                <input class="form-control input" wire:model="country" placeholder="{{ __('auth.Country') }}">
                             </label>
                         </div>
                         <div class="form-group">
@@ -54,8 +51,13 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <label class="w-100">{{ __('auth.Country') }}
-                                <input class="form-control input" wire:model="country" placeholder="{{ __('auth.Country') }}">
+                            <label class="w-100">{{ __('auth.Address') }}
+                                <input class="form-control input" wire:model="address" placeholder="{{ __('auth.Address') }}">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="w-100">{{ __('auth.Zip') }}
+                                <input class="form-control input" wire:model="zip" placeholder="{{ __('auth.Zip') }}">
                             </label>
                         </div>
                     </div>
@@ -75,7 +77,7 @@
                                 <label class="text-dark">{{ __('plan.Choose a subscription') }}</label><br>
                                 @foreach($subscriptions as $subscription)
                                     <label class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" wire:model="subscription_id" value="{{ $subscription->id }}" class="custom-control-input"><span class="custom-control-label">{{ $subscription->name }}</span>
+                                        <input type="radio" wire:model="subscription" value="{{ $subscription->id }}" class="custom-control-input"><span class="custom-control-label">{{ $subscription->name }}</span>
                                     </label>
                                 @endforeach
                             </div>

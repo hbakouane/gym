@@ -18,7 +18,7 @@ class checkProject
     public function handle(Request $request, Closure $next)
     {
         // This middleware will check if the authenticated owns this project or not
-        $project_id = Project::getProjectId();
+        $project_id = Project::getProjectIdOrFail();
         $project = Project::find($project_id)
                             ->where('user_id', auth()->id())
                             ->first();

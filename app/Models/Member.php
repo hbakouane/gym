@@ -9,5 +9,27 @@ class Member extends Model
 {
     use HasFactory;
 
-    public $fillable = ['name', 'email', 'phone', 'address', 'city', 'zip', 'country', 'subscription_id', 'country', 'started_at', 'ended_at', 'status'];
+    public $fillable = [
+        'name',
+        'email',
+        'phone',
+        'cne',
+        'photo',
+        'address',
+        'city',
+        'zip',
+        'country',
+        'subscription_id',
+        'project_id',
+        'note',
+        'country',
+        'started_at',
+        'ended_at',
+        'status'
+    ];
+
+    public function project()
+    {
+        return $this->belongsTo('App\Models\Project');
+    }
 }

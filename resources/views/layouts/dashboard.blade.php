@@ -28,9 +28,6 @@
     <!-- Data tables Css -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 
-    <!-- FilePond -->
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-
     <!-- Page infos -->
     @php
         $page = $page ?? __('Dashboard');
@@ -72,10 +69,20 @@
                             <a class="nav-link @if($route === "home") active @endif()" href="{{ route('home', $prefix) }}"><i class="fa fa-fw fa-user-circle"></i>{{ __('Dashboard') }} <span class="badge badge-success">6</span></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link @if(Str::startsWith($route, 'members')) active @endif()" href="{{ route('members.index', $prefix) }}"><i class="fa fa-fw fa-user-circle"></i>{{ __('Membres') }} <span class="badge badge-success">6</span></a>
+                            <a class="nav-link @if(Str::startsWith($route, 'members')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#members_menu" aria-controls="submenu-1"><i class="fa fa-users"></i>{{ __('pages.Members') }}</a>
+                            <div id="members_menu" class="submenu collapse @if(Str::startsWith($route, 'members')) show @endif()" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'members.index')) active @endif()" href="{{ route('members.index', $prefix) }}">{{ __('members.All members') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'members.create')) active @endif()" href="{{ route('members.create', $prefix) }}">{{ __('members.Add a member') }}</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if(Str::startsWith($route, 'features') or Str::startsWith($route, 'subscriptions')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-fw fa-money-check"></i>{{ __('Plans') }}</a>
+                                <a class="nav-link @if(Str::startsWith($route, 'features') or Str::startsWith($route, 'subscriptions')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-fw fa-money-check"></i>{{ __('Plans') }}</a>
                             <div id="submenu-2" class="collapse submenu @if(Str::startsWith($route, 'features') or Str::startsWith($route, 'subscriptions')) show @endif()" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
@@ -408,9 +415,6 @@
 
 <!-- Data tables Js -->
 <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-
-<!-- FilePond -->
-<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
 <script>
     $(document).ready( function () {

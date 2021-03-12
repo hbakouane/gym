@@ -17,7 +17,7 @@ class CreateMembersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone')->nullable();
-            $table->string('cni')->nullable();
+            $table->string('gov_ide')->nullable(); // Government identification
             $table->string('photo')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();
@@ -28,7 +28,7 @@ class CreateMembersTable extends Migration
             $table->foreignId('subscription_id')->constrained();
             $table->foreignId('project_id')->constrained();
 
-            $table->longText('note');
+            $table->longText('note')->nullable();
 
             $table->string('started_at')->nullable();
             $table->string('ended_at')->nullable();

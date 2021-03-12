@@ -32,4 +32,13 @@ class Project extends Model
     {
         return $this->hasMany('App\Models\Subscription');
     }
+
+    public function user() {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function member()
+    {
+        return $this->hasMany('App\Models\Member');
+    }
 }
