@@ -34,8 +34,6 @@ class CreateMembersTable extends Migration
             $table->string('ended_at')->nullable();
             $table->string('status')->nullable();
 
-            $table->softDeletes();
-
             $table->timestamps();
         });
     }

@@ -32,4 +32,9 @@ class Member extends Model
     {
         return $this->belongsTo('App\Models\Project');
     }
+
+    public function subscription()
+    {
+        return $this->belongsTo('App\Models\Subscription');
+    }
 }

@@ -30,4 +30,10 @@ return [
     'City' => 'City',
     'Country' => 'Country',
     'Photo' => 'Photo',
+    'CNE' => 'Government Id',
+    'Subscription' => 'Subscription',
+    'Joined at' => 'Joined at',
+    'Updated at' => 'Updated at',
+    'Status' => 'Status',
+    'About' => 'About',
 ];

@@ -22,4 +22,6 @@ return [
     'Member deleted successfully.' => 'Member deleted successfully.',
     'Are you sure?' => 'Are you sure?',
     'Results' => 'Results',
+    'Details' => 'Details',
+    'More information' => 'More information',
 ];

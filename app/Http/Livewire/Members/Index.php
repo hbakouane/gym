@@ -78,6 +78,10 @@ class Index extends Component
 
     public function mount()
     {
+        if (request('edit')) {
+            $this->current = "edit";
+            $this->edit(request('user'));
+        }
         $this->project_id = Project::where('project', $this->prefix)->first();
         $this->subscriptions = Subscription::where('project_id', $this->project_id->id)->get();
     }
@@ -128,6 +132,7 @@ class Index extends Component
             'note' => $this->note,
             'project_id' => $this->project_id->id
         ])->save();
+
         // Return to the index
         $this->current ="index";
 
