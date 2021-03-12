@@ -34,7 +34,7 @@
         $breadcumbs = $breadcumbs ?? [$page => route('home', $prefix ?? session()->get('prefix'))];
         $route = \Request::route()->getName();
     @endphp
-    <!-- / Page infos -->
+ <!-- / Page infos -->
     <title>{{ $website->name ?? 'Gym CRM' . ' - ' . $page }}</title>
 </head>
 

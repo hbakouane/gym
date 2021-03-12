@@ -25,4 +25,9 @@ class Subscription extends Model
     {
         return $this->belongsTo('App\Models\Project');
     }
+
+    public function member()
+    {
+        return $this->hasMany('App\Models\Member');
+    }
 }
