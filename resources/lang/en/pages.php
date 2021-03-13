@@ -5,4 +5,5 @@ return [
     'User settings' => 'User settings',
     'Members' => 'Members',
     'Add a member' => 'Add a member',
+    'Payments' => 'Payments',
 ];
