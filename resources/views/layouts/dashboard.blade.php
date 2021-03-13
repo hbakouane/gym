@@ -124,10 +124,10 @@
                             <div id="payments_menu" class="submenu collapse @if(Str::startsWith($route, 'payments')) show @endif()" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link @if(Str::startsWith($route, 'payments.index')) active @endif()" href="{{ route('features.index', $prefix) }}">{{ __('payments.All payments') }}</a>
+                                        <a class="nav-link @if(Str::startsWith($route, 'payments.index')) active @endif()" href="{{ route('payments.index', $prefix) }}">{{ __('payments.All payments') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link @if(Str::startsWith($route, 'payments.create')) active @endif()" href="{{ route('features.create', $prefix) }}">{{ __('payments.Add a payment') }}</a>
+                                        <a class="nav-link @if(Str::startsWith($route, 'payments.create')) active @endif()" href="{{ route('payments.create', $prefix) }}">{{ __('payments.Add a payment') }}</a>
                                     </li>
                                 </ul>
                             </div>
