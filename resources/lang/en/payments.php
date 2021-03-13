@@ -2,6 +2,7 @@
 
 return [
     'Payments' => 'Payments',
+    'All payments' => 'All payments',
     'Add a payment' => 'Add a payment',
     'Amount' => 'Amount',
     'Payment type' => 'Payment type',

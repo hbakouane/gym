@@ -120,7 +120,17 @@
                             <a class="nav-link @if(Str::startsWith($route, 'user.settings.show')) active @endif()" href="{{ route('user.settings.show', $prefix) }}"><i class="fa fa-user-cog"></i>{{ __('general.Settings') }} <span class="badge badge-success">6</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if(Str::startsWith($route, 'payments')) active @endif()" href="{{ route('payments.index', $prefix) }}"><i class="fa fa-dollar-sign"></i> {{ __('pages.Payments') }} <span class="badge badge-success">6</span></a>
+                            <a class="nav-link collapsed @if(Str::startsWith($route, 'payments')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#payments_menu" aria-controls="features_menu"><i class="fa fa-dollar-sign"></i> {{ __('pages.Payments') }}</a>
+                            <div id="payments_menu" class="submenu collapse @if(Str::startsWith($route, 'payments')) show @endif()" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'payments.index')) active @endif()" href="{{ route('features.index', $prefix) }}">{{ __('payments.All payments') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'payments.create')) active @endif()" href="{{ route('features.create', $prefix) }}">{{ __('payments.Add a payment') }}</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Chart</a>
