@@ -17,7 +17,7 @@ class CreateMembersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone')->nullable();
-            $table->string('gov_ide')->nullable(); // Government identification
+            $table->string('cne')->nullable(); // Government identification
             $table->string('photo')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();

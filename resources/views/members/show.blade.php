@@ -33,7 +33,7 @@
                                 <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Country') }}</span> {{ $member->country }}</p>
                             </div>
                             <div class="col-md-4">
-                                <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Subscription') }}</span> <a href="{{ route('subscriptions.show', [$prefix, $member->subscription->id]) }}">{{ $member->subscription->name }}</a></p>
+                                <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Subscription') }}</span> <a href="{{ route('subscriptions.index', [$prefix]) }}">{{ $member->subscription->name }}</a></p>
                                 <p class="w-100" title="{{ $member->updated_at->diffForHumans() }}"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Joined at') }}</span> {{ $member->created_at }}</p>
                                 <p class="w-100" title="{{ $member->created_at->diffForHumans() }}"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Updated at') }}</span> {{ $member->updated_at }}</p>
                                 <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Status') }}</span> {{ $member->status }}</p>

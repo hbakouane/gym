@@ -1,20 +1,18 @@
 <!doctype html>
 <html lang="en">
-
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <link href="{{ url('assets/vendor/fonts/circular-std/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('assets/vendor/fonts/circular-std/style.css') }}">
     <link rel="stylesheet" href="{{ url('assets/libs/css/style.css') }}">
     <link rel="stylesheet" href="{{ url('assets/vendor/fonts/fontawesome/css/fontawesome-all.css') }}">
     <link rel="stylesheet" href="{{ url('assets/vendor/vector-map/jqvmap.css') }}">
     <link rel="stylesheet" href="{{ url('assets/vendor/jvectormap/jquery-jvectormap-2.0.2.css') }}">
     <link rel="stylesheet" href="{{ url('assets/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
 
     <!-- Livewire -->
     @livewireStyles
@@ -28,13 +26,18 @@
     <!-- Data tables Css -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 
+    @yield('styles')
+
+    <!-- Bootstrap-select Css -->
+    <link rel="stylesheet" href="{{ url('assets/vendor/bootstrap-select/css/bootstrap-select.css') }}">
+
     <!-- Page infos -->
     @php
         $page = $page ?? __('Dashboard');
         $breadcumbs = $breadcumbs ?? [$page => route('home', $prefix ?? session()->get('prefix'))];
         $route = \Request::route()->getName();
     @endphp
- <!-- / Page infos -->
+    <!-- / Page infos -->
     <title>{{ $website->name ?? 'Gym CRM' . ' - ' . $page }}</title>
 </head>
 
@@ -115,6 +118,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @if(Str::startsWith($route, 'user.settings.show')) active @endif()" href="{{ route('user.settings.show', $prefix) }}"><i class="fa fa-user-cog"></i>{{ __('general.Settings') }} <span class="badge badge-success">6</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @if(Str::startsWith($route, 'payments')) active @endif()" href="{{ route('payments.index', $prefix) }}"><i class="fa fa-dollar-sign"></i> {{ __('pages.Payments') }} <span class="badge badge-success">6</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Chart</a>
@@ -412,6 +418,9 @@
 
 <!-- dashboard sales js-->
 <script src="{{ url('assets/libs/js/dashboard-sales.js') }}"></script>
+
+<!-- Bootstrap-select Js -->
+<script src="{{ url('assets/vendor/bootstrap-select/js/bootstrap-select.js') }}"></script>
 
 <!-- Data tables Js -->
 <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>

@@ -65,6 +65,7 @@ class Index extends Component
                 ->orWhere('phone', 'like', "%$this->search%")
                 ->orWhere('email', 'like', "%$this->search%")
                 ->orWhere('address', 'like', "%$this->search%")
+                ->orWhere('cne', 'like', "%$this->search%")
                 ->orderBy('id', 'DESC')
                 ->paginate($this->pagination);
         } else {
@@ -132,6 +133,12 @@ class Index extends Component
             'note' => $this->note,
             'project_id' => $this->project_id->id
         ])->save();
+
+        // If there is an edit GET var, it means that we are coming from
+        // the route('members.show'), so we have to get back when we update the records
+        if (request('user')) {
+            return redirect()->to(route('members.show', [$this->project_id->id, $this->user->id]));
+        }
 
         // Return to the index
         $this->current ="index";

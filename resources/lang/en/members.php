@@ -11,4 +11,5 @@ return [
     'All members' => 'All members',
     'Add a member' => 'Add a member',
     'Information updated successfully.' => 'Information updated successfully.',
+    'Member' => 'Member',
 ];

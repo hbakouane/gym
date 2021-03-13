@@ -37,4 +37,9 @@ class Member extends Model
     {
         return $this->belongsTo('App\Models\Subscription');
     }
+
+    public function payment()
+    {
+        return $this->belongsToMany('App\Models\Payment');
+    }
 }

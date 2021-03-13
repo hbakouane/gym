@@ -11,7 +11,9 @@ return [
     '6 months' => '6 months',
     'day' => 'day',
     'Created by' => 'Created by',
+    'Created at' => 'Created at',
     'Updated by' => 'Updated by',
+    'Updated at' => 'Updated at',
     'Settings' => 'Settings',
     'Save' => 'Save',
     'Cancel' => 'Cancel',
@@ -24,4 +26,7 @@ return [
     'Results' => 'Results',
     'Details' => 'Details',
     'More information' => 'More information',
+    'Payments' => 'Payments',
+    'Hide' => 'Hide',
+    'No results' => 'No results',
 ];

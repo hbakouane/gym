@@ -5,6 +5,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\PaymentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::group(['prefix' => '{project_id}', 'middleware' => ['auth', 'checkProject
    Route::resource('/features', FeatureController::class);
    Route::get('/user/settings', [UserController::class, 'show'])->name('user.settings.show');
    Route::post('/user/settings', [UserController::class, 'store'])->name('user.settings.store');
+   Route::resource('/payments', PaymentsController::class);
 });
 
 Route::fallback(function () {
