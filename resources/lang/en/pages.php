@@ -6,4 +6,6 @@ return [
     'Members' => 'Members',
     'Add a member' => 'Add a member',
     'Payments' => 'Payments',
+    'Credits' => 'Credits',
+    'Add a credit' => 'Add a credit',
 ];
