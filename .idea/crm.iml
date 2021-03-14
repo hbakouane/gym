@@ -119,7 +119,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/laracasts/flash" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yoeunes/toastr" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/livewire/livewire" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/snapappointments/bootstrap-select" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/maximebf/debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/debug" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

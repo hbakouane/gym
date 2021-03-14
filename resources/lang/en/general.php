@@ -29,4 +29,7 @@ return [
     'Payments' => 'Payments',
     'Hide' => 'Hide',
     'No results' => 'No results',
+    'Overview' => 'Overview',
+    'Information' => 'Information',
+    'About' => 'About',
 ];

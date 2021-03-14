@@ -20,7 +20,12 @@
                     <tbody>
                     @foreach($payments as $payment)
                         <tr>
-                            <td>{{ $payment->member->name }}</td>
+                            <td>
+                                <a target="_blank" href="{{ route('members.show', [$prefix, $payment->member->id]) }}">
+                                    <img class="img-fluid user-avatar-md rounded-circle" src="{{ makeProfileImg($payment->member->photo, true) }}">
+                                    {{ $payment->member->name }}
+                                </a>
+                            </td>
                             <td>{{ $website->prefix ?? '' . $payment->amount }}</td>
                             <td>{{ $payment->payment_type }}</td>
                             <td>{{ $payment->payment_date }}</td>
@@ -28,7 +33,8 @@
                             <td>{{ $payment->created_at }}</td>
                             <td class="d-flex justify-content-center">
                                 <div class="d-inline-block">
-                                    <button class="btn btn-danger btn-sm" wire:click="delete({{ $payment->id }})">{{ __('general.Delete') }} <i class="fa fa-trash-alt"></i></button>
+                                    <a href="{{ route('members.show', [$prefix, $payment->member->id, 'payments' => true]) }}" class="btn btn-info text-light btn-sm"><i class="fa fa-eye"></i> {{ __('general.Show') }}</a>
+                                    <button class="btn btn-danger btn-sm" wire:click="delete({{ $payment->id }})"><i class="fa fa-trash-alt"></i> {{ __('general.Delete') }}</button>
                                 </div>
                             </td>
                         </tr>
