@@ -34,6 +34,7 @@
                             <td class="d-flex justify-content-center">
                                 <div class="d-inline-block">
                                     <a href="{{ route('members.show', [$prefix, $payment->member->id, 'payments' => true]) }}" class="btn btn-info text-light btn-sm"><i class="fa fa-eye"></i> {{ __('general.Show') }}</a>
+                                    <a href="{{ route('payments.edit', [$prefix, $payment->id]) }}" class="btn btn-brand btn-sm"><i class="fa fa-pencil-alt"></i> {{ __('general.Edit') }}</a>
                                     <button class="btn btn-danger btn-sm" wire:click="delete({{ $payment->id }})"><i class="fa fa-trash-alt"></i> {{ __('general.Delete') }}</button>
                                 </div>
                             </td>

@@ -26,4 +26,10 @@ class PaymentsController extends Controller
     {
         return view('payments.create');
     }
+
+    public function edit($prefix, $id)
+    {
+        $payment = Payment::where('id', $id)->first();
+        return view('payments.edit', ['payment' => $payment]);
+    }
 }
