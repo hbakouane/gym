@@ -42,4 +42,9 @@ class Member extends Model
     {
         return $this->belongsToMany('App\Models\Payment');
     }
+
+    public function credit()
+    {
+        return $this->belongsToMany('App\Models\Credit');
+    }
 }
