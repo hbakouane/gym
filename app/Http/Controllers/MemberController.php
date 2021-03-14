@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Payment;
 use App\Models\Project;
 use App\Models\Subscription;
 use Illuminate\Database\Eloquent\Builder;
@@ -35,7 +36,8 @@ class MemberController extends Controller
     public function show($prefix, $id)
     {
         $member = Member::where('id', $id)->first();
-        return view('members.show', ['member' => $member]);
+        $payments = Payment::where('member_id', $id)->latest()->get();
+        return view('members.show', ['member' => $member, 'payments' => $payments]);
     }
 
     public function destroy($prefix, $id)
