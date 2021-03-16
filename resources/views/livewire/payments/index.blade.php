@@ -5,7 +5,7 @@
         </h5>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped table-bordered first" id="datatable">
+                <table class="table table-striped table-bordered first datatableTable">
                     <thead>
                     <tr>
                         <th>{{ __('members.Member') }}</th>
@@ -30,7 +30,12 @@
                             <td>{{ $payment->payment_type }}</td>
                             <td>{{ $payment->payment_date }}</td>
                             <td>{{ $payment->note }}</td>
-                            <td>{{ $payment->created_at }}</td>
+                            <td title="{{ $payment->created_at->diffForHumans() }}">
+                                {{ $payment->created_at }}
+                                @if($payment->created_at != $payment->updated_at)
+                                    <div class="badge badge-brand" title="{{ __('general.Updated at') . ' ' . $payment->updated_at . ' (' . $payment->updated_at->diffForHumans() . ')' }}">{{ __('general.Updated') }}</div>
+                                @endif
+                            </td>
                             <td class="d-flex justify-content-center">
                                 <div class="d-inline-block">
                                     <a href="{{ route('members.show', [$prefix, $payment->member->id, 'payments' => true]) }}" class="btn btn-info text-light btn-sm"><i class="fa fa-eye"></i> {{ __('general.Show') }}</a>

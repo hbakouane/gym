@@ -17,6 +17,11 @@ class Payment extends Model
         return $this->belongsTo('App\Models\Member');
     }
 
+    public function project()
+    {
+        return $this->hasOne('App\Models\Project', 'project');
+    }
+
     public function scopeAsc($query, $column = 'id')
     {
         $query->orderBy($column, 'ASC');

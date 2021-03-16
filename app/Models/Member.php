@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Scopes\WhereProjectScope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Member extends Model
 {
     use HasFactory;
+
+    public static $prefix;
 
     public $fillable = [
         'name',
@@ -46,5 +50,12 @@ class Member extends Model
     public function credit()
     {
         return $this->belongsToMany('App\Models\Credit');
+    }
+
+    public function scopeWhereProject($query, $project)
+    {
+        return $query->whereHas('project', function (Builder $builder) use ($project) {
+            $builder->where('project', $project ?? request('project_id'));
+        });
     }
 }

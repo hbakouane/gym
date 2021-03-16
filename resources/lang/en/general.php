@@ -32,4 +32,5 @@ return [
     'Overview' => 'Overview',
     'Information' => 'Information',
     'About' => 'About',
+    'Updated' => 'Updated',
 ];

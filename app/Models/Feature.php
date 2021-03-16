@@ -15,4 +15,9 @@ class Feature extends Model
     {
         return $this->morphedByMany('App\Models\Subscription', 'featureable')->withTimestamps();
     }
+
+    public function project()
+    {
+        return $this->belongsTo('App\Models\Project');
+    }
 }

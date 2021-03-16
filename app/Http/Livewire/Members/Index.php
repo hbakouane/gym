@@ -66,6 +66,7 @@ class Index extends Component
                 ->orWhere('email', 'like', "%$this->search%")
                 ->orWhere('address', 'like', "%$this->search%")
                 ->orWhere('cne', 'like', "%$this->search%")
+                ->orWhere('city', 'like', "%$this->search%")
                 ->orderBy('id', 'DESC')
                 ->paginate($this->pagination);
         } else {

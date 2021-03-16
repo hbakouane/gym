@@ -12,6 +12,13 @@
             })
         </script>
     @endif
+    @if(request('credits'))
+        <script>
+            setTimeout(() => {
+                document.querySelector('#credits-tab').click()
+            })
+        </script>
+    @endif
     <div class="row">
         <div class="col-md-3">
             <div class="card">
@@ -25,7 +32,7 @@
                         <form class="d-inline-block" method="POST" action="{{ route('members.destroy', [$prefix, $member->id]) }}">
                             @method('DELETE')
                             @csrf
-                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> {{ __('general.Delete') }}</button>
+                            <button onclick="confirm('{{ __('general.Are you sure?') }}') || event.preventDefault()" class="btn btn-danger"><i class="fa fa-trash"></i> {{ __('general.Delete') }}</button>
                         </form>
                     </div>
                 </div>
@@ -44,6 +51,9 @@
                         <a class="nav-link" id="payments-tab" data-toggle="tab" href="#payments" role="tab" aria-controls="payments" aria-selected="false">{{ __('general.Payments') }}</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" id="credits-tab" data-toggle="tab" href="#credits" role="tab" aria-controls="credits" aria-selected="false">{{ __('pages.Credits') }}</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">{{ __('general.About') }}</a>
                     </li>
                 </ul>
@@ -56,7 +66,7 @@
                                         <div class="card-body">
                                             <div class="d-inline-block">
                                                 <h5 class="text-muted">Total Paid</h5>
-                                                <h2 class="mb-0"> $149.00</h2>
+                                                <h2 class="mb-0"> {{ $website->currency ?? '' . $total_paid }}</h2>
                                             </div>
                                             <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
                                                 <i class="fa fa-money-bill-alt fa-fw fa-sm text-primary"></i>
@@ -69,7 +79,7 @@
                                         <div class="card-body">
                                             <div class="d-inline-block">
                                                 <h5 class="text-muted">Total Credits</h5>
-                                                <h2 class="mb-0"> $149.00</h2>
+                                                <h2 class="mb-0"> {{ $website->currency ?? '' . $total_credits }}</h2>
                                             </div>
                                             <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
                                                 <i class="fa fa-dollar-sign fa-fw fa-sm text-info"></i>
@@ -87,6 +97,33 @@
                                             <div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
                                                 <i class="fa fa-box fa-fw fa-sm text-secondary"></i>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header h4 text-dark font-weight-bold">{{ __('general.More information') }}</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Name') }}</span> {{ $member->name }}</p>
+                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Email') }}</span> {{ $member->email }}</p>
+                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.CNE') }}</span> {{ $member->cne }}</p>
+                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Phone') }}</span> {{ $member->phone }}</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.City') }}</span> {{ $member->city }}</p>
+                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Address') }}</span> {{ $member->address }}</p>
+                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Phone') }}</span> {{ $member->phone }}</p>
+                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Country') }}</span> {{ $member->country }}</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Subscription') }}</span> <a href="{{ route('subscriptions.index', [$prefix]) }}">{{ $member->subscription->name }}</a></p>
+                                            <p class="w-100" title="{{ $member->updated_at->diffForHumans() }}"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Joined at') }}</span> {{ $member->created_at }}</p>
+                                            <p class="w-100" title="{{ $member->created_at->diffForHumans() }}"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Updated at') }}</span> {{ $member->updated_at }}</p>
+                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Status') }}</span> {{ $member->status }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -124,9 +161,18 @@
                     </div>
                     <div class="tab-pane fade" id="payments" role="tabpanel" aria-labelledby="payments-tab">
                         <div class="col-md-12">
-                            <div class="card pb-0">
+                            <div class="bg-light pb-0">
                                 <div class="card-body p-0">
                                     @livewire('payments.index')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="credits" role="tabpanel" aria-labelledby="credits-tab">
+                        <div class="col-md-12">
+                            <div class="bg-light pb-0">
+                                <div class="card-body p-0">
+                                    @livewire('credits.index')
                                 </div>
                             </div>
                         </div>
