@@ -4,11 +4,13 @@ namespace App\Http\Livewire\Credits;
 
 use App\Models\Credit;
 use App\Models\Member;
+use App\Models\Project;
 use Livewire\Component;
 
 class Create extends Component
 {
     public $member_id;
+    public $prefix;
     public $name;
     public $members; // All members
     public $member; // Selected member
@@ -34,7 +36,7 @@ class Create extends Component
 
     public function getMember()
     {
-        $this->members = Member::where('name', 'like', "%$this->name%")->limit(5)->get();
+        $this->members = Member::whereProject($this->prefix)->where('name', 'like', "%$this->name%")->limit(5)->get();
     }
 
     public function getOneMember($id, $closeSuggestions = false)
@@ -64,7 +66,8 @@ class Create extends Component
             'amount' => $this->amount,
             'payment_type' => $this->payment_type,
             'payment_date' => $this->payment_date,
-            'note' => $this->note
+            'note' => $this->note,
+            'project_id' => Project::getProjectId($this->prefix)
         ])->save();
         $this->reset(['amount', 'payment_type', 'payment_date', 'note']);
         $this->message = __('credits.Credit added successfully.');

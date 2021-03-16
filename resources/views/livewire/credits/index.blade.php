@@ -30,7 +30,12 @@
                             <td>{{ $credit->payment_type }}</td>
                             <td>{{ $credit->payment_date }}</td>
                             <td>{{ $credit->note }}</td>
-                            <td>{{ $credit->created_at }}</td>
+                            <td>
+                                {{ $credit->created_at }}
+                                @if($credit->created_at != $credit->updated_at)
+                                    <div class="badge badge-brand" title="{{ __('general.Updated at') . ' ' . $credit->updated_at . ' (' . $credit->updated_at->diffForHumans() . ')' }}">{{ __('general.Updated') }}</div>
+                                @endif
+                            </td>
                             <td class="d-flex justify-content-center">
                                 <div class="d-inline-block">
                                     <a href="{{ route('members.show', [$prefix, $credit->member->id, 'credits' => true]) }}" class="btn btn-info text-light btn-sm"><i class="fa fa-eye"></i> {{ __('general.Show') }}</a>

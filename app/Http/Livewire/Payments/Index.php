@@ -3,16 +3,14 @@
 namespace App\Http\Livewire\Payments;
 
 use App\Models\Payment;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Project;
 use Livewire\Component;
 
 class Index extends Component
 {
     public function render()
     {
-        $payments = Payment::whereHas('project', function (Builder $builder) {
-            $builder->where('project', request('project_id'));
-        })->orderBy('id', 'DESC')->get();
+        $payments = Payment::where('project_id', Project::getProjectId(request('project_id')))->asc()->get();
         return view('livewire.payments.index', ['payments' => $payments]);
     }
 

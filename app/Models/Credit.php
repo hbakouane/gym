@@ -9,7 +9,7 @@ class Credit extends Model
 {
     use HasFactory;
 
-    public $fillable = ['member_id', 'amount', 'payment_type', 'payment_date', 'note'];
+    public $fillable = ['member_id', 'project_id', 'amount', 'payment_type', 'payment_date', 'note'];
 
     public function member()
     {

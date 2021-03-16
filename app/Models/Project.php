@@ -11,9 +11,9 @@ class Project extends Model
 
     public $fillable = ['user_id', 'project', 'name', 'country', 'city', 'address', 'zip', 'plan_id'];
 
-    public static function getProjectId()
+    public static function getProjectId($project_id = null)
     {
-        $prefix = request()->route()->project_id;
+        $prefix = $project_id ?? request()->route()->project_id;
         $project = Project::where('project', $prefix)->first();
         return $project->id;
     }

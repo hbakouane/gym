@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Payments;
 
 use App\Models\Member;
 use App\Models\Payment;
+use App\Models\Project;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -66,7 +67,8 @@ class Create extends Component
             'amount' => $this->amount,
             'payment_type' => $this->payment_type,
             'payment_date' => $this->payment_date,
-            'note' => $this->note
+            'note' => $this->note,
+            'project_id' => Project::getProjectId($this->prefix)
         ])->save();
         $this->reset(['amount', 'payment_type', 'payment_date', 'note']);
         $this->message = __('payments.Payment added successfully.');

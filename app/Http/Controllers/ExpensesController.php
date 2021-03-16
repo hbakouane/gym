@@ -15,4 +15,9 @@ class ExpensesController extends Controller
     {
         return view('expenses.create');
     }
+
+    public function edit()
+    {
+        return view('expenses.edit');
+    }
 }
