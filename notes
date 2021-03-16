@@ -4,7 +4,7 @@ sumuw.ma
 
 Add currency conversion
 
-Add a clients sidebar
+Add a clients sidebar (activities sidebar*)
 
 Currencies Model
 
@@ -27,3 +27,7 @@ Products
 Payments on members.show
 
 Newsletter popup after 10s on the homepage
+
+?ref=id for referrals
+
+On /project/create, there will be a box showing the existing projects

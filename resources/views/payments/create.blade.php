@@ -5,5 +5,5 @@
         $page = __('payments.Add a payment');
         $breadcumbs = ['Dashboard' => route('home', $prefix), __('payments.Add a payment') => route('payments.create', $prefix)];
     @endphp
-    @livewire('payments.create')
+    @livewire('payments.create', ['prefix' => $prefix])
 @endsection

@@ -6,6 +6,7 @@ use App\Models\Featureable;
 use App\Models\Feature;
 use App\Models\Project;
 use App\Models\Subscription;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
@@ -36,7 +37,9 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        $features = Feature::all();
+        $features = Feature::whereHas('project', function (Builder $builder) {
+            $builder->where('project', request('project_id'));
+        })->get();
         return view('subscriptions.create', ['features' => $features]);
     }
 

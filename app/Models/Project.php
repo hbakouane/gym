@@ -41,4 +41,14 @@ class Project extends Model
     {
         return $this->hasMany('App\Models\Member');
     }
+
+    public function feature()
+    {
+        return $this->belongsTo('App\Models\Feature');
+    }
+
+    public function payment()
+    {
+        return $this->belongsToMany('App\Models\Payment');
+    }
 }

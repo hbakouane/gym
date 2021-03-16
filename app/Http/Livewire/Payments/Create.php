@@ -4,10 +4,12 @@ namespace App\Http\Livewire\Payments;
 
 use App\Models\Member;
 use App\Models\Payment;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Create extends Component
 {
+    public $prefix;
     public $member_id;
     public $name;
     public $members; // All members
@@ -34,7 +36,7 @@ class Create extends Component
 
     public function getMember()
     {
-        $this->members = Member::where('name', 'like', "%$this->name%")->limit(5)->get();
+        $this->members = Member::WhereProject($this->prefix)->where('name', 'like', "%$this->name%")->limit(5)->get();
     }
 
     public function getOneMember($id, $closeSuggestions = false)
@@ -45,7 +47,7 @@ class Create extends Component
             $this->showCard = false;
         }
         $this->member_id = $id;
-        $this->member = Member::find($id);
+        $this->member = Member::WhereProject($this->prefix)->first();
         $this->name = $this->member->name;
     }
 

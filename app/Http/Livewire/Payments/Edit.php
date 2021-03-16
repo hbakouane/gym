@@ -25,7 +25,7 @@ class Edit extends Component
 
     public function mount()
     {
-        $this->payment = Payment::find(request('payment'));
+        $this->payment = Payment::findOrFail(request('payment'));
         $this->member_id = $this->payment->member->id;
         $this->member = Member::find($this->member_id);
         $this->showCard = true;
