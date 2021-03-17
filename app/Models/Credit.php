@@ -9,11 +9,15 @@ class Credit extends Model
 {
     use HasFactory;
 
-    public $fillable = ['member_id', 'project_id', 'amount', 'payment_type', 'payment_date', 'note'];
+    public $fillable = ['creditable_id', 'creditable_type', 'project_id', 'amount', 'payment_type', 'payment_date', 'note'];
 
     public function member()
     {
         return $this->belongsTo('App\Models\Member');
+    }
+
+    public function creditable() {
+        return $this->morphTo();
     }
 
     public function scopeAsc($query, $column = 'id')

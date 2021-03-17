@@ -44,6 +44,17 @@
                 <div class="card-body">
                     <form wire:submit.prevent="save">
                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio custom-control-inline" title="{{ __('payments.Payment from a member') }}">
+                                        <input type="radio" wire:model="creditable_type" value="member" class="custom-control-input"><span class="custom-control-label">{{ __('members.Member') }}</span>
+                                    </label>
+                                    <label class="custom-control custom-radio custom-control-inline" title="{{ __('payments.Payment to a vendor') }}">
+                                        <input type="radio" wire:model="creditable_type" value="vendor" class="custom-control-input"><span class="custom-control-label">{{ __('expenses.Vendor') }}</span>
+                                    </label>
+                                 </div>
+                            </div>
+                            @if($creditable_type)
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>{{ __('members.Member') }}</label>
@@ -100,6 +111,7 @@
                                     </label>
                                 </div>
                             </div>
+                            @endif
                         </div>
                         <button class="btn btn-main text-light" type="submit">{{ __('general.Save') }}</button>
                     </form>

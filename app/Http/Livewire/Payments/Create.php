@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Payments;
 use App\Models\Member;
 use App\Models\Payment;
 use App\Models\Project;
+use App\Models\Vendor;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -25,6 +26,8 @@ class Create extends Component
     public $message;
     public $type;
 
+    public $payable_type;
+
     public function render()
     {
         return view('livewire.payments.create');
@@ -37,7 +40,8 @@ class Create extends Component
 
     public function getMember()
     {
-        $this->members = Member::WhereProject($this->prefix)->where('name', 'like', "%$this->name%")->limit(5)->get();
+        $model = $this->payable_type == "member" ? 'App\Models\Member' : 'App\Models\Vendor';
+        $this->members = $model::WhereProject($this->prefix)->where('name', 'like', "%$this->name%")->limit(5)->get();
     }
 
     public function getOneMember($id, $closeSuggestions = false)
@@ -48,7 +52,7 @@ class Create extends Component
             $this->showCard = false;
         }
         $this->member_id = $id;
-        $this->member = Member::WhereProject($this->prefix)->first();
+        $this->member = $this->payable_type == "member" ? Member::WhereProject($this->prefix)->where('id', $id)->first() : Vendor::WhereProject($this->prefix)->where('id', $id)->first();
         $this->name = $this->member->name;
     }
 
@@ -62,8 +66,10 @@ class Create extends Component
             'note' => 'sometimes'
         ]);
         $payment = new Payment();
+        $payable_type = $this->payable_type == "member" ? 'App\Models\Member' : 'App\Models\Vendor';
         $payment->create([
-            'member_id' => $this->member_id,
+            'payable_id' => $this->member_id,
+            'payable_type' => $payable_type,
             'amount' => $this->amount,
             'payment_type' => $this->payment_type,
             'payment_date' => $this->payment_date,

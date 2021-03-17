@@ -10,7 +10,15 @@ class Payment extends Model
 {
     use HasFactory;
 
-    public $fillable = ['member_id', 'project_id', 'amount', 'payment_type', 'payment_date', 'note'];
+    public $fillable = [
+        'payable_id', 
+        'payable_type',
+        'project_id', 
+        'amount', 
+        'payment_type', 
+        'payment_date', 
+        'note'
+    ];
 
     public function member()
     {
@@ -20,6 +28,10 @@ class Payment extends Model
     public function project()
     {
         return $this->hasOne('App\Models\Project', 'project');
+    }
+
+    public function payable() {
+        return $this->morphTo();
     }
 
     public function scopeAsc($query, $column = 'id')

@@ -5,5 +5,5 @@
         $page = __('pages.Credits');
         $breadcumbs = ['Dashboard' => route('home', $prefix), $page => route('credits.index', $prefix)];
     @endphp
-    @livewire('credits.index')
+    @livewire('credits.index', ['prefix' => $prefix])
 @endsection
