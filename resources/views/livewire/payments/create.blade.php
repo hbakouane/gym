@@ -44,62 +44,74 @@
                  <div class="card-body">
                      <form wire:submit.prevent="save">
                          <div class="row">
-                             <div class="col-md-6">
-                                 <div class="form-group">
-                                     <label>{{ __('members.Member') }}</label>
-                                     <input wire:model="name" wire:keydown="getMember" class="form-control input">
-                                     @if($members and !$showCard)
-                                         @foreach($members as $memberr)
-                                             <div class="col-md-12 bg-light py-3 user-dropdown border @if($memberr->id === $member_id) text-primary @endif"
-                                                  wire:click="getOneMember({{ $memberr->id }}, true)"
-                                                  style="cursor: pointer"
-                                             >
-                                                 <img class="img-fluid user-avatar-md rounded-circle" src="{{ makeProfileImg($memberr->photo, true) }}"> {{ $memberr->name }}
-                                             </div>
-                                         @endforeach
-                                     @endif
-                                 </div>
-                             </div>
-                             <div class="col-md-6">
-                                 <div class="form-group">
-                                     <label>{{ __('payments.Amount') }}</label>
-                                     <div class="input-group mb-3">
-                                         <div class="input-group-prepend">
-                                             <span class="input-group-text" id="basic-addon1">{{ $website->currency ?? ''  }}</span>
-                                         </div>
-                                         <input wire:model="amount" type="number" class="form-control input" placeholder="{{ __('payments.Amount') }}">
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="col-md-6">
-                                 <div class="form-group">
-                                     <label>{{ __('payments.Payment type') }}</label>
-                                     <div class="input-group mb-3">
-                                         <div class="input-group-prepend">
-                                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-money-bill-wave-alt"></i></span>
-                                         </div>
-                                         <input wire:model="payment_type" class="form-control input" placeholder="{{ __('payments.Payment type') }}">
-                                     </div>
-                                 </div>
-                             </div>
-                             <div class="col-md-6">
-                                 <div class="form-group">
-                                     <label>{{ __('payments.Payment date') }}</label>
-                                     <div class="input-group mb-3">
-                                         <div class="input-group-prepend">
-                                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-clock"></i></span>
-                                         </div>
-                                         <input wire:model="payment_date" type="date" class="form-control input" placeholder="{{ __('payments.Payment date') }}">
-                                     </div>
-                                 </div>
-                             </div>
                              <div class="col-md-12">
-                                 <div class="form-group">
-                                     <label class="w-100">{{ __('payments.Private note') }}
-                                        <textarea wire:model="note" rows="3" class="form-control input" placeholder="{{ __('payments.Note') }}"></textarea>
-                                     </label>
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio custom-control-inline" title="{{ __('payments.Payment from a member') }}">
+                                        <input type="radio" wire:model="payable_type" value="member" class="custom-control-input"><span class="custom-control-label">{{ __('members.Member') }}</span>
+                                    </label>
+                                    <label class="custom-control custom-radio custom-control-inline" title="{{ __('payments.Payment to a vendor') }}">
+                                        <input type="radio" wire:model="payable_type" value="vendor" class="custom-control-input"><span class="custom-control-label">{{ __('expenses.Vendor') }}</span>
+                                    </label>
                                  </div>
-                             </div>
+                            </div>
+                            @if($payable_type)
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{ $payable_type == 'member' ? __('members.Member') : __('vendors.Vendor') }}</label>
+                                    <input wire:model="name" wire:keydown="getMember" class="form-control input">
+                                    @if($members and !$showCard)
+                                        @foreach($members as $memberr)
+                                            <div class="col-md-12 bg-light py-3 user-dropdown border @if($memberr->id === $member_id) text-primary @endif"
+                                                 wire:click="getOneMember({{ $memberr->id }}, true)"
+                                                 style="cursor: pointer"
+                                            >
+                                                <img class="img-fluid user-avatar-md rounded-circle" src="{{ makeProfileImg($memberr->photo, true) }}"> {{ $memberr->name }}
+                                            </div>
+                                        @endforeach
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{ __('payments.Amount') }}</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">{{ $website->currency ?? ''  }}</span>
+                                        </div>
+                                        <input wire:model="amount" type="number" class="form-control input" placeholder="{{ __('payments.Amount') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{ __('payments.Payment type') }}</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-money-bill-wave-alt"></i></span>
+                                        </div>
+                                        <input wire:model="payment_type" class="form-control input" placeholder="{{ __('payments.Payment type') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>{{ __('payments.Payment date') }}</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-clock"></i></span>
+                                        </div>
+                                        <input wire:model="payment_date" type="date" class="form-control input" placeholder="{{ __('payments.Payment date') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="w-100">{{ __('payments.Private note') }}
+                                       <textarea wire:model="note" rows="3" class="form-control input" placeholder="{{ __('payments.Note') }}"></textarea>
+                                    </label>
+                                </div>
+                            </div>
+                            @endif
                          </div>
                          <button class="btn btn-main text-light" type="submit">{{ __('general.Save') }}</button>
                      </form>

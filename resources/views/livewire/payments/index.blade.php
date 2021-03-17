@@ -1,4 +1,5 @@
 <div>
+    @include('partials.toastr')
     <div class="card">
         <h5 class="card-header">
             {{ __('payments.Payments') }} <a href="{{ route('payments.create', $prefix) }}" class="btn mr-0 btn-primary btn-sm"><i class="fa fa-plus-circle"></i></a>
@@ -8,7 +9,8 @@
                 <table class="table table-striped table-bordered first datatableTable">
                     <thead>
                     <tr>
-                        <th>{{ __('members.Member') }}</th>
+                        <th>{{ __('general.User') }}</th>
+                        <th>{{ __('general.Type') }}</th>
                         <th>{{ __('payments.Amount') }}</th>
                         <th>{{ __('payments.Payment type') }}</th>
                         <th>{{ __('payments.Payment date') }}</th>
@@ -21,10 +23,15 @@
                     @foreach($payments as $payment)
                         <tr>
                             <td>
-                                <a target="_blank" href="{{ route('members.show', [$prefix, $payment->member->id]) }}">
-                                    <img class="img-fluid user-avatar-md rounded-circle" src="{{ makeProfileImg($payment->member->photo, true) }}">
-                                    {{ $payment->member->name }}
+                                <a target="_blank" href="{{ route('members.show', [$prefix, $payment->payable->id]) }}">
+                                    <img class="img-fluid user-avatar-md rounded-circle" src="{{ makeProfileImg($payment->payable->photo, true) }}">
+                                    {{ $payment->payable->name }}
                                 </a>
+                            </td>
+                            <td>
+                                <div class="badge badge-{{ $payment->payable_type == "App\Models\Member" ? 'success' : 'brand' }}">
+                                    {{ $payment->payable_type == "App\Models\Member" ? __('members.Member') : __('vendors.Vendor') }}
+                                </div>
                             </td>
                             <td>{{ $website->prefix ?? '' . $payment->amount }}</td>
                             <td>{{ $payment->payment_type }}</td>
@@ -38,9 +45,9 @@
                             </td>
                             <td class="d-flex justify-content-center">
                                 <div class="d-inline-block">
-                                    <a href="{{ route('members.show', [$prefix, $payment->member->id, 'payments' => true]) }}" class="btn btn-info text-light btn-sm"><i class="fa fa-eye"></i> {{ __('general.Show') }}</a>
-                                    <a href="{{ route('payments.edit', [$prefix, $payment->id]) }}" class="btn btn-brand btn-sm"><i class="fa fa-pencil-alt"></i> {{ __('general.Edit') }}</a>
-                                    <button class="btn btn-danger btn-sm" wire:click="delete({{ $payment->id }})"><i class="fa fa-trash-alt"></i> {{ __('general.Delete') }}</button>
+                                    <a href="{{ route(getRouteName($payment->payable_type, 'show'), [$prefix, $payment->payable->id, 'payments' => true]) }}" class="btn btn-info text-light btn-sm"><i class="fa fa-eye"></i> {{ __('general.Show') }}</a>
+                                    <a href="{{ route(getRouteName($payment->payable_type, 'edit'), [$prefix, $payment->id]) }}" class="btn btn-brand btn-sm"><i class="fa fa-pencil-alt"></i> {{ __('general.Edit') }}</a>
+                                    <button class="btn btn-danger btn-sm" wire:click="delete({{ $payment->id }}, '{{ $payment->payable_type }}')"><i class="fa fa-trash-alt"></i> {{ __('general.Delete') }}</button>
                                 </div>
                             </td>
                         </tr>
@@ -48,7 +55,8 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th>{{ __('members.Member') }}</th>
+                        <th>{{ __('general.User') }}</th>
+                        <th>{{ __('general.Type') }}</th>
                         <th>{{ __('payments.Amount') }}</th>
                         <th>{{ __('payments.Payment type') }}</th>
                         <th>{{ __('payments.Payment date') }}</th>

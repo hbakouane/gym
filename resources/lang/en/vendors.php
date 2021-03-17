@@ -7,4 +7,7 @@ return [
     'Vendor address' => 'Vendor address',
     'Vendor subscription' => 'Vendor subscription',
     'Note' => 'Note',
+    'Total paid to this vendor' => 'Total paid to this vendor',
+    'Total Credits by this vendor' => 'Total Credits by this vendor',
+    'Vendor' => 'Vendor',
 ];

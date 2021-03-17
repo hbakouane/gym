@@ -12,4 +12,6 @@ return [
     'Private note' => 'Private note',
     'Payment added successfully.' => 'Payment added successfully.',
     'Payment updated successfully.' => 'Payment updated successfully.',
+    'Payment to a vendor' => 'Payment to a vendor',
+    'Payment from a member' => 'Payment from a member',
 ];

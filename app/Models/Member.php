@@ -44,12 +44,12 @@ class Member extends Model
 
     public function payment()
     {
-        return $this->belongsToMany('App\Models\Payment');
+        return $this->morphOne('App\Models\Payment', 'payable');
     }
 
     public function credit()
     {
-        return $this->belongsToMany('App\Models\Credit');
+        return $this->morphOne('App\Models\Credit', 'creditable');
     }
 
     public function scopeWhereProject($query, $project)

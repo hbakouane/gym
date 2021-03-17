@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'User' => 'User',
+    'Type' => 'Type',
+    'Deleted successfully.' => 'Deleted successfully.',
     'Actions' => 'Actions',
     'New' => 'New',
     'Create' => 'Create',

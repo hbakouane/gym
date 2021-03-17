@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Credits;
 
 use App\Models\Credit;
 use App\Models\Member;
+use App\Models\Vendor;
 use App\Models\Project;
 use Livewire\Component;
 
@@ -23,6 +24,7 @@ class Create extends Component
     public $toastr;
     public $message;
     public $type;
+    public $creditable_type;
 
     public function render()
     {
@@ -36,7 +38,8 @@ class Create extends Component
 
     public function getMember()
     {
-        $this->members = Member::whereProject($this->prefix)->where('name', 'like', "%$this->name%")->limit(5)->get();
+        $model = $this->creditable_type == "member" ? 'App\Models\Member' : 'App\Models\Vendor';
+        $this->members = $model::WhereProject($this->prefix)->where('name', 'like', "%$this->name%")->limit(5)->get();
     }
 
     public function getOneMember($id, $closeSuggestions = false)
@@ -47,7 +50,7 @@ class Create extends Component
             $this->showCard = false;
         }
         $this->member_id = $id;
-        $this->member = Member::find($id);
+        $this->member = $this->creditable_type == "member" ? Member::WhereProject($this->prefix)->where('id', $id)->first() : Vendor::WhereProject($this->prefix)->where('id', $id)->first();
         $this->name = $this->member->name;
     }
 
@@ -61,8 +64,10 @@ class Create extends Component
             'note' => 'sometimes'
         ]);
         $credit = new Credit();
+        $creditable_type = $this->creditable_type == "member" ? 'App\Models\Member' : 'App\Models\Vendor';
         $credit->create([
-            'member_id' => $this->member_id,
+            'creditable_id' => $this->member_id,
+            'creditable_type' => $creditable_type,
             'amount' => $this->amount,
             'payment_type' => $this->payment_type,
             'payment_date' => $this->payment_date,

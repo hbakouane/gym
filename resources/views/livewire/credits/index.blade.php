@@ -1,4 +1,5 @@
 <div>
+    @include('partials.toastr')
     <div class="card">
         <h5 class="card-header">
             {{ __('pages.Credits') }} <a href="{{ route('credits.create', $prefix) }}" class="btn mr-0 btn-primary btn-sm"><i class="fa fa-plus-circle"></i></a>
@@ -8,7 +9,8 @@
                 <table class="table table-striped table-bordered first" id="datatable">
                     <thead>
                     <tr>
-                        <th>{{ __('members.Member') }}</th>
+                        <th>{{ __('general.User') }}</th>
+                        <th>{{ __('general.Type') }}</th>
                         <th>{{ __('payments.Amount') }}</th>
                         <th>{{ __('payments.Payment type') }}</th>
                         <th>{{ __('payments.Payment date') }}</th>
@@ -18,19 +20,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($credits as $credit)
+                        @foreach($credits as $credit)
                         <tr>
                             <td>
-                                <a target="_blank" href="{{ route('members.show', [$prefix, $credit->member->id]) }}">
-                                    <img class="img-fluid user-avatar-md rounded-circle" src="{{ makeProfileImg($credit->member->photo, true) }}">
-                                    {{ $credit->member->name }}
+                                <a target="_blank" href="{{ route('members.show', [$prefix, $credit->creditable->id]) }}">
+                                    <img class="img-fluid user-avatar-md rounded-circle" src="{{ makeProfileImg($credit->creditable->photo, true) }}">
+                                    {{ $credit->creditable->name }}
                                 </a>
+                            </td>
+                            <td>
+                                <div class="badge badge-{{ $credit->creditable_type == "App\Models\Member" ? 'success' : 'brand' }}">
+                                    {{ $credit->creditable_type == "App\Models\Member" ? __('members.Member') : __('vendors.Vendor') }}
+                                </div>
                             </td>
                             <td>{{ $website->prefix ?? '' . $credit->amount }}</td>
                             <td>{{ $credit->payment_type }}</td>
                             <td>{{ $credit->payment_date }}</td>
                             <td>{{ $credit->note }}</td>
-                            <td>
+                            <td title="{{ $credit->created_at->diffForHumans() }}">
                                 {{ $credit->created_at }}
                                 @if($credit->created_at != $credit->updated_at)
                                     <div class="badge badge-brand" title="{{ __('general.Updated at') . ' ' . $credit->updated_at . ' (' . $credit->updated_at->diffForHumans() . ')' }}">{{ __('general.Updated') }}</div>
@@ -38,9 +45,9 @@
                             </td>
                             <td class="d-flex justify-content-center">
                                 <div class="d-inline-block">
-                                    <a href="{{ route('members.show', [$prefix, $credit->member->id, 'credits' => true]) }}" class="btn btn-info text-light btn-sm"><i class="fa fa-eye"></i> {{ __('general.Show') }}</a>
-                                    <a href="{{ route('credits.edit', [$prefix, $credit->id]) }}" class="btn btn-brand btn-sm"><i class="fa fa-pencil-alt"></i> {{ __('general.Edit') }}</a>
-                                    <button class="btn btn-danger btn-sm" wire:click="delete({{ $credit->id }})"><i class="fa fa-trash-alt"></i> {{ __('general.Delete') }}</button>
+                                    <a href="{{ route(getRouteName($credit->creditable_type, 'show'), [$prefix, $credit->creditable->id, 'payments' => true]) }}" class="btn btn-info text-light btn-sm"><i class="fa fa-eye"></i> {{ __('general.Show') }}</a>
+                                    <a href="{{ route(getRouteName($credit->creditable_type, 'edit'), [$prefix, $credit->id]) }}" class="btn btn-brand btn-sm"><i class="fa fa-pencil-alt"></i> {{ __('general.Edit') }}</a>
+                                    <button class="btn btn-danger btn-sm" wire:click="delete({{ $credit->id }}, '{{ $credit->creditable_type }}')"><i class="fa fa-trash-alt"></i> {{ __('general.Delete') }}</button>
                                 </div>
                             </td>
                         </tr>
@@ -48,7 +55,8 @@
                     </tbody>
                     <tfoot>
                     <tr>
-                        <th>{{ __('members.Member') }}</th>
+                        <th>{{ __('general.User') }}</th>
+                        <th>{{ __('general.Type') }}</th>
                         <th>{{ __('payments.Amount') }}</th>
                         <th>{{ __('payments.Payment type') }}</th>
                         <th>{{ __('payments.Payment date') }}</th>
