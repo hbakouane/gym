@@ -3,9 +3,9 @@
 if (!function_exists('makeProfileImg')) {
     function makeProfileImg($path = null, $unknown = false) {
         $user = auth()->user();
-        if (empty($user->profile_img)) {
+        if (empty($user->profile_img) AND !$path) {
             $src = url('images/profile.jpg');
-        } elseif (!empty($path)) {
+        } elseif ($path) {
             $src = $path;
         } elseif ($unknown) {
             $src = url('images/profile.jpg');

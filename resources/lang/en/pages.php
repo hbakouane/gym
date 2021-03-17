@@ -10,4 +10,6 @@ return [
     'Add a credit' => 'Add a credit',
     'Expenses' => 'Expenses',
     'Add an expense' => 'Add an expense',
+    'Vendors' => 'Vendors',
+    'Add a vendor' => 'Add a vendor',
 ];

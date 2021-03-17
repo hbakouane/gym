@@ -8,6 +8,8 @@ use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\PaymentsController;
 use App\Http\Controllers\CreditsController;
 use App\Http\Controllers\ExpensesController;
+use App\Http\Controllers\InvoicesController;
+use App\Http\Controllers\VendorsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,8 @@ Route::group(['prefix' => '{project_id}', 'middleware' => ['auth', 'checkProject
    Route::resource('/payments', PaymentsController::class);
    Route::resource('/credits', CreditsController::class);
    Route::resource('/expenses', ExpensesController::class);
+   Route::resource('/invoices', InvoicesController::class);
+   Route::resource('/vendors', VendorsController::class);
 });
 
 Route::fallback(function () {
