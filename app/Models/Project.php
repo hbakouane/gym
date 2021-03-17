@@ -42,6 +42,11 @@ class Project extends Model
         return $this->hasMany('App\Models\Member');
     }
 
+    public function vendor()
+    {
+        return $this->hasMany('App\Models\Vendor');
+    }
+
     public function feature()
     {
         return $this->belongsTo('App\Models\Feature');

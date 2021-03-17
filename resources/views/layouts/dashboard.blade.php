@@ -143,6 +143,19 @@
                             </div>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link collapsed @if(Str::startsWith($route, 'expenses')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#expenses_menu" aria-controls="expenses_menu"><i class="fa fa-coins"></i> {{ __('pages.Expenses') }}</a>
+                            <div id="expenses_menu" class="submenu collapse @if(Str::startsWith($route, 'expenses')) show @endif()" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'expenses.index')) active @endif()" href="{{ route('expenses.index', $prefix) }}">{{ __('expenses.All expenses') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'expenses.create')) active @endif()" href="{{ route('expenses.create', $prefix) }}">{{ __('expenses.Add an expense') }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link @if(Str::startsWith($route, 'user.settings.show')) active @endif()" href="{{ route('user.settings.show', $prefix) }}"><i class="fa fa-user-cog"></i>{{ __('general.Settings') }} <span class="badge badge-success">6</span></a>
                         </li>
                         <li class="nav-item">
