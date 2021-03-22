@@ -10,4 +10,6 @@ use Spatie\Permission\Traits\HasRoles;
 class Staff extends Model
 {
     use HasFactory, HasRoles;
+
+    public $fillable = ['name', 'email', 'phone', 'cne', 'photo', 'address', 'city', 'country'];
 }

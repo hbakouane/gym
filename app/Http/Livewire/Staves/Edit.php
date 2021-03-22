@@ -4,10 +4,11 @@ namespace App\Http\Livewire\Staves;
 
 use App\Models\Staff;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class Create extends Component
+class Edit extends Component
 {
     use WithFileUploads;
 
@@ -17,10 +18,11 @@ class Create extends Component
     public $phone;
     public $cne;
     public $photo;
-    public $photo;
     public $address;
     public $city;
     public $country;
+
+    public $staffId;
 
     // Validation
     public $rules = [
@@ -37,7 +39,20 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.staves.create');
+        return view('livewire.staves.edit');
+    }
+
+    public function mount()
+    {
+        $staff = Staff::find($this->staffId);
+        $this->name = $staff->name;
+        $this->email = $staff->email;
+        $this->phone = $staff->phone;
+        $this->cne = $staff->cne;
+        $this->address = $staff->address;
+        $this->photo = $staff->photo;
+        $this->city = $staff->city;
+        $this->country= $staff->country;
     }
 
     public function save()
@@ -47,13 +62,22 @@ class Create extends Component
 
         // check if the photo exists
         if ($this->photo) {
-            $file = $this->photo->store('public/staves');
-            $imageUrl = Storage::url($file);
+            // Delete the old photo if it exists
+            if (!empty($this->photo)) {
+                // Generate old image link without the domain name
+                $old_file = Str::after($user->profile_img, env('APP_URL') . '/storage/');
+                // Make the right path for the delete() method
+                $old_file_path = 'public/' . $old_file;
+                Storage::delete($old_file_path);
+            }
+            // Upload the file
+            $filename = $this->photo->store('public/staved');
+            $imageUrl = url(Storage::url($filename));
         }
 
         // Register the staff
         $staff = new Staff();
-        $staff->create([
+        $staff->update([
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
@@ -62,7 +86,7 @@ class Create extends Component
             'address' => $this->address,
             'city' => $this->city,
             'country' => $this->country,
-        ])->save();
+        ]);
 
         // Toast success
         $this->message = __('staves.Staff added successfully.');

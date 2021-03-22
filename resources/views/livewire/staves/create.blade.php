@@ -1,4 +1,6 @@
 <div>
+    @include('partials.errors')
+    @include('partials.toastr')
      <form wire:submit.prevent="save">
          <div class="card">
              <div class="card-body">
@@ -25,13 +27,14 @@
                                  <input wire:model="cne" type="text" class="form-control input">
                              </label>
                          </div>
-                         <div class="form-group">
-                             <label class="w-100" for="photo_upload">{{ __('auth.Photo') }}</label>
-                             <input wire:model="photo" type="file" id="photo_upload" class="btn btn-primary mt-2">
-                         </div>
                      </div>
                      <div class="col-md-6">
                          <p class="text-dark font-weight-bold">{{ __('auth.Address') }}</p>
+                         <div class="form-group">
+                             <label class="w-100">{{ __('auth.Address') }}
+                                 <input wire:model="address" type="text" class="form-control input">
+                             </label>
+                         </div>
                          <div class="form-group">
                              <label class="w-100">{{ __('auth.City') }}
                                  <select wire:model="city" class="form-control" style="height: 49px">
@@ -40,21 +43,15 @@
                              </label>
                          </div>
                          <div class="form-group">
-                             <label class="w-100">{{ __('auth.Address') }}
-                                 <input wire:model="address" type="text" class="form-control input">
-                             </label>
-                         </div>
-                         <div class="form-group">
-                             <label class="w-100">{{ __('auth.City') }}
-                                 <input wire:model="city" type="text" class="form-control input">
-                             </label>
-                         </div>
-                         <div class="form-group">
                              <label class="w-100">{{ __('auth.Country') }}
                                  <select wire:model="country" class="form-control" style="height: 49px">
                                      @include('partials.countries')
                                  </select>
                              </label>
+                         </div>
+                         <div class="form-group">
+                             <label class="w-100" for="photo_upload">{{ __('auth.Photo') }}</label>
+                             <input wire:model="photo" type="file" id="photo_upload" class="btn btn-primary mt-2 w-100">
                          </div>
                      </div>
                  </div>
