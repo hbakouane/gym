@@ -5,7 +5,7 @@
     height: 49px;
 }
 .input:focus {
-    box-shadow: none;
+    /*box-shadow: none;*/
     border: 1px solid #d0c8c8;
 }
 .input-group-text {
