@@ -12,4 +12,6 @@ return [
     'Add an expense' => 'Add an expense',
     'Vendors' => 'Vendors',
     'Add a vendor' => 'Add a vendor',
+    'Staves' => 'Staves',
+    'Add a staff' => 'Add a staff',
 ];

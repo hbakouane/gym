@@ -23,7 +23,7 @@
                         @foreach($credits as $credit)
                         <tr>
                             <td>
-                                <a target="_blank" href="{{ route('members.show', [$prefix, $credit->creditable->id]) }}">
+                                <a target="_blank" href="{{ route('vendors.show', [$prefix, $credit->creditable->id]) }}">
                                     <img class="img-fluid user-avatar-md rounded-circle" src="{{ makeProfileImg($credit->creditable->photo, true) }}">
                                     {{ $credit->creditable->name }}
                                 </a>
