@@ -169,6 +169,19 @@
                             </div>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link collapsed @if(Str::startsWith($route, 'staves')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#staves_menu" aria-controls="staves_menu"><i class="fa fa-users-cog"></i> {{ __('pages.Staves') }}</a>
+                            <div id="staves_menu" class="submenu collapse @if(Str::startsWith($route, 'staves')) show @endif()" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'staves.index')) active @endif()" href="{{ route('staves.index', $prefix) }}">{{ __('pages.All staves') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'staves.create')) active @endif()" href="{{ route('staves.create', $prefix) }}">{{ __('pages.Add a staff') }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link @if(Str::startsWith($route, 'user.settings.show')) active @endif()" href="{{ route('user.settings.show', $prefix) }}"><i class="fa fa-user-cog"></i>{{ __('general.Settings') }} <span class="badge badge-success">6</span></a>
                         </li>
                     </ul>
