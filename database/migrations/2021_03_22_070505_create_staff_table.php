@@ -23,6 +23,8 @@ class CreateStaffTable extends Migration
             $table->string('address')->nullable();
             $table->string('country')->nullable();
             $table->string('photo')->nullable();
+            $table->string('password')->nullable();
+            $table->foreignId('project_id');
             $table->timestamps();
         });
     }

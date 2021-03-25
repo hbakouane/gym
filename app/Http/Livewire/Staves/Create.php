@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Staves;
 
+use App\Models\Project;
 use App\Models\Staff;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -18,15 +19,19 @@ class Create extends Component
     public $cne;
     public $photo;
     public $address;
+    public $password;
     public $city;
     public $country;
+
+    public $prefix;
 
     // Validation
     public $rules = [
         'name' => 'required',
         'city' => 'required',
         'country' => 'required',
-        'photo' => 'nullable|image|mimes:png,jpg,jpeg,gif'
+        'photo' => 'nullable|image|mimes:png,jpg,jpeg,gif',
+        'password' => 'required|min:8'
     ];
 
     // Toasting
@@ -50,6 +55,9 @@ class Create extends Component
             $imageUrl = Storage::url($file);
         }
 
+        // Get the project id
+        $project_id = Project::getProjectId($this->prefix);
+
         // Register the staff
         $staff = new Staff();
         $staff->create([
@@ -61,6 +69,8 @@ class Create extends Component
             'address' => $this->address,
             'city' => $this->city,
             'country' => $this->country,
+            'password' => bcrypt($this->password),
+            'project_id' => $project_id
         ])->save();
 
         // Toast success
@@ -69,7 +79,7 @@ class Create extends Component
         $this->toastr = true;
 
         // Reset all the properties but the toast ones
-        $this->reset(['name', 'email', 'phone', 'cne', 'photo', 'address', 'city', 'country']);
+        $this->reset(['name', 'email', 'phone', 'cne', 'photo', 'address', 'city', 'country', 'password']);
     }
 
 }

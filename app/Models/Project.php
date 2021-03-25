@@ -25,7 +25,7 @@ class Project extends Model
         if (!$project) {
             abort(404);
         }
-        return $project;
+        return $project->id;
     }
 
     public function subscription()
