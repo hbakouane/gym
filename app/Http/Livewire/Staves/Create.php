@@ -17,7 +17,6 @@ class Create extends Component
     public $phone;
     public $cne;
     public $photo;
-    public $photo;
     public $address;
     public $city;
     public $country;

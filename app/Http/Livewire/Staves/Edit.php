@@ -13,14 +13,16 @@ class Edit extends Component
     use WithFileUploads;
 
     // Information to save
+    public $staff;
     public $name;
     public $email;
     public $phone;
     public $cne;
-    public $photo;
+    public $photo; // The photo that will be uploaded
     public $address;
     public $city;
     public $country;
+    public $photo_url; // The photo coming from te Database
 
     public $staffId;
 
@@ -45,12 +47,13 @@ class Edit extends Component
     public function mount()
     {
         $staff = Staff::find($this->staffId);
+        $this->staff = $staff;
         $this->name = $staff->name;
         $this->email = $staff->email;
         $this->phone = $staff->phone;
         $this->cne = $staff->cne;
         $this->address = $staff->address;
-        $this->photo = $staff->photo;
+        $this->photo_url = $staff->photo;
         $this->city = $staff->city;
         $this->country= $staff->country;
     }
@@ -65,7 +68,7 @@ class Edit extends Component
             // Delete the old photo if it exists
             if (!empty($this->photo)) {
                 // Generate old image link without the domain name
-                $old_file = Str::after($user->profile_img, env('APP_URL') . '/storage/');
+                $old_file = Str::after($this->photo_url, env('APP_URL') . '/storage/');
                 // Make the right path for the delete() method
                 $old_file_path = 'public/' . $old_file;
                 Storage::delete($old_file_path);
@@ -75,26 +78,27 @@ class Edit extends Component
             $imageUrl = url(Storage::url($filename));
         }
 
-        // Register the staff
-        $staff = new Staff();
-        $staff->update([
+        // Updated the staff
+        $this->staff->update([
             'name' => $this->name,
             'email' => $this->email,
             'phone' => $this->phone,
             'cne' => $this->cne,
-            'photo' => $imageUrl ?? null,
+            'photo' => $imageUrl ?? $this->photo_url,
             'address' => $this->address,
             'city' => $this->city,
             'country' => $this->country,
         ]);
 
+        // Change the photo URL
+        $this->photo_url = $imageUrl ?? $this->photo_url;
+
         // Toast success
-        $this->message = __('staves.Staff added successfully.');
+        $this->message = __('staves.Staff updated successfully.');
         $this->type = 'success';
         $this->toastr = true;
 
         // Reset all the properties but the toast ones
-        $this->reset(['name', 'email', 'phone', 'cne', 'photo', 'address', 'city', 'country']);
     }
 
 }

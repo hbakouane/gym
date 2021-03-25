@@ -1,12 +1,15 @@
 <div>
     @include('partials.errors')
     @include('partials.toastr')
-    <form wire:submit.prevent="save">
+    <form wire:submit.prevent="save" enctype="multipart/form-data">
         <div class="card">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         <p class="text-dark font-weight-bold">{{ __('staves.Staff information') }}</p>
+                        <div class="form-group d-flex justify-content-center">
+                            <img class="img-fluid profile-img" src="{{ makeProfileImg($photo_url, true) }}">
+                        </div>
                         <div class="form-group">
                             <label class="w-100">{{ __('auth.Name') }}
                                 <input wire:model="name" type="text" class="form-control input">
@@ -37,9 +40,7 @@
                         </div>
                         <div class="form-group">
                             <label class="w-100">{{ __('auth.City') }}
-                                <select wire:model="city" class="form-control" style="height: 49px">
-                                    @include('partials.countries')
-                                </select>
+                                <input wire:model="city" type="text" class="form-control input">
                             </label>
                         </div>
                         <div class="form-group">
