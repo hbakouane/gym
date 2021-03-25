@@ -18,6 +18,11 @@
                              </label>
                          </div>
                          <div class="form-group">
+                             <label class="w-100">{{ __('auth.Passwordd') }}
+                                 <input wire:model="password" type="password" class="form-control input">
+                             </label>
+                         </div>
+                         <div class="form-group">
                              <label class="w-100">{{ __('auth.Phone') }}
                                  <input wire:model="phone" type="text" class="form-control input">
                              </label>

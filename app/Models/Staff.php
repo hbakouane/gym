@@ -11,5 +11,16 @@ class Staff extends Model
 {
     use HasFactory, HasRoles;
 
-    public $fillable = ['name', 'email', 'phone', 'cne', 'photo', 'address', 'city', 'country'];
+    public $fillable = [
+        'name',
+        'email',
+        'phone',
+        'cne',
+        'photo',
+        'address',
+        'city',
+        'country',
+        'password',
+        'project_id'
+    ];
 }

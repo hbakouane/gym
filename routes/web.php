@@ -11,6 +11,7 @@ use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\VendorsController;
 use App\Http\Controllers\StavesController;
+use App\Http\Controllers\RedirectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::view('/project/create', 'projects.create')->name('project.create');
+    Route::get('/dashboard', [RedirectController::class, 'redirect']);
 });
 
 Route::group(['prefix' => '{project_id}', 'middleware' => ['auth', 'checkProject']], function () {

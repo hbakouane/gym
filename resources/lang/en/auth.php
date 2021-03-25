@@ -36,4 +36,5 @@ return [
     'Updated at' => 'Updated at',
     'Status' => 'Status',
     'About' => 'About',
+    'Passwordd' => 'Password',
 ];

@@ -62,4 +62,29 @@
             </div>
         </div>
     </form>
+    @if($errors->has('yourpassword') OR $errors->has('newpassword'))
+        @include('partials.errors')
+    @endif
+    <form wire:submit.prevent="changePassword">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text-dark font-weight-bold">{{ __('auth.Passwordd') }}</p>
+                        <div class="form-group">
+                            <label for="yourpassword">{{ __('staves.Your password') }}</label>
+                            <input wire:model="yourpassword" id="yourpassword" class="form-control input" type="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="newpassword">{{ __('staves.New Password') }}</label>
+                            <input wire:model="newpassword" id="newpassword" class="form-control input" type="password">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 pl-0">
+                    <button class="btn-main text-light w-100" style="cursor: pointer">{{ __('settings.Change Password') }}</button>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>

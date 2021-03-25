@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Staves;
 
+use App\Models\Project;
 use App\Models\Staff;
 use Livewire\Component;
 
@@ -21,7 +22,8 @@ class Index extends Component
 
     public function mount()
     {
-        $this->staffs = Staff::orderBy('id', 'DESC')->get();
+        $prefix = Project::getProjectIdOrFail(request('project_id'));
+        $this->staffs = Staff::where('project_id', $prefix)->orderBy('id', 'DESC')->get();
     }
 
     public function delete($id)

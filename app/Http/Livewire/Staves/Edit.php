@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Staves;
 
+use App\Models\Project;
 use App\Models\Staff;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -23,6 +25,10 @@ class Edit extends Component
     public $city;
     public $country;
     public $photo_url; // The photo coming from te Database
+
+    // For Changing password form
+    public $yourpassword; // Admin password
+    public $newpassword; // New staff's password
 
     public $staffId;
 
@@ -46,7 +52,7 @@ class Edit extends Component
 
     public function mount()
     {
-        $staff = Staff::find($this->staffId);
+        $staff = Staff::where('project_id', Project::getProjectId(request('project_id')))->where('id', $this->staffId)->first();
         $this->staff = $staff;
         $this->name = $staff->name;
         $this->email = $staff->email;
@@ -99,6 +105,20 @@ class Edit extends Component
         $this->toastr = true;
 
         // Reset all the properties but the toast ones
+    }
+
+    public function changePassword()
+    {
+        $this->validate([
+            'yourpassword' => 'password', // Password makes sure that the $yourpassword matches the authenticated user's password
+            'newpassword' => 'required|min:8'
+        ]);
+        $this->staff->update([
+            'password' => bcrypt($this->newpassword)
+        ]);
+        $this->message = __('staves.Password saved successfully.');
+        $this->type = "success";
+        $this->toastr = true;
     }
 
 }
