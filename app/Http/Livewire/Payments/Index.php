@@ -13,7 +13,7 @@ class Index extends Component
     public $message;
     public $type = "success";
     public $prefix;
-    
+
     public function render()
     {
         $payments = Payment::where('project_id', Project::getProjectId($this->prefix))->asc()->get();

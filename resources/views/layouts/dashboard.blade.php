@@ -134,10 +134,10 @@
                             <div id="vendors_menu" class="submenu collapse @if(Str::startsWith($route, 'vendors')) show @endif()" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link @if(Str::startsWith($route, 'vendors.index')) active @endif()" href="{{ route('vendors.index', $prefix) }}">{{ __('credits.All credits') }}</a>
+                                        <a class="nav-link @if(Str::startsWith($route, 'vendors.index')) active @endif()" href="{{ route('vendors.index', $prefix) }}">{{ __('pages.All vendors') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link @if(Str::startsWith($route, 'vendors.create')) active @endif()" href="{{ route('vendors.create', $prefix) }}">{{ __('credits.Add a credit') }}</a>
+                                        <a class="nav-link @if(Str::startsWith($route, 'vendors.create')) active @endif()" href="{{ route('vendors.create', $prefix) }}">{{ __('pages.Add a vendor') }}</a>
                                     </li>
                                 </ul>
                             </div>

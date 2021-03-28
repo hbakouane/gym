@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
-class Staff extends Model
+class Staff extends Authenticatable
 {
     use HasFactory, HasRoles;
+
+    protected $guard = 'staff';
 
     public $fillable = [
         'name',
@@ -21,6 +23,12 @@ class Staff extends Model
         'city',
         'country',
         'password',
-        'project_id'
+        'project_id',
+        'role_id'
     ];
+
+    public function role()
+    {
+        return $this->belongsTo('App\Models\Role');
+    }
 }

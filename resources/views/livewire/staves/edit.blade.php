@@ -87,4 +87,20 @@
             </div>
         </div>
     </form>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="text-dark font-weight-bold">{{ __('auth.Role') . ' & ' . __('auth.Permissions') }}</p>
+                    <p class="text-dark font-weight-bold">
+                        <span class="badge badge-brand">{{ $staff->role->name }}</span>
+                    </p>
+                    <div class="form-group">
+                        @include('partials.permissions', ['permissions' => $staff->role->permissions])
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

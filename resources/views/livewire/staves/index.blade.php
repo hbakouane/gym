@@ -10,6 +10,7 @@
                     <thead>
                     <tr>
                         <th>{{ __('auth.Name') }}</th>
+                        <th>{{ __('auth.Role') }}</th>
                         <th>{{ __('auth.Email') }}</th>
                         <th>{{ __('auth.Phone') }}</th>
                         <th>{{ __('auth.CNE') }}</th>
@@ -24,6 +25,7 @@
                     @foreach($staffs as $staff)
                         <tr>
                             <td><img class="user-avatar-md rounded-circle" src="{{ makeProfileImg($staff->photo, true) }}"> {{ $staff->name }}</td>
+                            <td><span class="badge badge-brand">{{ $staff->role->name }}</span></td>
                             <td>{{ $staff->email }}</td>
                             <td>{{ $staff->phone }}</td>
                             <td>{{ $staff->cne }}</td>
@@ -48,6 +50,7 @@
                     <tfoot>
                     <tr>
                         <th>{{ __('auth.Name') }}</th>
+                        <th>{{ __('auth.Role') }}</th>
                         <th>{{ __('auth.Email') }}</th>
                         <th>{{ __('auth.Phone') }}</th>
                         <th>{{ __('auth.CNE') }}</th>

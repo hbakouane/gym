@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Staves;
 use App\Models\Project;
 use App\Models\Staff;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class Index extends Component
 {
@@ -22,8 +23,9 @@ class Index extends Component
 
     public function mount()
     {
-        $prefix = Project::getProjectIdOrFail(request('project_id'));
-        $this->staffs = Staff::where('project_id', $prefix)->orderBy('id', 'DESC')->get();
+        $project_id = Project::getProjectIdOrFail(request('project_id'));
+        $this->staffs = Staff::where('project_id', $project_id)->orderBy('id', 'DESC')->get();
+        $roles = Role::where('project_id', $project_id)->get();
     }
 
     public function delete($id)
