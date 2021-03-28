@@ -24,7 +24,7 @@ class SubscriptionController extends Controller
 
         // Get subscriptions
         $subscriptions = Subscription::with('features', 'user')
-                                        ->where('project_id', $prefix->id)
+                                        ->where('project_id', $prefix)
                                         ->orderBy('id', 'DESC')
                                         ->get();
         return view('subscriptions.index', ['subscriptions' => $subscriptions]);

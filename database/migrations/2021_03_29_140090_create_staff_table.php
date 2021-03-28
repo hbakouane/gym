@@ -24,7 +24,10 @@ class CreateStaffTable extends Migration
             $table->string('country')->nullable();
             $table->string('photo')->nullable();
             $table->string('password')->nullable();
-            $table->foreignId('project_id');
+            $table->foreignId('project_id')->constrained();
+            $table->foreignId('role_id')->constrained();
+
+            $table->rememberToken();
             $table->timestamps();
         });
     }

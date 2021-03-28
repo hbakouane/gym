@@ -47,5 +47,6 @@ class LoginController extends Controller
             $this->redirectTo = route('project.create');
         }
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:staff')->except('logout');
     }
 }

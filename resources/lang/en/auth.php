@@ -37,4 +37,6 @@ return [
     'Status' => 'Status',
     'About' => 'About',
     'Passwordd' => 'Password',
+    'Role' => 'Role',
+    'Permissions' => 'Permissions',
 ];

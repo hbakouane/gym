@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Staves;
 
 use App\Models\Project;
+use App\Models\Role;
 use App\Models\Staff;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -22,12 +23,16 @@ class Create extends Component
     public $password;
     public $city;
     public $country;
+    public $role_id;
+
+    public $roles;
 
     public $prefix;
 
     // Validation
     public $rules = [
         'name' => 'required',
+        'email' => 'required|unique:staff',
         'city' => 'required',
         'country' => 'required',
         'photo' => 'nullable|image|mimes:png,jpg,jpeg,gif',
@@ -42,6 +47,11 @@ class Create extends Component
     public function render()
     {
         return view('livewire.staves.create');
+    }
+
+    public function mount()
+    {
+        $this->roles = Role::where('project_id', Project::getProjectId($this->prefix))->get();
     }
 
     public function save()
@@ -70,7 +80,8 @@ class Create extends Component
             'city' => $this->city,
             'country' => $this->country,
             'password' => bcrypt($this->password),
-            'project_id' => $project_id
+            'project_id' => $project_id,
+            'role_id' => $this->role_id
         ])->save();
 
         // Toast success

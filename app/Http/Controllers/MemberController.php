@@ -41,9 +41,9 @@ class MemberController extends Controller
         })->where('id', $id)->firstOrFail();
 
         // Get the total of the payments and credits
-        $payments = Payment::where('member_id', $id)->latest()->get();
-        $total_paid = DB::table('payments')->where('member_id', $id)->sum('amount');
-        $total_credits = DB::table('credits')->where('member_id', $id)->sum('amount');
+        $payments = Payment::where('payable_type', 'App\Models\Member')->where('payable_id', $id)->latest()->get();
+        $total_paid = DB::table('payments')->where('payable_type', 'App\Models\Member')->where('payable_id', $id)->sum('amount');
+        $total_credits = DB::table('credits')->where('creditable_type', 'App\Models\Member')->where('creditable_id', $id)->sum('amount');
         return view('members.show', [
             'member' => $member,
             'payments' => $payments,
