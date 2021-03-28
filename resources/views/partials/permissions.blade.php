@@ -1,5 +1,5 @@
 @php
-    $permissions = str_replace(['"', '[', ']', ','], ' ', $staff->role->permissions);
+    $permissions = str_replace(['"', '[', ']', ','], ' ', $permissions);
     $permissions = explode(' ', $permissions);
 @endphp
 @foreach($permissions as $permission)
