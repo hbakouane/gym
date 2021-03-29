@@ -169,6 +169,19 @@
                             </div>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link collapsed @if(Str::startsWith($route, 'roles')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#roles_menu" aria-controls="roles_menu"><i class="fa fa-user-tag"></i> {{ __('pages.Roles') }}</a>
+                            <div id="roles_menu" class="submenu collapse @if(Str::startsWith($route, 'roles')) show @endif()" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'roles.index')) active @endif()" href="{{ route('roles.index', $prefix) }}">{{ __('pages.All roles') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'roles.create')) active @endif()" href="{{ route('roles.create', $prefix) }}">{{ __('pages.Add a role') }}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link collapsed @if(Str::startsWith($route, 'staves')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#staves_menu" aria-controls="staves_menu"><i class="fa fa-users-cog"></i> {{ __('pages.Staves') }}</a>
                             <div id="staves_menu" class="submenu collapse @if(Str::startsWith($route, 'staves')) show @endif()" style="">
                                 <ul class="nav flex-column">

@@ -38,7 +38,7 @@ class Form extends Component
             'description' => $this->description,
             'project_id' => $data['project_id']
         ])->save();
-        $this->resetExcept('prefix');
+        $this->reset('name', 'description');
         return $this->toastr = true;
     }
 }

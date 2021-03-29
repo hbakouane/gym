@@ -27,7 +27,7 @@ class Create extends Component
 
     public function save()
     {
-        $this->validate(['name' => 'required|unique:roles']);
+        $this->validate(['name' => 'required']);
         $this->project_id = Project::getProjectId($this->prefix);
         $role = new Role();
         $role->create([

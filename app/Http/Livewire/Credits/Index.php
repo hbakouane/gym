@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Credits;
 
+use App\Http\Controllers\RolesController;
 use App\Models\Credit;
 use App\Models\Project;
 use Livewire\Component;
@@ -22,6 +23,8 @@ class Index extends Component
 
     public function delete($id)
     {
+        // Check if the user has the right to do this action first
+        RolesController::checkRole('credits.delete');
         // Delete
         Credit::find($id)->delete();
         // Toast success

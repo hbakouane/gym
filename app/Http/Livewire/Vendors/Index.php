@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Vendors;
 
+use App\Http\Controllers\RolesController;
 use App\Models\Vendor as Member;
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Builder;
@@ -153,6 +154,7 @@ class Index extends Component
 
     public function delete($id)
     {
+        RolesController::checkRole('vendors.delete');
         Member::find($id)->delete();
         $this->toastr = true;
         $this->type = "success";
