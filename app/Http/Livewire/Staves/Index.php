@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire\Staves;
 
+use App\Http\Controllers\RolesController;
 use App\Models\Project;
 use App\Models\Staff;
 use Livewire\Component;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 
 class Index extends Component
 {
@@ -30,6 +31,8 @@ class Index extends Component
 
     public function delete($id)
     {
+        // Check if the staff has the right to do this action
+        RolesController::checkRole('staves.delete');
         Staff::find($id)->delete();
         $this->message = __('staves.Staff delete');
         $this->type = "success";

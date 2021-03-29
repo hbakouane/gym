@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Roles;
 
+use App\Http\Controllers\RolesController;
 use App\Models\Project;
 use App\Models\Role;
 use Livewire\Component;
@@ -28,6 +29,8 @@ class Index extends Component
 
     public function delete($id)
     {
+        // Check if the staff has the right to do this action
+        RolesController::checkRole('roles.delete');
         Role::find($id)->delete();
         $this->roles = Role::where('project_id', Project::getProjectId($this->prefix))->orderBy('id', 'DESC')->get();
         $this->type = "error";

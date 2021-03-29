@@ -38,4 +38,5 @@ return [
     'About' => 'About',
     'Updated' => 'Updated',
     'Connection' => 'Connection',
+    'Example' => 'Example',
 ];

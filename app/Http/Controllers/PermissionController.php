@@ -17,6 +17,6 @@ class PermissionController extends Controller
     {
         $role = Role::find($request->role);
         $role->update(['permissions' => $request->permissions]);
-        return redirect(route('roles.index', $request->project_id))->with('status', __('response.Created successfully.'));
+        return redirect()->back()->with('status', __('response.Updated successfully.'));
     }
 }

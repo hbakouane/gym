@@ -16,6 +16,7 @@ return [
     'Add a staff' => 'Add a staff',
     'All staves' => 'All staves',
     'All vendors' => 'All vendors',
+    'Roles' => 'Roles',
     'All roles' => 'All roles',
     'Add a role' => 'Add a role',
 ];

@@ -42,9 +42,7 @@
                          </div>
                          <div class="form-group">
                              <label class="w-100">{{ __('auth.City') }}
-                                 <select wire:model="city" class="form-control" style="height: 49px">
-                                     @include('partials.countries')
-                                 </select>
+                                <input wire:model="city" class="form-control input">
                              </label>
                          </div>
                          <div class="form-group">

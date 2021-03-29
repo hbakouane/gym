@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Expenses;
 
+use App\Http\Controllers\RolesController;
 use App\Models\Expense;
 use App\Models\Project;
 use Livewire\Component;
@@ -21,6 +22,8 @@ class Index extends Component
 
     public function delete($id)
     {
+        // Check if the staff has the right to do this action
+        RolesController::checkRole('expenses.delete');
         Expense::find($id)->delete();
         $this->type = "success";
         $this->message = __('expenses.Expense deleted successfully.');
