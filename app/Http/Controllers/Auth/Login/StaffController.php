@@ -8,6 +8,7 @@ use App\Models\Staff;
 use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class StaffController extends Controller
 {
@@ -35,6 +36,7 @@ class StaffController extends Controller
         if (Auth::guard('staff')->attempt($credentials, $request->remember)) {
             $staff = Staff::where('email', $credentials['email'])->first();
             $project_id = Project::find($staff->project_id)->project;
+            Session::put('staff', true);
             return redirect()->intended(route('home', $project_id));
         }
         return back()->withErrors([

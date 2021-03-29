@@ -54,6 +54,15 @@
                             <label class="w-100" for="photo_upload">{{ __('auth.Photo') }}</label>
                             <input wire:model="photo" type="file" id="photo_upload" class="btn btn-primary mt-2 w-100">
                         </div>
+                        <div class="form-group">
+                            <label class="w-100">{{ __('auth.Role') }}
+                                <select wire:model="role_id" class="form-control" style="height: 49px">
+                                    @foreach($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-1 pl-0">

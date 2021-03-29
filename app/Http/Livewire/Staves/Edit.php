@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Staves;
 
 use App\Models\Project;
+use App\Models\Role;
 use App\Models\Staff;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -25,6 +26,8 @@ class Edit extends Component
     public $city;
     public $country;
     public $photo_url; // The photo coming from te Database
+    public $roles;
+    public $role_id;
 
     // For Changing password form
     public $yourpassword; // Admin password
@@ -39,6 +42,8 @@ class Edit extends Component
         'country' => 'required',
         'photo' => 'nullable|image|mimes:png,jpg,jpeg,gif'
     ];
+
+    public $prefix;
 
     // Toasting
     public $toastr = false;
@@ -62,6 +67,8 @@ class Edit extends Component
         $this->photo_url = $staff->photo;
         $this->city = $staff->city;
         $this->country= $staff->country;
+        $this->role_id= $staff->role_id;
+        $this->roles= Role::where('project_id', Project::getProjectId($this->prefix))->get();
     }
 
     public function save()
@@ -94,6 +101,7 @@ class Edit extends Component
             'address' => $this->address,
             'city' => $this->city,
             'country' => $this->country,
+            'role_id' => $this->role_id
         ]);
 
         // Change the photo URL

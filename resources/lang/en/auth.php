@@ -39,4 +39,5 @@ return [
     'Passwordd' => 'Password',
     'Role' => 'Role',
     'Permissions' => 'Permissions',
+    'Number of users' => 'Number of users',
 ];
