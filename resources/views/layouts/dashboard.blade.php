@@ -72,8 +72,8 @@
                             <a class="nav-link @if($route === "home") active @endif()" href="{{ route('home', $prefix) }}"><i class="fa fa-fw fa-user-circle"></i>{{ __('Dashboard') }} <span class="badge badge-success">6</span></a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link @if(Str::startsWith($route, 'members')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#members_menu" aria-controls="submenu-1"><i class="fa fa-users"></i>{{ __('pages.Members') }}</a>
-                            <div id="members_menu" class="submenu collapse @if(Str::startsWith($route, 'members')) show @endif()" style="">
+                            <a class="nav-link @if(Str::startsWith($route, 'members.')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#members_menu" aria-controls="submenu-1"><i class="fa fa-users"></i>{{ __('pages.Members') }}</a>
+                            <div id="members_menu" class="submenu collapse @if(Str::startsWith($route, 'members.')) show @endif()" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'members.index')) active @endif()" href="{{ route('members.index', $prefix) }}">{{ __('members.All members') }}</a>

@@ -19,4 +19,6 @@ return [
     'Roles' => 'Roles',
     'All roles' => 'All roles',
     'Add a role' => 'Add a role',
+    'Add a membership' => 'Add a membership',
+    'All Memberships' => 'All Memberships',
 ];

@@ -1,6 +1,6 @@
 <div class="dashboard-header">
     <nav class="navbar navbar-expand-lg bg-white fixed-top">
-        <a class="navbar-brand" href="index.html">Concept</a>
+        <a class="navbar-brand" href="index.html">{{ \App\Models\Project::where('project', request('project_id'))->first()->name }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,6 +9,11 @@
                 <li class="nav-item">
                     <div id="custom-search" class="top-search-bar">
                         <input class="form-control" type="text" placeholder="Search..">
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div id="custom-search" class="top-search-bar">
+                        <a href="{{ route('memberships.create', $prefix) }}" class="btn btn-success text-light ml-4"><i class="fa fa-plus-circle"></i> {{ __('navbar.Membership') }}</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown notification">

@@ -32,6 +32,8 @@ return [
     'Photo' => 'Photo',
     'CNE' => 'Government Id',
     'Subscription' => 'Subscription',
+    'Subscription price' => 'Subscription price',
+    'Subscription duration' => 'Subscription duration',
     'Joined at' => 'Joined at',
     'Updated at' => 'Updated at',
     'Status' => 'Status',

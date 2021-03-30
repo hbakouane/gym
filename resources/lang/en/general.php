@@ -39,4 +39,6 @@ return [
     'Updated' => 'Updated',
     'Connection' => 'Connection',
     'Example' => 'Example',
+    'Starts at' => 'Starts at',
+    'Ends at' => 'Ends at',
 ];

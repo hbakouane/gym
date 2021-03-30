@@ -1,4 +1,4 @@
-<div wire:poll.500ms>
+<div wire:poll.5s>
     @include('partials.toastr')
     @if($current === "index")
         <!-- Search Bar -->
@@ -27,6 +27,9 @@
                             <p class="text-dark text-center h5 mt-2 font-bold">{{ $member->name }}</p>
                             <p class="text-center my-0"><i class="fa fa-map-marker-alt"></i> {{ $member->city }}</p>
                             <p class="text-center my-0"><i class="fa fa-phone"></i> {{ $member->phone }}</p>
+                            <p class="text-center my-0">
+                                @include('partials.membership_status', ['member' => $member])
+                            </p>
                         </div>
                         <div class="card-footer w-100 mx-auto">
                             <div class="d-flex justify-content-center">

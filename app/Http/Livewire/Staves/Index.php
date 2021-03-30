@@ -11,6 +11,7 @@ use App\Models\Role;
 class Index extends Component
 {
     public $staffs;
+    public $project_id;
 
     // Toast
     public $message;
@@ -24,9 +25,9 @@ class Index extends Component
 
     public function mount()
     {
-        $project_id = Project::getProjectIdOrFail(request('project_id'));
-        $this->staffs = Staff::where('project_id', $project_id)->orderBy('id', 'DESC')->get();
-        $roles = Role::where('project_id', $project_id)->get();
+        $this->project_id = Project::getProjectIdOrFail(request('project_id'));
+        $this->staffs = Staff::where('project_id', $this->project_id)->orderBy('id', 'DESC')->get();
+        $roles = Role::where('project_id', $this->project_id)->get();
     }
 
     public function delete($id)
@@ -34,8 +35,9 @@ class Index extends Component
         // Check if the staff has the right to do this action
         RolesController::checkRole('staves.delete');
         Staff::find($id)->delete();
-        $this->message = __('staves.Staff delete');
+        $this->message = __('staves.Staff deleted successfully.');
         $this->type = "success";
         $this->toastr = true;
+        $this->staffs = Staff::where('project_id', $this->project_id)->orderBy('id', 'DESC')->get();
     }
 }
