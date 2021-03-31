@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\Project;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Create extends Component
@@ -80,6 +81,8 @@ class Create extends Component
         ]);
 
         // Save The membership
+        // Generate an id
+        $membership_id = Str::random(9);
         $membership = new Membership();
         $membership->create([
             'member_id' => $this->member_id,
@@ -88,7 +91,8 @@ class Create extends Component
             'project_id' => Project::getProjectId($this->prefix),
             'payment_date' => $this->payment_date,
             'amount' => $this->amount,
-            'note' => $this->note
+            'note' => $this->note,
+            'membership_id' => $membership_id
         ])->save();
 
         // Update the dates on the Member model
@@ -105,7 +109,8 @@ class Create extends Component
             'amount' => $this->amount,
             'payment_type' => $this->payment_type,
             'payment_date' => $this->payment_date,
-            'note' => $this->note
+            'note' => $this->note,
+            'membership_id' => $membership_id
         ])->save();
 
         // Reset the properties

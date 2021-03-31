@@ -11,13 +11,14 @@ class Payment extends Model
     use HasFactory;
 
     public $fillable = [
-        'payable_id', 
+        'payable_id',
         'payable_type',
-        'project_id', 
-        'amount', 
-        'payment_type', 
-        'payment_date', 
-        'note'
+        'project_id',
+        'amount',
+        'payment_type',
+        'payment_date',
+        'note',
+        'membership_id'
     ];
 
     public function member()

@@ -11,6 +11,7 @@
                     <tr>
                         <th>{{ __('general.User') }}</th>
                         <th>{{ __('general.Type') }}</th>
+                        <th>{{ __('navbar.Membership') . ' ' . __('membership.ID') }}</th>
                         <th>{{ __('payments.Amount') }}</th>
                         <th>{{ __('payments.Payment type') }}</th>
                         <th>{{ __('payments.Payment date') }}</th>
@@ -23,7 +24,7 @@
                     @foreach($payments as $payment)
                         <tr>
                             <td>
-                                <a target="_blank" href="{{ route('members.show', [$prefix, $payment->payable->id]) }}">
+                                <a target="_blank" href="{{ route(str_contains($payment->payable_type, 'Member') ? 'members.show' : 'vendors.show', [$prefix, $payment->payable->id]) }}">
                                     <img class="img-fluid user-avatar-md rounded-circle" src="{{ makeProfileImg($payment->payable->photo, true) }}">
                                     {{ $payment->payable->name }}
                                 </a>
@@ -32,6 +33,11 @@
                                 <div class="badge badge-{{ $payment->payable_type == "App\Models\Member" ? 'success' : 'brand' }}">
                                     {{ $payment->payable_type == "App\Models\Member" ? __('members.Member') : __('vendors.Vendor') }}
                                 </div>
+                            </td>
+                            <td>
+                                @if($payment->membership_id)
+                                    <i class="fa fa-circle text-success"></i> {{ '#' . $payment->membership_id ?? '' }}
+                                @endif
                             </td>
                             <td>{{ $website->prefix ?? '' . $payment->amount }}</td>
                             <td>{{ $payment->payment_type }}</td>
@@ -57,6 +63,7 @@
                     <tr>
                         <th>{{ __('general.User') }}</th>
                         <th>{{ __('general.Type') }}</th>
+                        <th>{{ __('navbar.Membership') . ' ' . __('membership.ID') }}</th>
                         <th>{{ __('payments.Amount') }}</th>
                         <th>{{ __('payments.Payment type') }}</th>
                         <th>{{ __('payments.Payment date') }}</th>

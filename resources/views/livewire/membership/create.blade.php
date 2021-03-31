@@ -13,8 +13,8 @@
                         <div class="px-4 py-2">
                             <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Name') }}</span> {{ $member->name }}</p>
                             <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Subscription') }}</span> <a href="{{ route('subscriptions.index', [$prefix]) }}">{{ $member->subscription->name }}</a></p>
-                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Subscription price') }}</span> {{ $member->subscription->duration }}</p>
-                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Subscription duration') }}</span> {{ $member->subscription->price . ' ' }} {{ $website->currency ?? '' }}</p>
+                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Subscription price') }}</span> {{ $member->subscription->price }}</p>
+                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Subscription duration') }}</span> {{ $member->subscription->duration . ' ' }} {{ $website->currency ?? '' }}</p>
                             <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Email') }}</span> {{ $member->email }}</p>
                             <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.CNE') }}</span> {{ $member->cne }}</p>
                             <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Phone') }}</span> {{ $member->phone }}</p>
