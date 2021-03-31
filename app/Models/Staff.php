@@ -9,7 +9,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Staff extends Authenticatable
 {
-    use HasFactory, HasRoles;
+    use HasFactory;
 
     protected $guard = 'staff';
 

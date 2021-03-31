@@ -52,7 +52,7 @@ class Member extends Model
         return $this->morphOne('App\Models\Credit', 'creditable');
     }
 
-    public function scopeWhereProject($query, $project)
+    public static function scopeWhereProject($query, $project)
     {
         return $query->whereHas('project', function (Builder $builder) use ($project) {
             $builder->where('project', $project ?? request('project_id'));

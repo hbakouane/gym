@@ -35,7 +35,7 @@ class Create extends Component
 
     public function mount()
     {
-        $members = Member::all();
+        $members = Member::whereProject($this->prefix)->get();
     }
 
     public function getMember()

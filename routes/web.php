@@ -16,6 +16,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Auth\Login\StaffController as LoginStaffController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\MembershipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,25 +46,6 @@ Route::prefix('staff')
         });
 });
 
-//// Repeat all theses routes for the staff and add the prefix /staff
-//Route::group(['middleware' => 'auth:staff', 'prefix' => 'staff'], function () {
-//    Route::get('/dashboard', [RedirectController::class, 'redirect']);
-//});
-//
-//Route::group(['prefix' => 'staff/{project_id}', 'middleware' => ['auth:staff', 'roleChecker'], 'as' => 'staff.'], function () {
-//    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//    Route::resource('/members', MemberController::class);
-//    Route::resource('/subscriptions', SubscriptionController::class);
-//    Route::resource('/features', FeatureController::class);
-//    Route::resource('/payments', PaymentsController::class);
-//    Route::resource('/credits', CreditsController::class);
-//    Route::resource('/expenses', ExpensesController::class);
-//    Route::resource('/invoices', InvoicesController::class);
-//    Route::resource('/vendors', VendorsController::class);
-//});
-//
-//// Repeating finished
-
 Route::group(['middleware' => 'auth'], function () {
     Route::view('/project/create', 'projects.create')->name('project.create');
     Route::get('/dashboard', [RedirectController::class, 'redirect']);
@@ -84,6 +66,7 @@ Route::group(['prefix' => '{project_id}', 'middleware' => ['auth:web,staff', 'ch
     Route::resource('/staves', StavesController::class);
     Route::resource('/roles', RolesController::class);
     Route::post('/permissions', PermissionController::class)->name('permissions.store');
+    Route::resource('/memberships', MembershipController::class);
 });
 
 
