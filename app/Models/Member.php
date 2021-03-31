@@ -52,6 +52,11 @@ class Member extends Model
         return $this->morphOne('App\Models\Credit', 'creditable');
     }
 
+    public function membership()
+    {
+        return $this->hasMany('App\Models\Membership');
+    }
+
     public static function scopeWhereProject($query, $project)
     {
         return $query->whereHas('project', function (Builder $builder) use ($project) {

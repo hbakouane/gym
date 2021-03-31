@@ -15,6 +15,7 @@ class CreateMembershipsTable extends Migration
     {
         Schema::create('memberships', function (Blueprint $table) {
             $table->id();
+            $table->string('membership_id')->nullable();
             $table->foreignId('member_id')->constrained();
             $table->string('model_type');
             $table->integer('model_id');

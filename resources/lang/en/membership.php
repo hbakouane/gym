@@ -8,4 +8,10 @@ return [
     'If you don\'t enter an amount, the subscription price will be applied' => 'If you don\'t enter an amount, the subscription price will be applied',
     'Membership paid' => 'Active Membership',
     'Membership not paid' => 'Expired Membership',
+    'Served by' => 'Served by',
+    'Started at' => 'Started at',
+    'Ended at' => 'Ended at',
+    'Status' => 'Status',
+    'ID' => 'ID',
+    'Membership' => 'Membership'
 ];

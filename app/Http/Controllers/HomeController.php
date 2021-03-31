@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $project_id = \request('project_id');
         return view('home');
     }
 }
