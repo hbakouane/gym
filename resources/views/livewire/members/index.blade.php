@@ -4,12 +4,22 @@
         <!-- Search Bar -->
         <div class="row">
             <div class="col-md-4">
-                <input type="search" wire:model="search" class="form-control input" placeholder="{{ __('general.Search') }}">
+                <input type="search" id="search" wire:model="search" class="form-control input" placeholder="{{ __('general.Search') }}">
+            </div>
+            <div class="col-md-2 pt-0 mt-0">
+                <form>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input wire:click="$set('search', 'active')" type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">{{ __('membership.Membership paid') }}</span>
+                    </label>
+                    <label class="custom-control custom-radio custom-control-inline">
+                        <input wire:click="$set('search', 'expired')" type="radio" name="radio-inline" class="custom-control-input"><span class="custom-control-label">{{ __('membership.Membership not paid') }}</span>
+                    </label>
+                </form>
             </div>
             <div class="col-md-2">
                 <a href="{{ route('members.create', $prefix) }}" class="btn btn-primary mt-1"><i class="fa fa-plus-circle"></i> {{ __('general.Add') }} </a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <p class="text-right">{{ $members->count() . ' ' . __('general.Results') }}</p>
             </div>
         </div>

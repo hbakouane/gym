@@ -6,6 +6,7 @@ use App\Models\Member;
 use App\Models\Project;
 use App\Models\Subscription;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -58,7 +59,16 @@ class Index extends Component
 
     public function render()
     {
-        if (!empty($this->search)) {
+        if (str_contains($this->search, "expired")) {
+             $members = Member::whereProject($this->prefix)
+                ->where('ended_at', '<', Carbon::today())
+                ->paginate($this->pagination);
+        } elseif (str_contains($this->search, "active")) {
+             $members = Member::whereProject($this->prefix)
+                ->where('started_at', '<', Carbon::today())
+                ->where('ended_at', '>', Carbon::today())
+                ->paginate($this->pagination);
+        } elseif (!empty($this->search)) {
             $members = Member::whereHas('project', function (Builder $query) {
                 $query->where('project', $this->prefix)->where('user_id', auth()->id());
             })->where('name', 'like', "%$this->search%")
