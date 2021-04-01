@@ -7,4 +7,5 @@ return [
     'Members' => 'Members',
     'Today' => 'Today',
     'Summary' => 'Summary',
+    'Revenues and Expenses' => 'Revenues and Expenses',
 ];

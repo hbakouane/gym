@@ -7,15 +7,29 @@
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="text-muted">{{ __('membership.Members') }}</h5>
-                    <div class="metric-value d-inline-block">
-                        <h1 class="mb-1 text-primary">{{ $members }} </h1>
+                    <div class="d-inline-block">
+                        <h5 class="text-muted">{{ __('home.Revenue') }}</h5>
+                        <h2 class="mb-0">{{ $website->currency ?? '' . $revenue }}</h2>
                     </div>
-                    <div class="metric-label d-inline-block float-right text-success">
-                        <i class="fa fa-fw fa-caret-up"></i><span>5.27%</span>
+                    <div class="float-right icon-circle-medium  icon-box-lg  bg-success-light mt-1">
+                        <i class="fa fa-money-bill-wave fa-fw fa-sm text-success"></i>
                     </div>
                 </div>
-                <div id="sparkline-1"></div>
+            </div>
+        </div>
+        <!-- /. metric -->
+        <!-- metric -->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-inline-block">
+                        <h5 class="text-muted">{{ __('membership.Members') }}</h5>
+                        <h2 class="mb-0"> {{ $members }} </h2>
+                    </div>
+                    <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
+                        <i class="fa fa-users fa-fw fa-sm text-info"></i>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /. metrdaic -->
@@ -23,31 +37,13 @@
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="text-muted">{{ __('membership.Paid Memberships') }}</h5>
-                    <div class="metric-value d-inline-block">
-                        <h1 class="mb-1 text-primary">{{ $paidMemberships }} </h1>
+                    <div class="d-inline-block">
+                        <h5 class="text-muted">{{ __('membership.Paid Memberships') }}</h5>
+                        <h2 class="mb-0"> {{ $paidMemberships }} </h2>
                     </div>
-                    <div class="metric-label d-inline-block float-right text-danger">
-                        <i class="fa fa-fw fa-caret-down"></i><span>1.08%</span>
+                    <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
+                        <i class="fa fa-tags fa-fw fa-sm text-primary"></i>
                     </div>
-                </div>
-                <div id="sparkline-2"></div>
-            </div>
-        </div>
-        <!-- /. metric -->
-        <!-- metric -->
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="text-muted">{{ __('home.Revenue') }}</h5>
-                    <div class="metric-value d-inline-block">
-                        <h1 class="mb-1 text-primary">{{ $website->currency ?? '' . $revenue }}</h1>
-                    </div>
-                    <div class="metric-label d-inline-block float-right text-danger">
-                        <i class="fa fa-fw fa-caret-down"></i><span>7.00%</span>
-                    </div>
-                </div>
-                <div id="sparkline-3">
                 </div>
             </div>
         </div>
@@ -56,15 +52,14 @@
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="text-muted">{{ __('home.Expenses') }}</h5>
-                    <div class="metric-value d-inline-block">
-                        <h1 class="mb-1 text-primary">{{ $website->currency ?? '' . $expenses }} </h1>
+                    <div class="d-inline-block">
+                        <h5 class="text-muted">{{ __('home.Expenses') }}</h5>
+                        <h2 class="mb-0"> {{ $website->currency ?? '' . $expenses }}</h2>
                     </div>
-                    <div class="metric-label d-inline-block float-right text-success">
-                        <i class="fa fa-fw fa-caret-up"></i><span>4.87%</span>
+                    <div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
+                        <i class="fa fa-coins fa-fw fa-sm text-secondary"></i>
                     </div>
                 </div>
-                <div id="sparkline-4"></div>
             </div>
         </div>
         <!-- /. metric -->
@@ -72,11 +67,21 @@
     <!-- ============================================================== -->
     <!-- revenue  -->
     <!-- ============================================================== -->
-    <div class="row justify-content-center">
-        <div class="card col-md-8">
-            <div class="card-header">{{ __('home.Summary') }}</div>
-            <div class="card-body">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-dark h5 font-weight-bold text-center">{{ __('home.Revenues and Expenses') }}</div>
+                <div class="card-body">
+                    {!! $revenueChart->render() !!}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-dark h5 font-weight-bold text-center">{{ __('home.Summary') }}</div>
+                <div class="card-body">
                     {!! $chartjs->render() !!}
+                </div>
             </div>
         </div>
     </div>
