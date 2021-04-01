@@ -29,9 +29,9 @@ class Dashboard extends Component
 
     public function render()
     {
-        // Prepate the Chart
+        // Prepare the Charts
         $chartjs = app()->chartjs
-            ->name('lineChartTest')
+            ->name('summary')
             ->type('line')
             ->size(['width' => 400, 'height' => 200])
             ->labels($this->oneWeekBefore)
@@ -54,11 +54,40 @@ class Dashboard extends Component
                     "pointBackgroundColor" => "#963755",
                     "pointHoverBackgroundColor" => "#bf5677",
                     "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    'data' => [$this->getPaidMemberships(6), $this->getPaidMemberships(5), $this->getPaidMemberships(4), $this->getPaidMemberships(3), $this->getPaidMemberships(2), $this->getPaidMemberships(1), $this->getPaidMemberships()],
+                ]
+            ])
+            ->options([]);
+
+        $revenueChart = app()->chartjs
+            ->name('revenues')
+            ->type('line')
+            ->size(['width' => 400, 'height' => 200])
+            ->labels($this->oneWeekBefore)
+            ->datasets([
+                [
+                    "label" => __('home.Expenses'),
+                    'backgroundColor' => "#8a4c5f",
+                    'borderColor' => "#8a4c5d",
+                    "pointBorderColor" => "#8a4c5d",
+                    "pointBackgroundColor" => "#8a4c5f",
+                    "pointHoverBackgroundColor" => "#bf5677",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    'data' => [$this->getExpenses(6), $this->getExpenses(5), $this->getExpenses(4), $this->getExpenses(3), $this->getExpenses(2), $this->getExpenses(1), $this->getExpenses()],
+                ],
+                [
+                    "label" => __('home.Revenue'),
+                    'backgroundColor' => "rgb(81, 141, 156)",
+                    'borderColor' => "rgb(81, 141, 130)",
+                    "pointBorderColor" => "rgb(81, 141, 170)",
+                    "pointBackgroundColor" => "#8a4c5f",
+                    "pointHoverBackgroundColor" => "#bf5677",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
                     'data' => [$this->getRevenue(6), $this->getRevenue(5), $this->getRevenue(4), $this->getRevenue(3), $this->getRevenue(2), $this->getRevenue(1), $this->getRevenue()],
                 ]
             ])
             ->options([]);
-        return view('livewire.dashboard', ['chartjs' => $chartjs]);
+        return view('livewire.dashboard', ['chartjs' => $chartjs, 'revenueChart' => $revenueChart]);
     }
 
     public function mount()
@@ -108,6 +137,50 @@ class Dashboard extends Component
             ->where('payable_type', 'App\Models\Member')
             ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
             ->sum('amount');
+    }
+
+    public function getPaidMemberships($duration = 0)
+    {
+        $project_id = Project::getProjectId($this->prefix);
+        if (is_array($duration)) {
+            $memberships = DB::table('memberships')
+                ->where('project_id', $project_id)
+                ->whereBetween('created_at', $duration)
+                ->get();
+            return count($memberships);
+        }
+        $memberships = DB::table('memberships')
+            ->where('project_id', $project_id)
+            ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
+            ->get();
+        return count($memberships);
+    }
+
+    public function getExpenses($duration = 0)
+    {
+        $project_id = Project::getProjectId($this->prefix);
+        if (is_array($duration)) {
+            $expenses = DB::table('expenses')
+                ->where('project_id', $this->project_id)
+                ->whereBetween('created_at', $duration)
+                ->sum('amount');
+            $payments_to_vendors = DB::table('payments')
+                ->where('project_id', $this->project_id)
+                ->where('payable_type', 'App\Models\Vendor')
+                ->whereBetween('created_at', $duration)
+                ->sum('amount');
+            return $expenses + $payments_to_vendors;
+        }
+        $expenses = DB::table('expenses')
+            ->where('project_id', $this->project_id)
+            ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
+            ->sum('amount');
+        $payments_to_vendors = DB::table('payments')
+            ->where('project_id', $this->project_id)
+            ->where('payable_type', 'App\Models\Vendor')
+            ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
+            ->sum('amount');
+        return $expenses + $payments_to_vendors;
     }
 
     public function getDay($toSub = 0)
