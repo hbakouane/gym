@@ -6,11 +6,11 @@
         </button>
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto navbar-right-top">
-                <li class="nav-item">
-                    <div id="custom-search" class="top-search-bar">
-                        <input class="form-control" type="text" placeholder="Search..">
-                    </div>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <div id="custom-search" class="top-search-bar">--}}
+{{--                        <input class="form-control" type="text" placeholder="Search..">--}}
+{{--                    </div>--}}
+{{--                </li>--}}
                 <li class="nav-item">
                     <div id="custom-search" class="top-search-bar">
                         <a href="{{ route('memberships.create', $prefix) }}" class="btn btn-success text-light ml-4"><i class="fa fa-plus-circle"></i> {{ __('navbar.Membership') }}</a>

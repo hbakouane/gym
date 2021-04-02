@@ -218,10 +218,10 @@
                             <div id="memberships_menu" class="submenu collapse @if(Str::startsWith($route, 'memberships')) show @endif()" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link @if(Str::startsWith($route, 'memberships.index')) active @endif()" href="{{ route('memberships.index', $prefix) }}">{{ __('pages.All staves') }}</a>
+                                        <a class="nav-link @if(Str::startsWith($route, 'memberships.index')) active @endif()" href="{{ route('memberships.index', $prefix) }}">{{ __('pages.All Memberships') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link @if(Str::startsWith($route, 'memberships.create')) active @endif()" href="{{ route('memberships.create', $prefix) }}">{{ __('pages.Add a staff') }}</a>
+                                        <a class="nav-link @if(Str::startsWith($route, 'memberships.create')) active @endif()" href="{{ route('memberships.create', $prefix) }}">{{ __('pages.Add a membership') }}</a>
                                     </li>
                                 </ul>
                             </div>

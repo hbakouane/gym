@@ -93,6 +93,66 @@
             </div>
         </div>
         <!-- /. metric -->
+        <!-- metric -->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-inline-block">
+                        <h5 class="text-muted">{{ __('home.Staves') }}</h5>
+                        <h2 class="mb-0"> {{ $staves }}</h2>
+                    </div>
+                    <div class="float-right icon-circle-medium  icon-box-lg  bg-brand-light mt-1">
+                        <i class="fa fa-users-cog fa-fw fa-sm text-brand"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /. metric -->
+        <!-- metric -->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-inline-block">
+                        <h5 class="text-muted">{{ __('home.Vendors') }}</h5>
+                        <h2 class="mb-0"> {{ $vendors }}</h2>
+                    </div>
+                    <div class="float-right icon-circle-medium  icon-box-lg  bg-danger-light mt-1">
+                        <i class="fa fa-store fa-fw fa-sm text-danger"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /. metric -->
+        <!-- metric -->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-inline-block">
+                        <h5 class="text-muted">{{ __('home.Credits (members)') }}</h5>
+                        <h2 class="mb-0"> {{ $website->curreny ?? '' . $creditsToMembers }}</h2>
+                    </div>
+                    <div class="float-right icon-circle-medium  icon-box-lg  bg-light mt-1">
+                        <i class="fa fa-hand-holding-usd fa-fw fa-sm text-dark"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /. metric -->
+        <!-- metric -->
+        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-inline-block">
+                        <h5 class="text-muted">{{ __('home.Credits (vendors)') }}</h5>
+                        <h2 class="mb-0"> {{ $website->curreny ?? '' . $creditsFromVendors }}</h2>
+                    </div>
+                    <div class="float-right icon-circle-medium  icon-box-lg  bg-dark mt-1">
+                        <i class="fa fa-hand-holding-usd fa-fw fa-sm text-light"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /. metric -->
     </div>
     <!-- ============================================================== -->
     <!-- revenue  -->

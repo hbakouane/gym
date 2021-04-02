@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Credit;
 use App\Models\Member;
 use App\Models\Membership;
 use App\Models\Payment;
 use App\Models\Project;
+use App\Models\Staff;
+use App\Models\Vendor;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -21,6 +24,10 @@ class Dashboard extends Component
     public $paidMemberships;
     public $revenue;
     public $expenses;
+    public $staves;
+    public $vendors;
+    public $creditsToMembers;
+    public $creditsFromVendors;
 
     public $project_id;
 
@@ -61,6 +68,17 @@ class Dashboard extends Component
                                 ->where('payable_type', 'App\Models\Vendor')
                                 ->sum('amount');
         $this->expenses = $expenses + $payments_to_vendors;
+
+        $this->staves = count(Staff::where('project_id', $this->project_id)->get());
+        $this->vendors = count(Vendor::where('project_id', $this->project_id)->get());
+        $this->creditsToMembers = DB::table('credits')
+                                    ->where('project_id', $this->project_id)
+                                    ->where('creditable_type', 'App\Models\Member')
+                                    ->sum('amount');
+        $this->creditsFromVendors = DB::table('credits')
+                                        ->where('project_id', $this->project_id)
+                                        ->where('creditable_type', 'App\Models\Vendor')
+                                        ->sum('amount');
     }
 
     public function getMembers($duration = 0)
@@ -133,6 +151,72 @@ class Dashboard extends Component
         return $expenses + $payments_to_vendors;
     }
 
+    public function getStaves($duration = 0)
+    {
+        if (is_array($duration)) {
+            return count(
+                DB::table('staff')
+                    ->where('project_id', $this->project_id)
+                    ->whereBetween('created_at', $duration)
+                    ->get()
+            );
+        }
+        return count(
+                DB::table('staff')
+                    ->where('project_id', $this->project_id)
+                    ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
+                    ->get()
+        );
+    }
+
+    public function getVendors($duration)
+    {
+        if (is_array($duration)) {
+            $vendors = DB::table('vendors')
+                        ->where('project_id', $this->project_id)
+                        ->whereBetween('created_at', $duration)
+                        ->get();
+            return count($vendors);
+        }
+        $vendors = DB::table('vendors')
+                    ->where('project_id', $this->project_id)
+                    ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
+                    ->get();
+        return count($vendors);
+    }
+
+    public function getCreditsToMembers($duration)
+    {
+        if (is_array($duration)) {
+            return DB::table('credits')
+                    ->where('project_id', $this->project_id)
+                    ->whereBetween('created_at', $duration)
+                    ->where('creditable_type', 'App\Models\Member')
+                    ->sum('amount');
+        }
+        return DB::table('credits')
+            ->where('project_id', $this->project_id)
+            ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
+            ->where('creditable_type', 'App\Models\Member')
+            ->sum('amount');
+    }
+
+    public function getCreditsFromVendors($duration)
+    {
+        if (is_array($duration)) {
+            return DB::table('credits')
+                ->where('project_id', $this->project_id)
+                ->whereBetween('created_at', $duration)
+                ->where('creditable_type', 'App\Models\Vendor')
+                ->sum('amount');
+        }
+        return DB::table('credits')
+            ->where('project_id', $this->project_id)
+            ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
+            ->where('creditable_type', 'App\Models\Vendor')
+            ->sum('amount');
+    }
+
     public function getDay($toSub = 0)
     {
         return now()->subDays($toSub)->toDateString();
@@ -148,6 +232,10 @@ class Dashboard extends Component
         $this->expenses = $this->getExpenses($daysToDiff);
         $this->paidMemberships = $this->getPaidMemberships($daysToDiff);
         $this->members = $this->getMembers($daysToDiff);
+        $this->staves = $this->getStaves($daysToDiff);
+        $this->vendors = $this->getVendors($daysToDiff);
+        $this->creditsToMembers = $this->getCreditsToMembers($daysToDiff);
+        $this->creditsFromVendors = $this->getCreditsFromVendors($daysToDiff);
     }
 
     public function renderCharts()
