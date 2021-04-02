@@ -12,6 +12,10 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
+    public $date_pick;
+    public $from;
+    public $to;
+
     public $prefix;
     public $members;
     public $paidMemberships;
@@ -25,6 +29,7 @@ class Dashboard extends Component
     public function __construct()
     {
         $this->oneWeekBefore = [$this->getDay(6), $this->getDay(5), $this->getDay(4), $this->getDay(3), $this->getDay(2), $this->getDay(1), Carbon::today()->toDateString() . ' (' . lcfirst(__('home.Today')) . ')'];
+        $this->date_pick = Carbon::today()->toDateString();
     }
 
     public function render()
@@ -186,5 +191,17 @@ class Dashboard extends Component
     public function getDay($toSub = 0)
     {
         return now()->subDays($toSub)->toDateString();
+    }
+
+    public function redefine($date)
+    {
+        $daysToDiff = \Carbon\Carbon::today()->diffInDays($this->date_pick);
+        if (is_array($date)) {
+            $daysToDiff = $date;
+        }
+        $this->revenue = $this->getRevenue($daysToDiff);
+        $this->expenses = $this->getExpenses($daysToDiff);
+        $this->paidMemberships = $this->getPaidMemberships($daysToDiff);
+        $this->members = $this->getMembers($daysToDiff);
     }
 }

@@ -53,7 +53,9 @@
     <!-- / Page infos -->
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ url('images/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ url('images/icon-512x512.png') }}">
+    <link rel="apple-touch-icon" type="image/png" href="{{ url('images/icon-512x512.png') }}">
+    <link rel="msapplication-TileImage" content="{{ url('images/icon-512x512.png') }}">
 
     <title>{{ $website->name ?? 'Gym CRM' . ' - ' . $page }} - {{ $website->title ?? '' }}</title>
 </head>
