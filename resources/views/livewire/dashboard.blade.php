@@ -1,14 +1,37 @@
 <div>
-    <form wire:submit.prevent="redefine('{{ $date_pick }}')" class="form-group">
-        <input wire:model="date_pick" type="date" class="form-control">
-        <button class="btn btn-secondary">Get</button>
-    </form>
+    <p class="text-muted text-right" style="cursor: pointer" wire:click="$toggle('filter')">{!! $filter ? '<i class="fa fa-times"></i>' : '<i class="fa fa-info-circle"></i>' !!} {{ __('general.More') }}</p>
+    @if($filter)
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form wire:submit.prevent="redefine('{{ $date_pick }}')" class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{ __('general.Pick up a day') }} <input wire:model="date_pick" type="date" class="form-control input">
+                                </div>
+                            </div>
+                            <button class="btn btn-light btn-lg mt-2">{{ __('general.Apply') }}</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form wire:submit.prevent="redefine(['{{ $from }}', '{{ $to }}'])" class="form-group">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    {{ __('general.From') }} <input wire:model="from" type="date" class="form-control input">
+                                </div>
+                                <div class="col-md-5">
+                                    {{ __('general.To') }} <input wire:model="to" type="date" class="form-control input">
+                                </div>
+                            </div>
+                            <button class="btn btn-light btn-lg mt-2">{{ __('general.Apply') }}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
-    <form wire:submit.prevent="redefine(['{{ $from }}', '{{ $to }}'])" class="form-group">
-        <input wire:model="from" type="date" class="form-control">
-        <input wire:model="to" type="date" class="form-control">
-        <button class="btn btn-secondary">Get</button>
-    </form>
     <div class="row">
         <!-- metric -->
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
