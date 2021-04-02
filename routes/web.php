@@ -46,9 +46,9 @@ Route::prefix('staff')
         });
 });
 
+Route::get('/dashboard', [RedirectController::class, 'redirect'])->middleware('auth:web,staff');
 Route::group(['middleware' => 'auth'], function () {
     Route::view('/project/create', 'projects.create')->name('project.create');
-    Route::get('/dashboard', [RedirectController::class, 'redirect']);
 });
 
 Route::group(['prefix' => '{project_id}', 'middleware' => ['auth:web,staff', 'checkProject', 'roleChecker']], function () {

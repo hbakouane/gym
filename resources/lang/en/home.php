@@ -12,4 +12,6 @@ return [
     'Vendors' => 'Vendors',
     'Credits (members)' => 'Credits (members)',
     'Credits (vendors)' => 'Credits (vendors)',
+    'Staves and Vendors' => 'Staves and Vendors',
+    'Credits' => 'Credits',
 ];
