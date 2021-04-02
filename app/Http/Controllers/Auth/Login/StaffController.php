@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
 
 class StaffController extends Controller
 {
-    protected $redirectTo = '/sa';
+    protected $redirectTo = '/dashboard';
     protected $guard = 'staff';
 
     public function __construct()

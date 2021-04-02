@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Credit;
 use App\Models\Member;
 use App\Models\Membership;
 use App\Models\Payment;
 use App\Models\Project;
+use App\Models\Staff;
+use App\Models\Vendor;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -21,6 +24,10 @@ class Dashboard extends Component
     public $paidMemberships;
     public $revenue;
     public $expenses;
+    public $staves;
+    public $vendors;
+    public $creditsToMembers;
+    public $creditsFromVendors;
 
     public $project_id;
 
@@ -37,7 +44,12 @@ class Dashboard extends Component
     public function render()
     {
         $charts = $this->renderCharts();
-        return view('livewire.dashboard', ['chartjs' => $charts[0], 'revenueChart' => $charts[1]]);
+        return view('livewire.dashboard', [
+            'chartjs' => $charts[0],
+            'revenueChart' => $charts[1],
+            'stavesVendorsChart' => $charts[2],
+            'creditsChart' => $charts[3]
+        ]);
     }
 
     public function mount()
@@ -61,6 +73,17 @@ class Dashboard extends Component
                                 ->where('payable_type', 'App\Models\Vendor')
                                 ->sum('amount');
         $this->expenses = $expenses + $payments_to_vendors;
+
+        $this->staves = count(Staff::where('project_id', $this->project_id)->get());
+        $this->vendors = count(Vendor::where('project_id', $this->project_id)->get());
+        $this->creditsToMembers = DB::table('credits')
+                                    ->where('project_id', $this->project_id)
+                                    ->where('creditable_type', 'App\Models\Member')
+                                    ->sum('amount');
+        $this->creditsFromVendors = DB::table('credits')
+                                        ->where('project_id', $this->project_id)
+                                        ->where('creditable_type', 'App\Models\Vendor')
+                                        ->sum('amount');
     }
 
     public function getMembers($duration = 0)
@@ -133,6 +156,72 @@ class Dashboard extends Component
         return $expenses + $payments_to_vendors;
     }
 
+    public function getStaves($duration = 0)
+    {
+        if (is_array($duration)) {
+            return count(
+                DB::table('staff')
+                    ->where('project_id', $this->project_id)
+                    ->whereBetween('created_at', $duration)
+                    ->get()
+            );
+        }
+        return count(
+                DB::table('staff')
+                    ->where('project_id', $this->project_id)
+                    ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
+                    ->get()
+        );
+    }
+
+    public function getVendors($duration = 0)
+    {
+        if (is_array($duration)) {
+            $vendors = DB::table('vendors')
+                        ->where('project_id', $this->project_id)
+                        ->whereBetween('created_at', $duration)
+                        ->get();
+            return count($vendors);
+        }
+        $vendors = DB::table('vendors')
+                    ->where('project_id', $this->project_id)
+                    ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
+                    ->get();
+        return count($vendors);
+    }
+
+    public function getCreditsToMembers($duration = 0)
+    {
+        if (is_array($duration)) {
+            return DB::table('credits')
+                    ->where('project_id', $this->project_id)
+                    ->whereBetween('created_at', $duration)
+                    ->where('creditable_type', 'App\Models\Member')
+                    ->sum('amount');
+        }
+        return DB::table('credits')
+            ->where('project_id', $this->project_id)
+            ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
+            ->where('creditable_type', 'App\Models\Member')
+            ->sum('amount');
+    }
+
+    public function getCreditsFromVendors($duration = 0)
+    {
+        if (is_array($duration)) {
+            return DB::table('credits')
+                ->where('project_id', $this->project_id)
+                ->whereBetween('created_at', $duration)
+                ->where('creditable_type', 'App\Models\Vendor')
+                ->sum('amount');
+        }
+        return DB::table('credits')
+            ->where('project_id', $this->project_id)
+            ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
+            ->where('creditable_type', 'App\Models\Vendor')
+            ->sum('amount');
+    }
+
     public function getDay($toSub = 0)
     {
         return now()->subDays($toSub)->toDateString();
@@ -148,6 +237,10 @@ class Dashboard extends Component
         $this->expenses = $this->getExpenses($daysToDiff);
         $this->paidMemberships = $this->getPaidMemberships($daysToDiff);
         $this->members = $this->getMembers($daysToDiff);
+        $this->staves = $this->getStaves($daysToDiff);
+        $this->vendors = $this->getVendors($daysToDiff);
+        $this->creditsToMembers = $this->getCreditsToMembers($daysToDiff);
+        $this->creditsFromVendors = $this->getCreditsFromVendors($daysToDiff);
     }
 
     public function renderCharts()
@@ -210,6 +303,64 @@ class Dashboard extends Component
                 ],
             ])
             ->options([]);
-        return [$chartjs, $revenueChart];
+
+        $stavesVendorsChart = app()->chartjs
+            ->name('stavesVendorsChart')
+            ->type('line')
+            ->size(['width' => 400, 'height' => 200])
+            ->labels($this->oneWeekBefore)
+            ->datasets([
+                [
+                    "label" => __('home.Staves'),
+                    'backgroundColor' => "#ff9fbd7d",
+                    'borderColor' => "#FF588D",
+                    "pointBorderColor" => "#963755",
+                    "pointBackgroundColor" => "#963755",
+                    "pointHoverBackgroundColor" => "#bf5677",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    'data' => [$this->getStaves(6), $this->getStaves(5), $this->getStaves(4), $this->getStaves(3), $this->getStaves(2), $this->getStaves(1), $this->getStaves()],
+                ],
+                [
+                    "label" => __('home.Vendors'),
+                    'backgroundColor' => "#ac84de85",
+                    'borderColor' => "#A4ACF7",
+                    "pointBorderColor" => "#4852F9",
+                    "pointBackgroundColor" => "#4852F9",
+                    "pointHoverBackgroundColor" => "#6b72ed",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    'data' => [$this->getVendors(6), $this->getVendors(5), $this->getVendors(4), $this->getVendors(3), $this->getVendors(2), $this->getVendors(1), $this->getVendors()],
+                ],
+            ])
+            ->options([]);
+
+        $credits = app()->chartjs
+            ->name('credits')
+            ->type('line')
+            ->size(['width' => 400, 'height' => 200])
+            ->labels($this->oneWeekBefore)
+            ->datasets([
+                [
+                    "label" => __('home.Credits (members)'),
+                    'backgroundColor' => "#2ec5515c",
+                    'borderColor' => "#C5FAD4",
+                    "pointBorderColor" => "#C5FAD9",
+                    "pointBackgroundColor" => "#8a4c5f",
+                    "pointHoverBackgroundColor" => "#bf5677",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    'data' => [$this->getCreditsToMembers(6), $this->getCreditsToMembers(5), $this->getCreditsToMembers(4), $this->getCreditsToMembers(3), $this->getCreditsToMembers(2), $this->getCreditsToMembers(1), $this->getCreditsToMembers()],
+                ],
+                [
+                    "label" => __('home.Credits (vendors)'),
+                    'backgroundColor' => "#25d5f54a",
+                    'borderColor' => "#25d5f54a",
+                    "pointBorderColor" => "#25d5f24b",
+                    "pointBackgroundColor" => "#25d5f24c",
+                    "pointHoverBackgroundColor" => "#8a4c5f",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    'data' => [$this->getCreditsFromVendors(6), $this->getCreditsFromVendors(5), $this->getCreditsFromVendors(4), $this->getCreditsFromVendors(3), $this->getCreditsFromVendors(2), $this->getCreditsFromVendors(1), $this->getCreditsFromVendors()],
+                ],
+            ])
+            ->options([]);
+        return [$chartjs, $revenueChart, $stavesVendorsChart, $credits];
     }
 }
