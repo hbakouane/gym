@@ -12,6 +12,10 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
+    public $date_pick;
+    public $from;
+    public $to;
+
     public $prefix;
     public $members;
     public $paidMemberships;
@@ -25,6 +29,7 @@ class Dashboard extends Component
     public function __construct()
     {
         $this->oneWeekBefore = [$this->getDay(6), $this->getDay(5), $this->getDay(4), $this->getDay(3), $this->getDay(2), $this->getDay(1), Carbon::today()->toDateString() . ' (' . lcfirst(__('home.Today')) . ')'];
+        $this->date_pick = Carbon::today()->toDateString();
     }
 
     public function render()
@@ -37,24 +42,24 @@ class Dashboard extends Component
             ->labels($this->oneWeekBefore)
             ->datasets([
                 [
-                    "label" => __('membership.Members'),
-                    'backgroundColor' => "#AC84DE",
-                    'borderColor' => "#A4ACF7",
-                    "pointBorderColor" => "#4852F9",
-                    "pointBackgroundColor" => "#4852F9",
-                    "pointHoverBackgroundColor" => "#6b72ed",
-                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
-                    'data' => [$this->getMembers(6), $this->getMembers(5), $this->getMembers(4), $this->getMembers(3), $this->getMembers(2), $this->getMembers(1), $this->getMembers()],
-                ],
-                [
                     "label" => __('membership.Paid Memberships'),
-                    'backgroundColor' => "#FF9FBD",
+                    'backgroundColor' => "#ff9fbd7d",
                     'borderColor' => "#FF588D",
                     "pointBorderColor" => "#963755",
                     "pointBackgroundColor" => "#963755",
                     "pointHoverBackgroundColor" => "#bf5677",
                     "pointHoverBorderColor" => "rgba(220,220,220,1)",
                     'data' => [$this->getPaidMemberships(6), $this->getPaidMemberships(5), $this->getPaidMemberships(4), $this->getPaidMemberships(3), $this->getPaidMemberships(2), $this->getPaidMemberships(1), $this->getPaidMemberships()],
+                ],
+                [
+                    "label" => __('membership.Members'),
+                    'backgroundColor' => "#ac84de85",
+                    'borderColor' => "#A4ACF7",
+                    "pointBorderColor" => "#4852F9",
+                    "pointBackgroundColor" => "#4852F9",
+                    "pointHoverBackgroundColor" => "#6b72ed",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    'data' => [$this->getMembers(6), $this->getMembers(5), $this->getMembers(4), $this->getMembers(3), $this->getMembers(2), $this->getMembers(1), $this->getMembers()],
                 ]
             ])
             ->options([]);
@@ -66,25 +71,25 @@ class Dashboard extends Component
             ->labels($this->oneWeekBefore)
             ->datasets([
                 [
+                    "label" => __('home.Revenue'),
+                    'backgroundColor' => "#2ec5515c",
+                    'borderColor' => "#C5FAD4",
+                    "pointBorderColor" => "#C5FAD9",
+                    "pointBackgroundColor" => "#8a4c5f",
+                    "pointHoverBackgroundColor" => "#bf5677",
+                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                    'data' => [$this->getRevenue(6), $this->getRevenue(5), $this->getRevenue(4), $this->getRevenue(3), $this->getRevenue(2), $this->getRevenue(1), $this->getRevenue()],
+                ],
+                [
                     "label" => __('home.Expenses'),
-                    'backgroundColor' => "#8a4c5f",
-                    'borderColor' => "#8a4c5d",
-                    "pointBorderColor" => "#8a4c5d",
+                    'backgroundColor' => "#25d5f54a",
+                    'borderColor' => "#25d5f24b",
+                    "pointBorderColor" => "#25d5f24c",
                     "pointBackgroundColor" => "#8a4c5f",
                     "pointHoverBackgroundColor" => "#bf5677",
                     "pointHoverBorderColor" => "rgba(220,220,220,1)",
                     'data' => [$this->getExpenses(6), $this->getExpenses(5), $this->getExpenses(4), $this->getExpenses(3), $this->getExpenses(2), $this->getExpenses(1), $this->getExpenses()],
                 ],
-                [
-                    "label" => __('home.Revenue'),
-                    'backgroundColor' => "rgb(81, 141, 156)",
-                    'borderColor' => "rgb(81, 141, 130)",
-                    "pointBorderColor" => "rgb(81, 141, 170)",
-                    "pointBackgroundColor" => "#8a4c5f",
-                    "pointHoverBackgroundColor" => "#bf5677",
-                    "pointHoverBorderColor" => "rgba(220,220,220,1)",
-                    'data' => [$this->getRevenue(6), $this->getRevenue(5), $this->getRevenue(4), $this->getRevenue(3), $this->getRevenue(2), $this->getRevenue(1), $this->getRevenue()],
-                ]
             ])
             ->options([]);
         return view('livewire.dashboard', ['chartjs' => $chartjs, 'revenueChart' => $revenueChart]);
@@ -186,5 +191,17 @@ class Dashboard extends Component
     public function getDay($toSub = 0)
     {
         return now()->subDays($toSub)->toDateString();
+    }
+
+    public function redefine($date)
+    {
+        $daysToDiff = \Carbon\Carbon::today()->diffInDays($this->date_pick);
+        if (is_array($date)) {
+            $daysToDiff = $date;
+        }
+        $this->revenue = $this->getRevenue($daysToDiff);
+        $this->expenses = $this->getExpenses($daysToDiff);
+        $this->paidMemberships = $this->getPaidMemberships($daysToDiff);
+        $this->members = $this->getMembers($daysToDiff);
     }
 }

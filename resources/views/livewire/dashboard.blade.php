@@ -1,7 +1,14 @@
 <div>
-    <div class="form-group">
-        <p>Date: <input type="text" class="form-control" id="datepicker"></p>
-    </div>
+    <form wire:submit.prevent="redefine('{{ $date_pick }}')" class="form-group">
+        <input wire:model="date_pick" type="date" class="form-control">
+        <button class="btn btn-secondary">Get</button>
+    </form>
+
+    <form wire:submit.prevent="redefine(['{{ $from }}', '{{ $to }}'])" class="form-group">
+        <input wire:model="from" type="date" class="form-control">
+        <input wire:model="to" type="date" class="form-control">
+        <button class="btn btn-secondary">Get</button>
+    </form>
     <div class="row">
         <!-- metric -->
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">

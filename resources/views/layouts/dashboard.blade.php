@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- CSS -->
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="{{ url('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url('assets/vendor/fonts/circular-std/style.css') }}">
     <link rel="stylesheet" href="{{ url('assets/libs/css/style.css') }}">
@@ -12,6 +14,18 @@
     <link rel="stylesheet" href="{{ url('assets/vendor/jvectormap/jquery-jvectormap-2.0.2.css') }}">
     <link rel="stylesheet" href="{{ url('assets/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
+    <script>
+        window.onload = () => {
+            'use strict';
+
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker
+                    .register('{{ url('sw.js') }}');
+            }
+        }
+    </script>
+
 
     <!-- Livewire -->
     @livewireStyles
@@ -37,6 +51,11 @@
         $route = \Request::route()->getName();
     @endphp
     <!-- / Page infos -->
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url('images/icon-512x512.png') }}">
+    <link rel="apple-touch-icon" type="image/png" href="{{ url('images/icon-512x512.png') }}">
+    <link rel="msapplication-TileImage" content="{{ url('images/icon-512x512.png') }}">
 
     <title>{{ $website->name ?? 'Gym CRM' . ' - ' . $page }} - {{ $website->title ?? '' }}</title>
 </head>
