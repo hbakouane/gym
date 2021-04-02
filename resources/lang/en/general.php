@@ -41,4 +41,9 @@ return [
     'Example' => 'Example',
     'Starts at' => 'Starts at',
     'Ends at' => 'Ends at',
+    'More' => 'More',
+    'Apply' => 'Apply',
+    'From' => 'From',
+    'To' => 'To',
+    'Pick up a day' => 'Pick up a day',
 ];
