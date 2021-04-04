@@ -17,6 +17,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\Auth\Login\StaffController as LoginStaffController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\ProjectsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +68,7 @@ Route::group(['prefix' => '{project_id}', 'middleware' => ['auth:web,staff', 'ch
     Route::resource('/roles', RolesController::class);
     Route::post('/permissions', PermissionController::class)->name('permissions.store');
     Route::resource('/memberships', MembershipController::class);
+    Route::get('/settings', [ProjectsController::class, 'index'])->name('website.settings');
 });
 
 

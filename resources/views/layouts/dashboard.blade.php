@@ -26,7 +26,6 @@
         }
     </script>
 
-
     <!-- Livewire -->
     @livewireStyles
 
@@ -57,7 +56,10 @@
     <link rel="apple-touch-icon" type="image/png" href="{{ url('images/icon-512x512.png') }}">
     <link rel="msapplication-TileImage" content="{{ url('images/icon-512x512.png') }}">
 
-    <title>{{ $website->name ?? 'Gym CRM' . ' - ' . $page }} - {{ $website->title ?? '' }}</title>
+    <!-- SEO -->
+    @include('partials.seo')
+
+    <title>{{ ($website->name ?? env('APP_NAME')) . ' - ' . $page }} | {{ $global->title ?? '' }}</title>
 </head>
 
 <body>
@@ -241,7 +243,12 @@
     <!-- wrapper  -->
     <!-- ============================================================== -->
     <div class="dashboard-wrapper">
-        <div class="container-fluid  dashboard-content">
+        <div class="container-fluid dashboard-content">
+            <!-- ================= Free Trial Ad =================== -->
+            <div class="alert alert-info">
+                <p class="text-info">You're on free trial, <span><u>14 days left.</u></span>
+            </div>
+            <!-- ================= / Free Trial Ad =================== -->
             <!-- ============================================================== -->
             <!-- pagehader  -->
             <!-- ============================================================== -->

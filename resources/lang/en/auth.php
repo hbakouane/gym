@@ -42,4 +42,6 @@ return [
     'Role' => 'Role',
     'Permissions' => 'Permissions',
     'Number of users' => 'Number of users',
+    'Forgot Your Password?' => 'Forgot Your Password?',
+    'Staff portal' => 'Staff portal',
 ];

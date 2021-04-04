@@ -11,6 +11,9 @@ class RedirectController extends Controller
 {
     public function redirect()
     {
+        if (! Project::where('user_id', auth()->id())->first()) {
+            return redirect(route('project.create'));
+        }
         if (Auth::guard('web')->check()) {
             $project = Project::where('user_id', auth()->id())->first()->project;
         }

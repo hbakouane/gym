@@ -22,12 +22,15 @@ class CreateProject extends Component
     public $City;
     public $Address;
     public $Zip;
+    public $Currency = '$';
 
     // Step3
     public $UserPhone;
     public $UserAddress;
     public $UserCity;
     public $UserCountry;
+
+    public $projects;
 
     public function render()
     {
@@ -37,6 +40,7 @@ class CreateProject extends Component
     public function mount()
     {
         $this->Project = Str::random(10);
+        $this->projects = Project::where('user_id', auth()->id())->orderBy('id', 'DESC')->get();
     }
 
     public function handleToggle($willBeActive, $willBeInactive)
@@ -68,7 +72,8 @@ class CreateProject extends Component
             'UserCountry' => 'required',
         ]);
         $this->step2 = false;
-        $this->step3 = true;
+        $this->step4 = true;
+        $this->saveStepThree();
     }
 
     public function saveStepThree()
@@ -86,7 +91,8 @@ class CreateProject extends Component
             'city' => $this->City,
             'address' => $this->Address,
             'zip' => $this->Zip,
-            'plan_id' => 1
+            'plan_id' => 1,
+            'currency' => $this->Currency
         ])->save();
 
         // Save the user information

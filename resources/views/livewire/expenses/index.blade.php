@@ -22,7 +22,7 @@
                     @foreach($expenses as $expense)
                         <tr>
                             <td>{{ $expense->vendor }}</td>
-                            <td>{{ $expense->amount }}</td>
+                            <td>{{ ($website->currency ?? '') . $expense->amount }}</td>
                             <td>{{ $expense->service }}</td>
                             <td>{{ $expense->date }}</td>
                             <td>{{ $expense->note }}</td>

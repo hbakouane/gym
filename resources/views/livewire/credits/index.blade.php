@@ -33,7 +33,7 @@
                                     {{ $credit->creditable_type == "App\Models\Member" ? __('members.Member') : __('vendors.Vendor') }}
                                 </div>
                             </td>
-                            <td>{{ $website->prefix ?? '' . $credit->amount }}</td>
+                            <td>{{ ($website->currency ?? '') . $credit->amount }}</td>
                             <td>{{ $credit->payment_type }}</td>
                             <td>{{ $credit->payment_date }}</td>
                             <td>{{ $credit->note }}</td>

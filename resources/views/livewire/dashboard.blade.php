@@ -32,6 +32,10 @@
         </div>
     @endif
 
+    <div class="col-md-12" wire:loading>
+        Loading . . .
+    </div>
+
     <div class="row">
         <!-- metric -->
         <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -39,7 +43,7 @@
                 <div class="card-body">
                     <div class="d-inline-block">
                         <h5 class="text-muted">{{ __('home.Revenue') }}</h5>
-                        <h2 class="mb-0">{{ $website->currency ?? '' . $revenue }}</h2>
+                        <h2 class="mb-0">{{ ($website->currency ?? '') . $revenue }}</h2>
                     </div>
                     <div class="float-right icon-circle-medium  icon-box-lg  bg-success-light shadow mt-1">
                         <i class="fa fa-money-bill-wave fa-fw fa-sm text-success"></i>
@@ -84,7 +88,7 @@
                 <div class="card-body">
                     <div class="d-inline-block">
                         <h5 class="text-muted">{{ __('home.Expenses') }}</h5>
-                        <h2 class="mb-0"> {{ $website->currency ?? '' . $expenses }}</h2>
+                        <h2 class="mb-0"> {{ ($website->currency ?? '') . $expenses }}</h2>
                     </div>
                     <div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light shadow mt-1">
                         <i class="fa fa-coins fa-fw fa-sm text-secondary"></i>
@@ -129,7 +133,7 @@
                 <div class="card-body">
                     <div class="d-inline-block">
                         <h5 class="text-muted">{{ __('home.Credits (members)') }}</h5>
-                        <h2 class="mb-0"> {{ $website->curreny ?? '' . $creditsToMembers }}</h2>
+                        <h2 class="mb-0"> {{ ($website->currency ?? '') . $creditsToMembers }}</h2>
                     </div>
                     <div class="float-right icon-circle-medium  icon-box-lg  bg-light shadow mt-1">
                         <i class="fa fa-hand-holding-usd fa-fw fa-sm text-dark"></i>
@@ -144,7 +148,7 @@
                 <div class="card-body">
                     <div class="d-inline-block">
                         <h5 class="text-muted">{{ __('home.Credits (vendors)') }}</h5>
-                        <h2 class="mb-0"> {{ $website->curreny ?? '' . $creditsFromVendors }}</h2>
+                        <h2 class="mb-0"> {{ ($website->currency ?? '') . $creditsFromVendors }}</h2>
                     </div>
                     <div class="float-right icon-circle-medium  icon-box-lg  bg-dark shadow mt-1">
                         <i class="fa fa-hand-holding-usd fa-fw fa-sm text-light"></i>

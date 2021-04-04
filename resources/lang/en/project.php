@@ -23,4 +23,9 @@ return [
     'Preparing the project environment . . .' => 'Preparing the project environment . . .',
     'Creating your project . . .' => 'Creating your project . . .',
     'Redirecting to dashboard . . . ' => 'Redirecting to dashboard . . . ',
+    'Currency' => 'Currency',
+    'Project information' => 'Project information',
+    'Personal Information' => 'Personal Information',
+    'Payment' => 'Payment',
+    'Finish' => 'Finish',
 ];

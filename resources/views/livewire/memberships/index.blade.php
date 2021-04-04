@@ -31,7 +31,7 @@
                                     {{ $membership->member->name }}
                                 </a>
                             </td>
-                            <td>{{ $website->prefix ?? '' . $membership->amount }}</td>
+                            <td>{{ ($website->currency ?? '') . $membership->amount }}</td>
                             <td>
                                 @include('partials.membership_status', ['member' => $membership->member])
                             </td>

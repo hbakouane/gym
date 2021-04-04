@@ -245,6 +245,7 @@ class Dashboard extends Component
 
     public function renderCharts()
     {
+        $website = Project::where('project', $this->prefix)->first();
         // Prepare the Charts
         $chartjs = app()->chartjs
             ->name('summary')
