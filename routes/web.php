@@ -18,6 +18,8 @@ use App\Http\Controllers\Auth\Login\StaffController as LoginStaffController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\SassController;
+use App\Http\Controllers\MollieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/projects/manage', function () {
     return "Manage projects";
 })->name('projects.manage');
-Route::view('/pay', 'saas.plans')->name('plans.show');
+Route::get('/pay', [SassController::class, 'index'])->name('plans.show');
 
 Route::group(['prefix' => '{project_id}', 'middleware' => ['auth:web,staff', 'checkProject', 'roleChecker', 'subscriptionChecker']], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -76,6 +78,9 @@ Route::group(['prefix' => '{project_id}', 'middleware' => ['auth:web,staff', 'ch
     Route::get('/settings', [ProjectsController::class, 'index'])->name('website.settings');
 });
 
+// Mollie Payments Routes
+Route::get('mollie-payment',[MollieController::Class,'preparePayment'])->name('mollie.payment');
+Route::get('payment-success',[MollieController::Class, 'paymentSuccess'])->name('order.success');
 
 Route::fallback(function () {
     return "404";

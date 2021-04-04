@@ -116,7 +116,8 @@
       <path value="$PROJECT_DIR$/vendor/asm89/stack-cors" />
       <path value="$PROJECT_DIR$/vendor/laravel/tinker" />
       <path value="$PROJECT_DIR$/vendor/fx3costa/laravelchartjs" />
-      <path value="$PROJECT_DIR$/vendor/silviolleite/laravelpwa" />
+      <path value="$PROJECT_DIR$/vendor/mollie/mollie-api-php" />
+      <path value="$PROJECT_DIR$/vendor/mollie/laravel-mollie" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
