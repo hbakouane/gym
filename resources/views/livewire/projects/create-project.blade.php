@@ -83,7 +83,7 @@
         #progressbar li {
             list-style-type: none;
             font-size: 12px;
-            width: 25%;
+            width: 33.33%;
             float: left;
             position: relative;
             transition: 2s;
@@ -237,10 +237,10 @@
                             <div id="msform">
                                 <!-- progressbar -->
                                 <ul id="progressbar" style="cursor: pointer; transition: 2s">
-                                    <li class="active" id="account" style="transition: 2s"><strong>Project information</strong></li>
-                                    <li @if($step2 OR $step3 OR $step4) class="active" @endif id="personal" style="transition: 2s"><strong>Personal</strong></li>
-                                    <li @if($step3 OR $step4) class="active" @endif id="payment" style="transition: 2s"><strong>Payment</strong></li>
-                                    <li @if($step4) class="active" @endif id="confirm" style="transition: 2s"><strong>Finish</strong></li>
+                                    <li class="active" id="account" style="transition: 2s"><strong>{{ __('project.Currency') }}</strong></li>
+                                    <li @if($step2 OR $step3 OR $step4) class="active" @endif id="personal" style="transition: 2s"><strong>{{ __('project.Currency') }}</strong></li>
+{{--                                    <li @if($step3 OR $step4) class="active" @endif id="payment" style="transition: 2s"><strong>{{ __('project.Payment') }}</strong></li>--}}
+                                    <li @if($step4) class="active" @endif id="confirm" style="transition: 2s"><strong>{{ __('project.Finish') }}</strong></li>
                                 </ul>
                                 <!-- fieldsets -->
                             @if($step1)
@@ -347,6 +347,16 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
+                                                            <label class="w-100 text-left">{{ __('project.City') }}
+                                                                <input type="text" class="{{ handleErrorClass($errors, 'UserCity', ' ') }} form-control input" wire:model="UserCity">
+                                                            </label>
+                                                            @error('UserCity')
+                                                            <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Country') }}
                                                                 <select class="{{ handleErrorClass($errors, 'UserCountry', ' ') }} form-control" style="height: 49px" wire:model="UserCountry">
                                                                     @include('partials.countries')
@@ -359,10 +369,10 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label class="w-100 text-left">{{ __('project.City') }}
-                                                                <input type="text" class="{{ handleErrorClass($errors, 'UserCity', ' ') }} form-control input" wire:model="UserCity">
+                                                            <label class="w-100 text-left">{{ __('project.Currency') }}
+                                                                <input wire:model="Currency" type="text" class="{{ handleErrorClass($errors, 'Currency', ' ') }} form-control input">
                                                             </label>
-                                                            @error('UserCity')
+                                                            @error('Currency')
                                                             <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
                                                             @enderror
                                                         </div>
@@ -380,24 +390,24 @@
                                         </div>
                                     </fieldset>
                                 @endif
-                                @if($step3)
-                                    <fieldset>
-                                        <hr>
-                                        <div class="w-75 mx-auto">
-                                            <form wire:submit.prevent="saveStepThree">
-                                                Plans should be there
-                                                <div class="row justify-content-center">
-                                                    <div class="col-md-2">
-                                                        <button class="btn btn-main text-light" type="button" wire:click="handleToggle('step2', 'step3')">{{ __('project.Previous') }}</button>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <button class="btn btn-main text-light" type="submit">{{ __('project.Finish') }}</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </fieldset>
-                                @endif
+{{--                                @if($step3)--}}
+{{--                                    <fieldset>--}}
+{{--                                        <hr>--}}
+{{--                                        <div class="w-75 mx-auto">--}}
+{{--                                            <form wire:submit.prevent="saveStepThree">--}}
+{{--                                                Plans should be there--}}
+{{--                                                <div class="row justify-content-center">--}}
+{{--                                                    <div class="col-md-2">--}}
+{{--                                                        <button class="btn btn-main text-light" type="button" wire:click="handleToggle('step2', 'step3')">{{ __('project.Previous') }}</button>--}}
+{{--                                                    </div>--}}
+{{--                                                    <div class="col-md-2">--}}
+{{--                                                        <button class="btn btn-main text-light" type="submit">{{ __('project.Finish') }}</button>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
+{{--                                            </form>--}}
+{{--                                        </div>--}}
+{{--                                    </fieldset>--}}
+{{--                                @endif--}}
                                 @if($step4)
                                     <fieldset>
                                         <div class="w-75 mx-auto">
@@ -469,5 +479,20 @@
                 </div>
             </div>
         </div>
+        @if(\App\Models\Project::where('user_id', auth()->id())->get())
+            <div class="row justify-content-center mt-0">
+                <div class="col-md-8">
+                    @foreach($projects as $project)
+                        <div class="card px-0 shadow border">
+                            <div class="card-body">
+                                <small class="text-muted font-12 text-right">{{ __('general.Created at') . ' ' . $project->created_at }}</small>
+                                <p class="font-weight-bold text-dark font-22 mb-0">{{ $project->name }}</p>
+                                <p class="text-muted font-16 mt-0">{{ route('home', $project->project) }}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
     </div>
 </div>

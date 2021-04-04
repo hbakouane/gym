@@ -10,8 +10,10 @@ class PrefixComposer
 {
     public function compose(View $view) {
         $prefix = request()->route()->project_id ?? Project::where('user_id', auth()->id())->first()->project ?? '';
+        $website = Project::where('project', $prefix)->first();
         $view->with([
-            'prefix' => $prefix
+            'prefix' => $prefix,
+            'website' => $website
         ]);
     }
 }

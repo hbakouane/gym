@@ -46,4 +46,5 @@ return [
     'From' => 'From',
     'To' => 'To',
     'Pick up a day' => 'Pick up a day',
+    'Soon' => 'Soon',
 ];

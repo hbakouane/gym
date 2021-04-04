@@ -51,7 +51,10 @@
                                     {{ __('auth.Register') }}
                                 </a>
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                    {{ __('auth.Forgot Your Password?') }}
+                                </a>
+                                <a class="btn btn-link" href="{{ route('staff.login.get') }}">
+                                    {{ __('auth.Staff portal') }}
                                 </a>
                             </div>
                         @endif

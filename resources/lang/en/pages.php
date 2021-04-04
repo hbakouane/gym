@@ -21,4 +21,5 @@ return [
     'Add a role' => 'Add a role',
     'Add a membership' => 'Add a membership',
     'All Memberships' => 'All Memberships',
+    'Invoices' => 'Invoices',
 ];

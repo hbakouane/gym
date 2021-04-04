@@ -33,7 +33,7 @@
         $route = \Request::route()->getName();
     @endphp
     <!-- / Page infos -->
-    <title>{{ $website->name ?? 'Gym CRM' . ' - ' . $page }}</title>
+    <title>{{ env('APP_NAME') . ' - ' . $page }}</title>
 </head>
 
 <body>

@@ -39,7 +39,7 @@
                                     <i class="fa fa-circle text-success"></i> {{ '#' . $payment->membership_id ?? '' }}
                                 @endif
                             </td>
-                            <td>{{ $website->prefix ?? '' . $payment->amount }}</td>
+                            <td>{{ ($website->currency ?? '') . $payment->amount }}</td>
                             <td>{{ $payment->payment_type }}</td>
                             <td>{{ $payment->payment_date }}</td>
                             <td>{{ $payment->note }}</td>

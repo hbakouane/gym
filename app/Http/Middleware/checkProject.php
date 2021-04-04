@@ -26,9 +26,9 @@ class checkProject
             $staff = Staff::find($staff_id);
             $project = Project::find($staff->project_id)->project;
         } else {
-            $project = Project::find($project_id)
-                ->where('user_id', auth()->id())
-                ->first();
+            $project = Project::where('id', $project_id)
+                                ->where('user_id', auth()->id())
+                                ->first();
         }
         if (!$project) {
             return redirect()
