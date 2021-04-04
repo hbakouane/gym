@@ -486,8 +486,8 @@
                         <div class="card px-0 shadow border">
                             <div class="card-body">
                                 <small class="text-muted font-12 text-right">{{ __('general.Created at') . ' ' . $project->created_at }}</small>
-                                <p class="font-weight-bold text-dark font-22 mb-0">{{ $project->name }}</p>
-                                <p class="text-muted font-16 mt-0">{{ route('home', $project->project) }}</p>
+                                <p class="font-weight-bold text-dark font-22 mb-0"><a href="{{ route('home', $project->project) }}">{{ $project->name }}</a></p>
+                                <p class="text-muted font-16 mt-0"><a href="{{ route('home', $project->project) }}">{{ route('home', $project->project) }}</a></p>
                             </div>
                         </div>
                     @endforeach

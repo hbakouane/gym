@@ -52,7 +52,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('/project/create', 'projects.create')->name('project.create');
 });
 
-Route::group(['prefix' => '{project_id}', 'middleware' => ['auth:web,staff', 'checkProject', 'roleChecker']], function () {
+Route::get('/projects/manage', function () {
+    return "Manage projects";
+})->name('projects.manage');
+Route::view('/pay', 'saas.plans')->name('plans.show');
+
+Route::group(['prefix' => '{project_id}', 'middleware' => ['auth:web,staff', 'checkProject', 'roleChecker', 'subscriptionChecker']], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('/members', MemberController::class);
     Route::resource('/subscriptions', SubscriptionController::class);

@@ -21,4 +21,6 @@ return [
     'Information changed successfully.' => 'Information changed successfully.',
     'Password changed successfully.' => 'Password changed successfully.',
     'You will be logged out now.' => 'You will be logged out now.',
+    'Settings' => 'Settings',
+    'Manage my projects' => 'Manage my projects',
 ];

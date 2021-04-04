@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Website extends Model
 {
     use HasFactory;
+
+    public $fillable = ['name', 'sentence', 'description', 'keywords', 'free_trial_days'];
 }
