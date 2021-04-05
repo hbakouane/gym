@@ -22,6 +22,7 @@ return [
     'Cancel' => 'Cancel',
     'Search' => 'Search',
     'Show' => 'Show',
+    'Submit' => 'Submit',
     'Add' => 'Add',
     'Edit' => 'Edit',
     'Member deleted successfully.' => 'Member deleted successfully.',

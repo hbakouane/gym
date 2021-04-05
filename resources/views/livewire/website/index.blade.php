@@ -37,6 +37,14 @@
                           <input wire:model="currency" type="text" class="form-control input">
                       </label>
                 </div>
+                <div class="form-group">
+                    @php
+                        $subscription = \App\Models\Saas\Subscription::where('user_id', auth()->id())->orderBy('id', 'DESC')->first();
+                        $end = \App\Models\Project::where('project', $prefix)->first()->ended_at;
+                    @endphp
+                    <p>{{ __('saas.Current plan') }}: <strong>{{ $subscription->plan->name }}</strong></p>
+                    <p>{{ __('saas.Ended at') }}: <strong>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $end)->format('j l F Y') }}</strong></p>
+                </div>
                 <button class="btn btn-main text-light">{{ __('general.Save') }}</button>
             </form>
         </div>

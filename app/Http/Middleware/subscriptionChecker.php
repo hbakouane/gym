@@ -22,8 +22,9 @@ class subscriptionChecker
 
         // Check if the user has an expired free trial
         // NB: Free trial is true means that the free trial has been already taken by this user.
-        if ($project->ended_at < now()->toDateString() AND $project->free_trial == true) {
-            return redirect(route('plans.show', ['project' => $project->project]))->with(['status' => __('saas.Your free trial has expired, please pick up a plan.')]);
+        if ($project->ended_at < now()->toDateString() AND $project->free_trial == false) {
+            $project->update(['trial' => true]);
+            return redirect(route('plans.show', ['project' => $project->project]))->with(['status' => __('saas.Your free trial has expired, pick up a plan.')]);
         }
 
         // Check if the user had a valid subscription

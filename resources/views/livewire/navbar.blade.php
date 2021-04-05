@@ -78,10 +78,13 @@
                                         </div>
                                     @endforeach
                                 </div>
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ route('project.create') }}" class="btn btn-outline-success btn-sm mt-3">{{ __('project.Create a Project') }}</a>
+                                </div>
                             </li>
-{{--                            <li>--}}
-{{--                                <div class="conntection-footer"><a href="#">More</a></div>--}}
-{{--                            </li>--}}
+                            {{--                            <li>--}}
+                            {{--                                <div class="conntection-footer"><a href="#">More</a></div>--}}
+                            {{--                            </li>--}}
                         </ul>
                     </li>
                 @endif

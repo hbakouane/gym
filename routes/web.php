@@ -79,8 +79,8 @@ Route::group(['prefix' => '{project_id}', 'middleware' => ['auth:web,staff', 'ch
 });
 
 // Mollie Payments Routes
-Route::get('mollie-payment',[MollieController::Class,'preparePayment'])->name('mollie.payment');
-Route::get('payment-success',[MollieController::Class, 'paymentSuccess'])->name('order.success');
+Route::get('payment',[MollieController::Class,'preparePayment'])->name('mollie.payment');
+Route::get('success',[MollieController::Class, 'paymentSuccess'])->name('order.success');
 
 Route::fallback(function () {
     return "404";
