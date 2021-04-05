@@ -28,6 +28,11 @@ class Project extends Model
         return $project->id;
     }
 
+    public static function getUserProjects()
+    {
+        return Project::where('user_id', auth()->id())->get();
+    }
+
     public function subscription()
     {
         return $this->hasMany('App\Models\Subscription');

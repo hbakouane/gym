@@ -26,4 +26,6 @@ return [
     'Current plan' => 'Current plan',
     'Started at' => 'Started at',
     'Ended at' => 'Ended at',
+    'Enjoy' => 'Enjoy',
+    'days left' => 'days left',
 ];

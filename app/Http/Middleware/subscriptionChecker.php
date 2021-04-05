@@ -19,6 +19,9 @@ class subscriptionChecker
     {
         // Get the current project
         $project = Project::where('project', request('project_id'))->first();
+        if (empty($project->ended_at)) {
+            $project->ended_at = now();
+        }
 
         // Check if the user has an expired free trial
         // NB: Free trial is true means that the free trial has been already taken by this user.

@@ -54,10 +54,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('/project/create', 'projects.create')->name('project.create');
 });
 
-Route::get('/projects/manage', function () {
-    return "Manage projects";
-})->name('projects.manage');
 Route::get('/pay', [SassController::class, 'index'])->name('plans.show');
+Route::get('/projects/manage', [ProjectsController::class, 'manageProjects'])->name('projects.manage')->middleware(['auth', 'password.confirm']);
 
 Route::group(['prefix' => '{project_id}', 'middleware' => ['auth:web,staff', 'checkProject', 'roleChecker', 'subscriptionChecker']], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -42,8 +42,8 @@
                         $subscription = \App\Models\Saas\Subscription::where('user_id', auth()->id())->orderBy('id', 'DESC')->first();
                         $end = \App\Models\Project::where('project', $prefix)->first()->ended_at;
                     @endphp
-                    <p>{{ __('saas.Current plan') }}: <strong>{{ $subscription->plan->name }}</strong></p>
-                    <p>{{ __('saas.Ended at') }}: <strong>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $end)->format('j l F Y') }}</strong></p>
+                    <p class="font-18">{{ __('saas.Current plan') }}: <strong>{{ $subscription->plan->name }}</strong></p>
+                    <p class="font-18">{{ __('saas.Ended at') }}: <strong>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $end)->format('l j F Y') . ' (' . (\Carbon\Carbon::createFromFormat('Y-m-d', $end)->format('d/m/Y')) . ')' }}</strong></p>
                 </div>
                 <button class="btn btn-main text-light">{{ __('general.Save') }}</button>
             </form>
