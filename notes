@@ -1,5 +1,8 @@
 ** Implement Emails (password reset, new account, ...) for a better user experience. **
 
+$user->hasPlan('', '')
+$user->hasFeature('', '')
+
 Vendor in expenses page
 
 Dark mode extension

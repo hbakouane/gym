@@ -22,6 +22,7 @@ return [
     'Cancel' => 'Cancel',
     'Search' => 'Search',
     'Show' => 'Show',
+    'Submit' => 'Submit',
     'Add' => 'Add',
     'Edit' => 'Edit',
     'Member deleted successfully.' => 'Member deleted successfully.',
@@ -47,4 +48,5 @@ return [
     'To' => 'To',
     'Pick up a day' => 'Pick up a day',
     'Soon' => 'Soon',
+    'Go to dashboard' => 'Go to dashboard',
 ];

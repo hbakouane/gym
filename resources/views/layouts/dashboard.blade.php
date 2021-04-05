@@ -229,7 +229,20 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @if(Str::startsWith($route, 'user.settings.show')) active @endif()" href="{{ route('user.settings.show', $prefix) }}"><i class="fa fa-user-cog"></i>{{ __('general.Settings') }} <span class="badge badge-success">6</span></a>
+                            <a class="nav-link collapsed @if(Str::startsWith($route, 'website.settings') OR Str::startsWith($route, 'user.settings.show')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#settings_menu" aria-controls="settings_menu"><i class="fa fa-cogs"></i> {{ __('pages.Settings') }}</a>
+                            <div id="settings_menu" class="submenu collapse @if(Str::startsWith($route, 'website.settings') OR Str::startsWith($route, 'user.settings.show')) show @endif()" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'user.settings.show')) active @endif()" href="{{ route('user.settings.show', $prefix) }}">{{ __('general.Settings') }} <span class="badge badge-success">6</span></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'website.settings')) active @endif()" href="{{ route('website.settings', $prefix) }}">{{ __('pages.Project settings') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'projects.manage')) active @endif()" href="{{ route('projects.manage', $prefix) }}">{{ __('project.Manage projects') }}</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -245,9 +258,15 @@
     <div class="dashboard-wrapper">
         <div class="container-fluid dashboard-content">
             <!-- ================= Free Trial Ad =================== -->
-            <div class="alert alert-info">
-                <p class="text-info">You're on free trial, <span><u>14 days left.</u></span>
-            </div>
+            @php
+                $currentProject = \App\Models\Project::where('project', request('project_id'))->first();
+            @endphp
+
+            @if($currentProject->ended_at > now()->toDateString() AND $currentProject->trial == false)
+                <div class="alert alert-info text-center">
+                    <p class="text-info">You're on free trial, <span>{{ \Carbon\Carbon::now()->diffIndays($currentProject->ended_at) }} {{ __('saas.days left') }}.</span>
+                </div>
+            @endif
             <!-- ================= / Free Trial Ad =================== -->
             <!-- ============================================================== -->
             <!-- pagehader  -->

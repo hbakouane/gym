@@ -123,7 +123,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/asm89/stack-cors" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/tinker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/fx3costa/laravelchartjs" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/silviolleite/laravelpwa" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mollie/mollie-api-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mollie/laravel-mollie" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

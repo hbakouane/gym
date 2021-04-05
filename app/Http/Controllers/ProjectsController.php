@@ -10,4 +10,9 @@ class ProjectsController extends Controller
     {
         return view('website.index');
     }
+
+    public function manageProjects()
+    {
+        return view('projects.manage');
+    }
 }

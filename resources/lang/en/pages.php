@@ -22,4 +22,5 @@ return [
     'Add a membership' => 'Add a membership',
     'All Memberships' => 'All Memberships',
     'Invoices' => 'Invoices',
+    'Project settings' => 'Project settings',
 ];

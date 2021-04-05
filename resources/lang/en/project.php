@@ -27,5 +27,7 @@ return [
     'Project information' => 'Project information',
     'Personal Information' => 'Personal Information',
     'Payment' => 'Payment',
-    'Finish' => 'Finish',
+    'Manage projects' => 'Manage projects',
+    'You do not have a project yet' => 'You do not have a project yet',
+    'Delete project' => 'Delete project',
 ];
