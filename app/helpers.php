@@ -51,3 +51,23 @@ if (!function_exists('checkRole')) {
         endif;
     }
 }
+
+if (!function_exists('makeLink')) {
+    function makeLink($id) {
+        $route = \Illuminate\Support\Facades\Route::getCurrentRoute();
+        if ($route != "homepage") {
+            return route('homepage') . '#' . $id;
+        }
+        return $id;
+    }
+}
+
+
+if (!function_exists('makeLogo')) {
+    function makeLogo($mode = 'dark', $dimensions = [100, ''], $alt = null, $ext = 'png') {
+        $saas = \App\Models\Website::first();
+        $alt = env('APP_NAME') . ' - ' . $saas->sentence;
+        $src = url("images/logo$mode.$ext");
+        return "<img class='img-fluid logo' src='$src' alt='$alt' style='height: $dimensions[0]px; width: $dimensions[1]px'>";
+    }
+}

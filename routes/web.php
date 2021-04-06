@@ -33,7 +33,7 @@ use App\Http\Controllers\MollieController;
 */
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('homepage');
 
 Auth::routes();
 
@@ -49,7 +49,10 @@ Route::prefix('staff')
         });
 });
 
+// Public pages
 Route::get('/dashboard', [RedirectController::class, 'redirect'])->middleware('auth:web,staff');
+Route::view('/upcoming-features', 'upcoming.features')->name('upcoming.features');
+Route::view('/terms-and-conditions', 'terms.and.conditions')->name('terms.and.conditions');
 Route::group(['middleware' => 'auth'], function () {
     Route::view('/project/create', 'projects.create')->name('project.create');
 });

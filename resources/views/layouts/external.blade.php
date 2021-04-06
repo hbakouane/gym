@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Landing Page Template</title>
+    <title>{{ env('APP_NAME') . ' - ' . $page = 'Homepage' . ' | ' . ($saas->sentence ?? '') }}</title>
     <link rel="shortcut icon" href="{{ url('images/favicon.png') }}" type="image/x-icon">
     <!-- Bootstrap , fonts & icons  -->
     <link rel="stylesheet" href="{{ url('external/main.css') }}">
@@ -22,7 +21,13 @@
     <!-- Vendor stylesheets  -->
     <link rel="stylesheet" href="{{ url('external/css/main.css') }}">
     <link rel="stylesheet" href="{{ url('external/./plugins/theme-mode-switcher/switcher-panel.css') }}">
-    <!-- Custom stylesheet -->
+    <style>
+        html {
+            scroll-behavior: smooth !important;
+        }
+    </style>
+    <!-- Crisp Chat -->
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="708a26c9-331b-4309-a2d2-2dbe78fbc252";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </head>
 
 <body data-theme="light">
@@ -34,45 +39,38 @@
             <nav class="navbar site-navbar offcanvas-active navbar-expand-lg px-0">
                 <!-- Brand Logo-->
                 <div class="brand-logo d-inline-block">
-                    <a href="index.html">
+                    <a href="{{ route('homepage') }}">
                         <!-- light version logo (logo must be black)-->
-                        <img src="./image/png/logo-green-white.png" alt="">
+                        {!! makeLogo('dark', [50, '']) !!}
                         <!-- Dark version logo (logo must be White)-->
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="mobile-menu">
                     <div class="navbar-nav-wrapper">
                         <ul class="navbar-nav main-menu">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle gr-toggle-arrow" id="navbarDropdown" href="#features" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Demos <i class="icon icon-small-down"></i></a>
-                                <ul class="gr-menu-dropdown dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li class="drop-menu-item">
-                                        <a href="#">
-                                            Dropdown 01
-                                        </a>
-                                    </li>
-                                    <li class="drop-menu-item">
-                                        <a href="#">
-                                            Dropdown 02
-                                        </a>
-                                    </li>
-                                    <li class="drop-menu-item">
-                                        <a href="#">
-                                            Dropdown 03
-                                        </a>
-                                    </li>
-                                    <li class="drop-menu-item">
-                                        <a href="#">
-                                            Dropdown 04
-                                        </a>
-                                    </li>
-                                </ul>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="{{ makeLink('top') }}">{{ __('external.Homepage') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Features</a>
+                                <a class="nav-link" href="{{ makeLink('features') }}">{{ __('external.Features') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="https://finestdevs.com/product-support/" role="button" aria-expanded="false">Support</a>
+                                <a class="nav-link" href="{{  makeLink('details') }}">{{ __('external.Details') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{  makeLink('video') }}">{{ __('external.Demo') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{  makeLink('pricing') }}">{{ __('external.Pricing') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{  makeLink('testimonials') }}">{{ __('external.Testimonials') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{  makeLink('cta') }}">{{ __('external.Get Started') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('terms.and.conditions') }}">{{ __('external.Terms and Conditions') }}</a>
                             </li>
                         </ul>
                     </div>
@@ -81,12 +79,20 @@
                     </button>
                 </div>
                 <div class="header-btns ml-auto pr-2 ml-lg-9 d-none d-xs-flex">
-                    <a class="btn btn-transparent-2 btn-small border-0 font-size-5 font-weight-normal text-periwinkle-gray focus-reset mr-6" href="#">
-                        Login
-                    </a>
-                    <a class="btn btn-2 btn-turquoise border border-turquoise font-size-5 text-firefly" href="https://finestdevs.com/shade/">
-                        Download Now
-                    </a>
+                    @guest
+                        <a class="btn btn-transparent-2 btn-small border-0 font-size-5 font-weight-normal text-periwinkle-gray focus-reset mr-6" href="{{ route('login') }}">
+                            {{ __('auth.Login') }}
+                        </a>
+                        <a class="btn btn-2 btn-turquoise border border-turquoise font-size-5 text-firefly" href="{{ route('project.create') }}">
+                            {{ __('external.Try it now') }}
+                        </a>
+                    @endguest
+
+                    @auth
+                        <a class="btn btn-light py-3" href="{{ route('projects.manage') }}">
+                            {{ __('project.Manage projects') }} >
+                        </a>
+                    @endauth
                 </div>
                 <!-- Mobile Menu Hamburger-->
                 <button class="navbar-toggler btn-close-off-canvas  hamburger-icon border-0" type="button" data-toggle="collapse" data-target="#mobile-menu" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,14 +120,16 @@
                 <div class="col col-cus-6">
                     <div class="footer-widget widget2 mb-md-0 mb-13">
                         <!-- footer widget title start -->
-                        <p class="widget-title font-size-3 font-weight-normal text-periwinkle-gray mb-md-9 mb-7 font-family-inter">Store</p>
+                        <p class="widget-title font-size-3 font-weight-normal text-periwinkle-gray mb-md-9 mb-7 font-family-inter">
+                            {{ __('external.Useful links') }}
+                        </p>
                         <!-- footer widget title end -->
                         <!-- widget social menu start -->
                         <ul class="widget-links pl-0 list-unstyled list-hover-primary">
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Catalog</a></li>
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Popular</a></li>
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Features</a></li>
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">F.a.q.</a></li>
+                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="{{ makeLink('pricing') }}">{{ __('external.Pricing') }}</a></li>
+                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="{{ route('homepage') }}">{{ __('external.Home') }}</a></li>
+                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="{{ makeLink('contact') }}">{{ __('external.Contact us') }}</a></li>
+                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="{{ route('terms.and.conditions') }}">{{ __('external.Terms and Conditions') }}</a></li>
                         </ul>
                         <!-- widget social menu end -->
                     </div>
@@ -129,55 +137,34 @@
                 <div class="col col-cus-6">
                     <div class="footer-widget widget3 mb-sm-0 mb-13">
                         <!-- footer widget title start -->
-                        <p class="widget-title font-size-3 font-weight-normal text-periwinkle-gray mb-md-9 mb-7 font-family-inter">About</p>
+                        <p class="widget-title font-size-3 font-weight-normal text-periwinkle-gray mb-md-9 mb-7 font-family-inter">
+                            {{ __('external.Projects') }}
+                        </p>
                         <!-- footer widget title end -->
                         <!-- widget social menu start -->
                         <ul class="widget-links pl-0 list-unstyled list-hover-primary">
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Catalog</a></li>
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Popular</a></li>
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Features</a></li>
+                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="{{ route('projects.manage') }}">{{ __('external.Dashboard') }}</a></li>
+                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="{{ route('project.create') }}">{{ __('project.Create a Project') }}</a></li>
+                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="{{ route('projects.manage') }}">{{ __('project.Manage projects') }}</a></li>
                         </ul>
                         <!-- widget social menu end -->
                     </div>
                 </div>
                 <div class="col col-cus-6">
-                    <div class="footer-widget widget4 mb-sm-0 mb-13">
+                    <div class="footer-widget widget3 mb-sm-0 mb-13">
                         <!-- footer widget title start -->
-                        <p class="widget-title font-size-3 font-weight-normal text-periwinkle-gray mb-md-9 mb-7 font-family-inter">Policy</p>
+                        <p class="widget-title font-size-3 font-weight-normal text-periwinkle-gray mb-md-9 mb-7 font-family-inter">
+                            {{ __('external.Get in touch') }}
+                        </p>
                         <!-- footer widget title end -->
                         <!-- widget social menu start -->
                         <ul class="widget-links pl-0 list-unstyled list-hover-primary">
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Catalog</a></li>
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Popular</a></li>
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Features</a></li>
-                        </ul>
-                        <!-- widget social menu end -->
-                    </div>
-                </div>
-                <div class="col col-cus-6">
-                    <div class="footer-widget widget4 mb-sm-0 mb-13">
-                        <!-- footer widget title start -->
-                        <p class="widget-title font-size-3 font-weight-normal text-periwinkle-gray mb-md-9 mb-7 font-family-inter">Team</p>
-                        <!-- footer widget title end -->
-                        <!-- widget social menu start -->
-                        <ul class="widget-links pl-0 list-unstyled list-hover-primary">
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Catalog</a></li>
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Popular</a></li>
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Features</a></li>
-                        </ul>
-                        <!-- widget social menu end -->
-                    </div>
-                </div>
-                <div class="col col-cus-6">
-                    <div class="footer-widget widget4 mb-sm-0 mb-13">
-                        <!-- footer widget title start -->
-                        <p class="widget-title font-size-3 font-weight-normal text-periwinkle-gray mb-md-9 mb-7 font-family-inter">Support</p>
-                        <!-- footer widget title end -->
-                        <!-- widget social menu start -->
-                        <ul class="widget-links pl-0 list-unstyled list-hover-primary">
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Catalog</a></li>
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Popular</a></li>
-                            <li class="mb-6"><a class="text-selago-3 font-size-5 font-weight-normal font-family-inter" href="">Features</a></li>
+                            <li class="mb-6 text-light">
+                                <i class="fa fa-phone"></i> <a class="text-light" href="tel:{{ env('PHONE') }}">{{ env('PHONE') }}</a>
+                            </li>
+                            <li class="mb-6 text-light">
+                                <i class="fa fa-envelope"></i> <a class="text-light" href="mailto:{{ env('EMAIL') }}">{{ env('EMAIL') }}</a>
+                            </li>
                         </ul>
                         <!-- widget social menu end -->
                     </div>
@@ -192,7 +179,7 @@
                         <div class="navbar site-navbar d-md-flex d-block text-center px-0">
                             <!-- DO NOT DELETE THIS CREDIT. TO DELETE, PLEASE BUY PRO LICENSE -->
                             <div class="copyright">
-                                <p class="font-size-1 font-family-5 text-periwinkle-gray line-height-1p5 mb-0 font-family-inter"> &copy; Grayic 2020 All right reserved. </p>
+                                <p class="font-size-1 font-family-5 text-periwinkle-gray line-height-1p5 mb-0 font-family-inter"> &copy; {{ env('APP_NAME') }} 2020 All right reserved, Page designed by Grayic. </p>
                             </div>
                             <!-- copyright end-->
                             <!-- footer-menu start-->
@@ -202,13 +189,13 @@
                                     <!-- main-menu start-->
                                     <ul class="mb-0 list-unstyled d-flex flex-row justify-content-center">
                                         <li class="mx-3">
-                                            <a class="text-periwinkle-gray font-size-1 font-weight-normal font-family-inter" href="#">Privacy Policy</a>
+                                            <a class="text-periwinkle-gray font-size-1 font-weight-normal font-family-inter" href="{{ route('homepage') }}">{{ __('external.Home') }}</a>
                                         </li>
                                         <li class="mx-3">
-                                            <a class="text-periwinkle-gray font-size-1 font-weight-normal font-family-inter" href="#features">Terms & Conditions</a>
+                                            <a class="text-periwinkle-gray font-size-1 font-weight-normal font-family-inter" href="{{ makeLink('contact') }}">{{ __('external.Contact us') }}</a>
                                         </li>
                                         <li class="mx-3">
-                                            <a class="text-periwinkle-gray font-size-1 font-weight-normal font-family-inter" href="#features"> Site map</a>
+                                            <a class="text-periwinkle-gray font-size-1 font-weight-normal font-family-inter" href="{{ route('terms.and.conditions') }}">{{ __('external.Terms and Conditions') }}</a>
                                         </li>
                                     </ul>
                                     <!-- main-menu end-->
@@ -221,9 +208,9 @@
                                 <div class="social-icons">
                                     <!-- widget social icon list start -->
                                     <ul class="pl-0 list-unstyled mb-lg-0 mb-0">
-                                        <li class="d-inline-block px-3 ml-3"><a href="#" class="hover-color-primary text-white"><i class="fab fa-facebook-f font-size-3 pt-2"></i></a></li>
-                                        <li class="d-inline-block px-3 ml-3"><a href="#" class="hover-color-primary text-white"><i class="fab fa-twitter font-size-3 pt-2"></i></a></li>
-                                        <li class="d-inline-block px-3 ml-3"><a href="#" class="hover-color-primary text-white"><i class="fab fa-linkedin-in font-size-3 pt-2"></i></a></li>
+                                        <li class="d-inline-block px-3 ml-3"><a href="{{ env('FACEBOOK_URL') }}" class="hover-color-primary text-white"><i class="fab fa-facebook-f font-size-3 pt-2"></i></a></li>
+                                        <li class="d-inline-block px-3 ml-3"><a href="{{ env('TWITTER_URL') }}" class="hover-color-primary text-white"><i class="fab fa-twitter font-size-3 pt-2"></i></a></li>
+                                        <li class="d-inline-block px-3 ml-3"><a href="{{ env('INSTAGRAM_URL') }}" class="hover-color-primary text-white"><i class="fab fa-linkedin-in font-size-3 pt-2"></i></a></li>
                                     </ul>
                                     <!-- widget social icon list end -->
                                 </div>

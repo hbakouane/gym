@@ -14,4 +14,5 @@ return [
     'Credits (vendors)' => 'Credits (vendors)',
     'Staves and Vendors' => 'Staves and Vendors',
     'Credits' => 'Credits',
+    'Upcoming Features' => 'Upcoming Features',
 ];
