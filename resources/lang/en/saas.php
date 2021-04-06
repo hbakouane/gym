@@ -28,4 +28,5 @@ return [
     'Ended at' => 'Ended at',
     'Enjoy' => 'Enjoy',
     'days left' => 'days left',
+    'Please select a plan to go with' => 'Please select a plan to go with',
 ];

@@ -1,5 +1,5 @@
 <!-- pricing-area section -->
-<div class="position-relative overflow-hidden bg-default pt-md-21 pt-15 pb-lg-13 pb-10 z-index-1">
+<div class="position-relative overflow-hidden bg-default pt-md-21 pt-15 pb-lg-13 pb-10 z-index-1" id="pricing">
     <div class="bg-top bg-selago-3 pos-abs-tl w-100 h-50">
         <!-- shape start -->
         <div class="shape shape-bottom-right pos-abs-bl mb-xl-n15 mb-lg-n11 mb-md-n12 mb-n5 mr-n1 w-100 h-0 z-index-n1">
@@ -13,23 +13,23 @@
             <div class="col-12 col-lg-8 px-0 text-center" data-aos="fade-down" data-aos-duration="800" data-aos-once="true">
                 <!-- features-1 section-title start -->
                 <h2 class="font-size-20 text-default-color-2 letter-spacing-np3 font-weight-bold font-family-5 mb-6">Choose a plan to start</h2>
-                <p class="text-default-color-4 font-size-7 line-height-1p714 mb-11 font-family-inter">Wireframes are generally created by business analysts, user experience designers, developers, visual designers, and by those with expertise</p>
+                <p class="text-default-color-4 font-size-7 line-height-1p714 mb-11 font-family-inter">{{ __('external.We have the most affordable prices.') }}</p>
                 <!-- features-1 section-title end -->
             </div>
         </div>
         <div class="row justify-content-center" id="table-price-value" data-pricing-dynamic data-value-active="monthly">
-            <div class="col-md-12 text-center">
-                <!-- toggle-btn start -->
-                <div class="toggle-btn d-inline-block mt-7 justify-content-center mb-8">
-                    <a class="btn-toggle btn-toggle-2 font-size-2 line-height-reset d-flex mx-6 price-deck-trigger border-default-color-2 px-6" data-pricing-trigger data-target="#table-price-value" href="javascript:">
-                        <span class="round bg-turquoise"></span>
-                    </a>
-                </div>
-                <!-- toggle-btn end -->
-            </div>
+{{--            <div class="col-md-12 text-center">--}}
+{{--                <!-- toggle-btn start -->--}}
+{{--                <div class="toggle-btn d-inline-block mt-7 justify-content-center mb-8">--}}
+{{--                    <a class="btn-toggle btn-toggle-2 font-size-2 line-height-reset d-flex mx-6 price-deck-trigger border-default-color-2 px-6" data-pricing-trigger data-target="#table-price-value" href="javascript:">--}}
+{{--                        <span class="round bg-turquoise"></span>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--                <!-- toggle-btn end -->--}}
+{{--            </div>--}}
             <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 <!-- single-price start -->
-                <div class="single-price bg-default pt-9 pb-10 mb-lg-0 mb-9 pl-12 pr-lg-21 pr-sm-15 pr-11 shadow-13 hover-shadow-3" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
+                <div class="single-price border bg-default pt-9 pb-10 mb-lg-0 mb-9 pl-12 pr-lg-21 pr-sm-15 pr-11 shadow-13 hover-shadow-3" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
                     <!-- price-top start -->
                     <div class="price-top justify-content-between mb-2">
                         <span class="font-size-2 letter-spacing-np43 line-height-2p66 text-oslogray text-uppercase font-weight-bold mb-2">Basic</span>
@@ -57,7 +57,7 @@
                     <!-- price-body end -->
                     <!-- price-btn start -->
                     <div class="price-btn">
-                        <a class="btn btn-turquoise rounded-3 w-100 font-size-5 px-lg-9 py-5 line-height-reset" href="#">Start free 14 days trial</a>
+                        @include('partials.trial_button')
                     </div>
                     <!-- price-btn end -->
                     <p class="font-size-3 text-dovegray font-family-5 mb-0 mt-5">No credit card required</p>
@@ -66,7 +66,7 @@
             </div>
             <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 <!-- single-price start -->
-                <div class="single-price bg-default popular-pricing popular-pricing-3 position-relative pt-9 pb-10 mb-lg-0 mb-9 pl-12 pr-lg-21 pr-sm-15 pr-11 shadow-13 hover-shadow-3" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
+                <div class="single-price border bg-default popular-pricing popular-pricing-3 position-relative pt-9 pb-10 mb-lg-0 mb-9 pl-12 pr-lg-21 pr-sm-15 pr-11 shadow-13 hover-shadow-3" data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
                     <!-- price-top start -->
                     <div class="price-top justify-content-between mb-2">
                         <span class="font-size-2 letter-spacing-np43 line-height-2p66 text-oslogray text-uppercase font-weight-bold mb-2">Pro</span>
@@ -94,7 +94,7 @@
                     <!-- price-body end -->
                     <!-- price-btn start -->
                     <div class="price-btn">
-                        <a class="btn btn-turquoise rounded-3 w-100 font-size-5 px-lg-9 py-5 line-height-reset" href="#">Start free 14 days trial</a>
+                        @include('partials.trial_button')
                     </div>
                     <!-- price-btn end -->
                     <p class="font-size-3 text-dovegray font-family-5 mb-0 mt-5">No credit card required</p>

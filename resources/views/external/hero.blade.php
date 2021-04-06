@@ -4,14 +4,14 @@
     <div class="container">
         <div class="row position-relative justify-content-center">
             <!-- hero area content start -->
-            <div class="col-xl-6 col-lg-7 col-md-10 pb-lg-20 pb-10 pr-0" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
+            <div class="col-xl-10 col-lg-7 col-md-10 pb-lg-20 pb-10 pr-0" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
                 <div class="hero-content text-center">
                     <!-- hero area section title start -->
-                    <h1 class="font-size-22 font-family-5 text-white letter-spacing-np3 mb-6 ">Manage your team, faster!</h1>
-                    <p class="font-size-8 text-periwinkle-gray letter-spacing-np4 font-family-5 pr-xl-15 pr-lg-0 pr-md-15 pr-0 mb-11">Create custom landing pages with Shade that convert more visitors than any website.</p>
+                    <h1 class="font-size-22 font-family-5 text-white letter-spacing-np3 mb-6 ">{{ __('external.slug') }}</h1>
+                    <p class="font-size-8 text-periwinkle-gray letter-spacing-np4 font-family-5 pr-xl-15 pr-lg-0 pr-md-15 pr-0 mb-11">{{ __('external.slug-details') }}</p>
                     <!-- hero area section title end -->
-                    <a href="#" class="btn btn-turquoise btn-xxl-1 font-size-5 text-firefly font-weight-semibold">Start free 14 days trial</a>
-                    <p class="font-size-3 text-periwinkle-gray font-family-5 mb-0 mt-5">No credit card required</p>
+                    @include('partials.trial_button')
+                    <p class="font-size-3 text-periwinkle-gray font-family-5 mb-0 mt-5">{{ __('external.credit-card') }}</p>
                 </div>
             </div>
             <div class="col-xl-8 col-lg-9">

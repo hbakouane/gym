@@ -59,6 +59,9 @@
     <!-- SEO -->
     @include('partials.seo')
 
+    <!-- Crisp Chat -->
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="708a26c9-331b-4309-a2d2-2dbe78fbc252";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
     <title>{{ ($website->name ?? env('APP_NAME')) . ' - ' . $page }} | {{ $global->title ?? '' }}</title>
 </head>
 
@@ -244,6 +247,9 @@
                                 </ul>
                             </div>
                         </li>
+                        <li class="nav-item ">
+                            <a class="nav-link @if($route === "upcoming.features") active @endif()" href="{{ route('upcoming.features', $prefix) }}"><i class="fa fa-hourglass-end"></i>{{ __('home.Upcoming Features') }} <span class="badge badge-success">6</span></a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -301,13 +307,13 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                        Copyright © 2021 {{ env('APP_NAME') }}. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="text-md-right footer-links d-none d-sm-block">
-                            <a href="javascript: void(0);">About</a>
-                            <a href="javascript: void(0);">Support</a>
-                            <a href="javascript: void(0);">Contact Us</a>
+                        <a href="{{ route('homepage') }}">{{ __('external.Home') }}</a>
+                            <a href="{{ route('terms.and.conditions') }}">{{ __('external.Terms and Conditions') }}</a>
+                            <a href="{{ makeLink('contact') }}">{{ __('external.Contact us') }}</a>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 <!-- features-section start -->
-<div class=" pt-xl-35 pt-md-28 pt-9 pb-lg-12 pb-0 position-relative font-family-5 ">
+<div class=" pt-xl-35 pt-md-28 pt-9 pb-lg-12 pb-0 position-relative font-family-5" id="features">
     <div class="container">
         <div class="row pr-xl-16 pr-0 pt-lg-15 justify-content-center text-center">
             <!-- single-features start -->
@@ -9,9 +9,8 @@
                     <div class="circle-50 bg-froly-opacity-1 flex-all-center mx-auto mb-10">
                         <div class="circle-9 bg-carnation"></div>
                     </div>
-                    <h4 class="font-size-19 text-default-color-2 font-weight-bold mb-6 line-height-1p63 font-family-5">Single Platform</h4>
-                    <p class="text-dovegray font-size-7 font-family-5 mb-8">Create custom landing pages with
-                        Shade that convert more visitors than any website.</p>
+                    <h4 class="font-size-19 text-default-color-2 font-weight-bold mb-6 line-height-1p63 font-family-5">{{ __('external.feature1') }}</h4>
+                    <p class="text-dovegray font-size-7 font-family-5 mb-8">{{ __('external.feature1_details') }}</p>
                     <!-- card texts end -->
                 </div>
             </div>
@@ -24,9 +23,8 @@
                         <div class="circle-9 bg-turquoise"></div>
                         <!-- <img src="image/l1/svg/chat-46.svg" alt=""> -->
                     </div>
-                    <h4 class="font-size-19 text-default-color-2 font-weight-bold mb-6 line-height-1p63 font-family-5">Faster Communication</h4>
-                    <p class="text-dovegray font-size-7 font-family-5 mb-8">Create custom landing pages with
-                        Shade that convert more visitors than any website.</p>
+                    <h4 class="font-size-19 text-default-color-2 font-weight-bold mb-6 line-height-1p63 font-family-5">{{ __('external.feature2') }}</h4>
+                    <p class="text-dovegray font-size-7 font-family-5 mb-8">{{ __('external.feature2_details') }}</p>
                     <!-- card texts start -->
                 </div>
             </div>
@@ -39,9 +37,8 @@
                         <div class="circle-9 bg-heliotrope"></div>
                         <!-- <img src="image/l1/svg/settings-gear-64.svg" alt=""> -->
                     </div>
-                    <h4 class="font-size-19 text-default-color-2 font-weight-bold mb-6 line-height-1p63 font-family-5">Everything in One Place</h4>
-                    <p class="text-dovegray font-size-7 font-family-5 mb-8">Create custom landing pages with
-                        Shade that convert more visitors than any website.</p>
+                    <h4 class="font-size-19 text-default-color-2 font-weight-bold mb-6 line-height-1p63 font-family-5">{{ __('external.feature3') }}</h4>
+                    <p class="text-dovegray font-size-7 font-family-5 mb-8">{{ __('external.feature3_details') }}</p>
                     <!-- card texts start -->
                 </div>
             </div>
