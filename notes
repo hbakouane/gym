@@ -2,6 +2,8 @@
 
 user must go to the plans page after signing up
 
+Memberships on single member page
+
 Complete bank transfer payments
 
 $user->hasPlan('', '')

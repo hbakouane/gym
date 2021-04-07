@@ -1,3 +1,8 @@
+<script>
+    function goToImage(url) {
+        return window.location.href = url;
+    }
+</script>
 <!-- content-1 section start -->
 <div class="bg-selago-3 pt-lg-25 pt-15 pb-lg-21 pb-15" id="details">
     <div class="container">
@@ -5,7 +10,7 @@
             <div class="col-lg-6 col-md-8" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
                 <!-- content img start -->
                 <div class="content-img">
-                    <img src="image/l8/svg/content-img-1.svg" alt="" class="w-100">
+                    <img onclick="goToImage('{{ url('images/screenshots/staves.png') }}')" src="{{ url('images/screenshots/members.png') }}" alt="" class="w-100">
                 </div>
                 <!-- content img end -->
             </div>
@@ -55,7 +60,7 @@
             <div class="col-lg-6 col-md-8 pl-0 offset-xl-1" data-aos="fade-left" data-aos-duration="800" data-aos-once="true">
                 <!-- content img start -->
                 <div class="content-img">
-                    <img src="image/l8/svg/content-img-2.svg" alt="" class="w-100">
+                    <img onclick="goToImage('{{ url('images/screenshots/staves.png') }}')" src="{{ url('images/screenshots/staves.png') }}" alt="" class="w-100">
                 </div>
                 <!-- content img end -->
             </div>
