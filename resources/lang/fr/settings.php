@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'Name' => 'Nom',
+    'Email' => 'Email',
+    'Password' => 'Mot de passe',
+    'Password_confirm' => 'Confirmation de mot de passe',
+    'Phone' => 'Téléphone',
+    'Personal information' => 'Informations personnelles',
+    'Business information' => 'Informations d\'affaires',
+    'Address' => 'Addresse',
+    'City' => 'Ville',
+    'Upload a profile image' => 'Télécharger une image de profil',
+    'User settings' => 'Paramètres utilisateur',
+    'Password reset' => 'Réinitialisation du mot de passe',
+    'Old password' => 'Ancien mot de passe',
+    'New password' => 'Nouveau mot de passe',
+    'Re-type new password' => 'Re-taper le nouveau mot de passe',
+    'Change Password' => 'Changer le mot de passe',
+    'Your old password doesn\'t match your new one.' => 'Votre ancien mot de passe ne correspond pas au nouveau.',
+    'Information changed successfully.' => 'Les informations ont été modifiées avec succès.',
+    'Password changed successfully.' => 'Le mot de passe a été changé avec succès.',
+    'You will be logged out now.' => 'Vous serez déconnecté maintenant.',
+    'Settings' => 'Paramètres',
+    'Manage my projects' => 'Gérer mes projets',
+];

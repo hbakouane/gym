@@ -20,6 +20,7 @@ use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\SassController;
 use App\Http\Controllers\MollieController;
+use App\Http\Controllers\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/pay', [SassController::class, 'index'])->name('plans.show');
 Route::get('/projects/manage', [ProjectsController::class, 'manageProjects'])->name('projects.manage')->middleware(['auth', 'password.confirm']);
+Route::post('/language/change', [LanguageController::class, 'change'])->name('language.change');
 
 Route::group(['prefix' => '{project_id}', 'middleware' => ['auth:web,staff', 'checkProject', 'roleChecker', 'subscriptionChecker']], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
