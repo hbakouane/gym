@@ -25,6 +25,7 @@ class User extends Authenticatable
         'city',
         'profile_img',
         'password',
+        'locale'
     ];
 
     /**

@@ -24,7 +24,8 @@ class Staff extends Authenticatable
         'country',
         'password',
         'project_id',
-        'role_id'
+        'role_id',
+        'locale'
     ];
 
     public function role()

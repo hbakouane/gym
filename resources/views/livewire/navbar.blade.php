@@ -70,9 +70,14 @@
                     <div class="dropdown show">
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-language"></i> </a>
 
-                        <form method="POST" action="{{ route('language.change') }}" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item text-center" href="#"><img class="img-fluid rounded" style="height: 20px" src="https://www.makacla.com/photo/art/grande/6771020-10350548.jpg?v=1404162660"></a>
-                            <a class="dropdown-item text-center" href="#"><img class="img-fluid rounded" style="height: 20px" src="https://www.ismac.fr/wp-content/uploads/2017/09/drapeau-anglais.png"></a>
+                        <form method="POST" onchange="this.submit()" action="{{ route('language.change') }}" class="dropdown-menu p-3" aria-labelledby="dropdownMenuLink">
+                            @csrf
+                            <label class="custom-control custom-radio">
+                                <input @if(session()->get('locale') == 'fr') checked=""  @endif value="fr" type="radio" name="lang" class="custom-control-input"><span class="custom-control-label"><img class="img-fluid rounded" style="height: 20px" src="https://www.makacla.com/photo/art/grande/6771020-10350548.jpg?v=1404162660"></span>
+                            </label>
+                            <label class="custom-control custom-radio custom-control-inline">
+                                <input @if(session()->get('locale') == 'en') checked=""  @endif value="en" type="radio" name="lang" class="custom-control-input"><span class="custom-control-label"><img class="img-fluid rounded" style="height: 20px" src="https://www.ismac.fr/wp-content/uploads/2017/09/drapeau-anglais.png"></span>
+                            </label>
                         </form>
                     </div>
                 </li>

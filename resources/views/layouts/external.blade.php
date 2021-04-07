@@ -79,6 +79,21 @@
                     </button>
                 </div>
                 <div class="header-btns ml-auto pr-2 ml-lg-9 d-none d-xs-flex">
+                    <div class="dropdown show">
+                        <a class="btn btn-transparent-2 btn-small border-0 font-size-5 font-weight-normal text-periwinkle-gray focus-reset mr-6" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-language"></i>
+                        </a>
+                        <form method="POST" onchange="this.submit()" action="{{ route('language.change') }}" class="dropdown-menu p-3" aria-labelledby="dropdownMenuLink">
+                            @csrf
+                            {{ app()->getLocale() }}
+                            <label class="custom-control custom-radio">
+                                <input @if(app()->getLocale() == 'fr') checked=""  @endif value="fr" type="radio" name="lang" class="custom-control-input"><span class="custom-control-label"><img class="img-fluid rounded" style="height: 20px" src="https://www.makacla.com/photo/art/grande/6771020-10350548.jpg?v=1404162660"></span>
+                            </label>
+                            <label class="custom-control custom-radio custom-control-inline">
+                                <input @if(app()->getLocale() == 'en') checked=""  @endif value="en" type="radio" name="lang" class="custom-control-input"><span class="custom-control-label"><img class="img-fluid rounded" style="height: 20px" src="https://www.ismac.fr/wp-content/uploads/2017/09/drapeau-anglais.png"></span>
+                            </label>
+                        </form>
+                    </div>
                     @guest
                         <a class="btn btn-transparent-2 btn-small border-0 font-size-5 font-weight-normal text-periwinkle-gray focus-reset mr-6" href="{{ route('login') }}">
                             {{ __('auth.Login') }}
@@ -87,7 +102,6 @@
                             {{ __('external.Try it now') }}
                         </a>
                     @endguest
-
                     @auth
                         <a class="btn btn-light py-3" href="{{ route('projects.manage') }}">
                             {{ __('project.Manage projects') }} >
