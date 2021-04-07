@@ -14,10 +14,10 @@
                     <p class="font-size-3 text-periwinkle-gray font-family-5 mb-0 mt-5">{{ __('external.credit-card') }}</p>
                 </div>
             </div>
-            <div class="col-xl-8 col-lg-9">
+            <div class="col-md-11">
                 <!-- abs img start -->
                 <div class="abs-img-1 mb-xl-n34 mb-lg-n30 mb-md-n32 mb-n5 mr-n1 w-100 shadow-9 z-index-1">
-                    <img src="{{ url('hero.png') }}" alt="" class="w-100 light-shape default-shape">
+                    <img src="{{ url('images/screenshots/hero.png') }}" alt="" class="w-100 light-shape default-shape">
                 </div>
                 <!-- abs img end -->
             </div>
