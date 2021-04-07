@@ -19,52 +19,62 @@
                         <a href="{{ route('memberships.create', $prefix) }}" class="btn btn-success text-light ml-4"><i class="fa fa-plus-circle"></i> {{ __('navbar.Membership') }}</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown notification">
-                    <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
-                    <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
-                        <li>
-                            <div class="notification-title"> Notification</div>
-                            <div class="notification-list">
-                                <div class="list-group">
-                                    <a href="#" class="list-group-item list-group-item-action active">
-                                        <div class="notification-info">
-                                            <div class="notification-list-user-img"><img src="assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
-                                                <div class="notification-date">2 min ago</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="notification-info">
-                                            <div class="notification-list-user-img"><img src="assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                            <div class="notification-list-user-block"><span class="notification-list-user-name">{{ auth()->user()->name }}</span>is now following you
-                                                <div class="notification-date">2 days ago</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="notification-info">
-                                            <div class="notification-list-user-img"><img src="assets/images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
-                                                <div class="notification-date">2 min ago</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="list-group-item list-group-item-action">
-                                        <div class="notification-info">
-                                            <div class="notification-list-user-img"><img src="assets/images/avatar-5.jpg" alt="" class="user-avatar-md rounded-circle"></div>
-                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
-                                                <div class="notification-date">2 min ago</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list-footer"> <a href="#">View all notifications</a></div>
-                        </li>
-                    </ul>
+{{--                <li class="nav-item dropdown notification">--}}
+{{--                    <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>--}}
+{{--                    <ul class="dropdown-menu dropdown-menu-right notification-dropdown">--}}
+{{--                        <li>--}}
+{{--                            <div class="notification-title"> Notification</div>--}}
+{{--                            <div class="notification-list">--}}
+{{--                                <div class="list-group">--}}
+{{--                                    <a href="#" class="list-group-item list-group-item-action active">--}}
+{{--                                        <div class="notification-info">--}}
+{{--                                            <div class="notification-list-user-img"><img src="assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>--}}
+{{--                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.--}}
+{{--                                                <div class="notification-date">2 min ago</div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </a>--}}
+{{--                                    <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                        <div class="notification-info">--}}
+{{--                                            <div class="notification-list-user-img"><img src="assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>--}}
+{{--                                            <div class="notification-list-user-block"><span class="notification-list-user-name">{{ auth()->user()->name }}</span>is now following you--}}
+{{--                                                <div class="notification-date">2 days ago</div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </a>--}}
+{{--                                    <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                        <div class="notification-info">--}}
+{{--                                            <div class="notification-list-user-img"><img src="assets/images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle"></div>--}}
+{{--                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository--}}
+{{--                                                <div class="notification-date">2 min ago</div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </a>--}}
+{{--                                    <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                        <div class="notification-info">--}}
+{{--                                            <div class="notification-list-user-img"><img src="assets/images/avatar-5.jpg" alt="" class="user-avatar-md rounded-circle"></div>--}}
+{{--                                            <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.--}}
+{{--                                                <div class="notification-date">2 min ago</div>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <div class="list-footer"> <a href="#">View all notifications</a></div>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+                <li class="nav-item dropdown nav-user my-auto">
+                    <div class="dropdown show">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-language"></i> </a>
+
+                        <form method="POST" action="{{ route('language.change') }}" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item text-center" href="#"><img class="img-fluid rounded" style="height: 20px" src="https://www.makacla.com/photo/art/grande/6771020-10350548.jpg?v=1404162660"></a>
+                            <a class="dropdown-item text-center" href="#"><img class="img-fluid rounded" style="height: 20px" src="https://www.ismac.fr/wp-content/uploads/2017/09/drapeau-anglais.png"></a>
+                        </form>
+                    </div>
                 </li>
                 @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
                     <li class="nav-item dropdown connection">

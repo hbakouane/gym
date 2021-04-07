@@ -237,8 +237,8 @@
                             <div id="msform">
                                 <!-- progressbar -->
                                 <ul id="progressbar" style="cursor: pointer; transition: 2s">
-                                    <li class="active" id="account" style="transition: 2s"><strong>{{ __('project.Currency') }}</strong></li>
-                                    <li @if($step2 OR $step3 OR $step4) class="active" @endif id="personal" style="transition: 2s"><strong>{{ __('project.Currency') }}</strong></li>
+                                    <li class="active" id="account" style="transition: 2s"><strong>{{ __('project.Project information') }}</strong></li>
+                                    <li @if($step2 OR $step3 OR $step4) class="active" @endif id="personal" style="transition: 2s"><strong>{{ __('project.Personal Information') }}</strong></li>
 {{--                                    <li @if($step3 OR $step4) class="active" @endif id="payment" style="transition: 2s"><strong>{{ __('project.Payment') }}</strong></li>--}}
                                     <li @if($step4) class="active" @endif id="confirm" style="transition: 2s"><strong>{{ __('project.Finish') }}</strong></li>
                                 </ul>
