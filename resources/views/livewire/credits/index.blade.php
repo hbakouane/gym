@@ -14,6 +14,7 @@
                         <th>{{ __('payments.Amount') }}</th>
                         <th>{{ __('payments.Payment type') }}</th>
                         <th>{{ __('payments.Payment date') }}</th>
+                        <th>{{ __('external.Status') }}</th>
                         <th>{{ __('payments.Note') }}</th>
                         <th>{{ __('general.Created at') }}</th>
                         <th>{{ __('general.Actions') }}</th>
@@ -23,7 +24,7 @@
                         @foreach($credits as $credit)
                         <tr>
                             <td>
-                                <a target="_blank" href="{{ route('vendors.show', [$prefix, $credit->creditable->id]) }}">
+                                <a target="_blank" href="{{ route(getRouteName($credit->creditable_type, 'show'), [$prefix, $credit->creditable->id]) }}">
                                     <img class="img-fluid user-avatar-md rounded-circle" src="{{ makeProfileImg($credit->creditable->photo, true) }}">
                                     {{ $credit->creditable->name }}
                                 </a>
@@ -36,6 +37,7 @@
                             <td>{{ ($website->currency ?? '') . $credit->amount }}</td>
                             <td>{{ $credit->payment_type }}</td>
                             <td>{{ $credit->payment_date }}</td>
+                            <th>@include('partials.credit_status', ['credit' => $credit])</th>
                             <td>{{ $credit->note }}</td>
                             <td title="{{ $credit->created_at->diffForHumans() }}">
                                 {{ $credit->created_at }}
@@ -45,8 +47,7 @@
                             </td>
                             <td class="d-flex justify-content-center">
                                 <div class="d-inline-block">
-                                    <a href="{{ route(getRouteName($credit->creditable_type, 'show'), [$prefix, $credit->creditable->id, 'payments' => true]) }}" class="btn btn-info text-light btn-sm"><i class="fa fa-eye"></i> {{ __('general.Show') }}</a>
-                                    <a href="{{ route(getRouteName($credit->creditable_type, 'edit'), [$prefix, $credit->id]) }}" class="btn btn-brand btn-sm"><i class="fa fa-pencil-alt"></i> {{ __('general.Edit') }}</a>
+                                    <a href="{{ route('credits.edit', [$prefix, $credit->id]) }}" class="btn btn-brand btn-sm"><i class="fa fa-pencil-alt"></i> {{ __('general.Edit') }}</a>
                                     <button class="btn btn-danger btn-sm" wire:click="delete({{ $credit->id }}, '{{ $credit->creditable_type }}')"><i class="fa fa-trash-alt"></i> {{ __('general.Delete') }}</button>
                                 </div>
                             </td>
@@ -60,6 +61,7 @@
                         <th>{{ __('payments.Amount') }}</th>
                         <th>{{ __('payments.Payment type') }}</th>
                         <th>{{ __('payments.Payment date') }}</th>
+                        <th>{{ __('external.Status') }}</th>
                         <th>{{ __('payments.Note') }}</th>
                         <th>{{ __('general.Created at') }}</th>
                         <th>{{ __('general.Actions') }}</th>

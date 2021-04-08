@@ -33,7 +33,6 @@
                     <div class="card-footer">
                         <a target="_blank" href="{{ route('members.show', [$prefix, $member->id]) }}" class="btn btn-info btn-sm">{{ __('general.Show') }}</a>
                         <a target="_blank" href="{{ route('members.index', [$prefix, $member->id, 'edit' => 'edit', 'user' => $member->id]) }}" class="btn btn-warning btn-sm">{{ __('general.Edit') }}</a>
-                        <button class="btn btn-danger btn-sm" wire:click="$toggle('showCard')">{{ __('general.Cancel') }}</button>
                     </div>
                 </div>
             </div>

@@ -12,4 +12,5 @@ return [
     'Add a member' => 'Ajouter un membre',
     'Information updated successfully.' => 'Informations mises à jour avec succès.',
     'Member' => 'Membre',
+    'All the related records to this member will be deleted, Would you like to continue?' => 'Tous les enregistrements de ce membre seront supprimés (payments, credits, factures...), Voulez vous continuer?',
 ];
