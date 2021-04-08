@@ -12,4 +12,6 @@ return [
     'Add a member' => 'Add a member',
     'Information updated successfully.' => 'Information updated successfully.',
     'Member' => 'Member',
+    'All the related records to this member will be deleted, Would you like to continue?' => 'All the related records to this member will be deleted (payments, credits, invoices...), Would you like to continue?',
+
 ];

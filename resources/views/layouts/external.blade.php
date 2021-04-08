@@ -123,7 +123,7 @@
     </header>
     <!-- navbar- -->
     <!-- Header start end -->
-    @yield('content')
+        @yield('content')
     <!-- footer section -->
     <footer class="gradient-bg-6 position-relative l8-footer">
         <div class="shape l8-footer-shape-top-left">

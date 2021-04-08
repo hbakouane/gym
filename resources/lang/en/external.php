@@ -44,5 +44,14 @@ return [
     'Dashboard' => 'Dashboard',
     'Projects' => 'Projects',
     'We have the most affordable prices.' => 'We have the most affordable prices.',
-    'Get in touch' => 'Get in touch'
+    'Get in touch' => 'Get in touch',
+    'Upcoming features' => 'Upcoming features',
+    'Title' => 'Title',
+    'Description' => 'Description',
+    'Date' => 'Date',
+    'Version' => 'Version',
+    'Release date' => 'Release date',
+    'Status' => 'Status',
+    'Coming soon' => 'Coming soon',
+    'Haven\'t started yet? We\'re offering a free trial!' => 'Haven\'t started yet? We\'re offering a free trial!',
 ];

@@ -44,5 +44,14 @@ return [
     'Dashboard' => 'Tableau de bord',
     'Projects' => 'Projets',
     'We have the most affordable prices.' => 'Nous avons les prix les plus abordables.',
-    'Get in touch' => 'Entrer en contact'
+    'Get in touch' => 'Entrer en contact',
+    'Upcoming features' => 'Fonctionnalités à venir',
+    'Title' => 'Titre',
+    'Description' => 'Description',
+    'Date' => 'Date',
+    'Version' => 'Version',
+    'Release date' => 'Date de sortie',
+    'Status' => 'Statut',
+    'Coming soon' => 'Bientôt disponible',
+    'Haven\'t started yet? We\'re offering a free trial!' => 'Vous n\'avez pas encore commencé? Nous offrons un essai gratuit!',
 ];
