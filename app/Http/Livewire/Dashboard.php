@@ -78,10 +78,12 @@ class Dashboard extends Component
         $this->vendors = count(Vendor::where('project_id', $this->project_id)->get());
         $this->creditsToMembers = DB::table('credits')
                                     ->where('project_id', $this->project_id)
+                                    ->where('status', 'Unpaid')
                                     ->where('creditable_type', 'App\Models\Member')
                                     ->sum('amount');
         $this->creditsFromVendors = DB::table('credits')
                                         ->where('project_id', $this->project_id)
+                                    ->where('status', 'Unpaid')
                                         ->where('creditable_type', 'App\Models\Vendor')
                                         ->sum('amount');
     }
@@ -195,12 +197,14 @@ class Dashboard extends Component
         if (is_array($duration)) {
             return DB::table('credits')
                     ->where('project_id', $this->project_id)
+                ->where('status', 'Unpaid')
                     ->whereBetween('created_at', $duration)
                     ->where('creditable_type', 'App\Models\Member')
                     ->sum('amount');
         }
         return DB::table('credits')
             ->where('project_id', $this->project_id)
+            ->where('status', 'Unpaid')
             ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
             ->where('creditable_type', 'App\Models\Member')
             ->sum('amount');
@@ -211,12 +215,14 @@ class Dashboard extends Component
         if (is_array($duration)) {
             return DB::table('credits')
                 ->where('project_id', $this->project_id)
+                ->where('status', 'Unpaid')
                 ->whereBetween('created_at', $duration)
                 ->where('creditable_type', 'App\Models\Vendor')
                 ->sum('amount');
         }
         return DB::table('credits')
             ->where('project_id', $this->project_id)
+            ->where('status', 'Unpaid')
             ->whereDate('created_at', '=', now()->subDays($duration)->toDateString())
             ->where('creditable_type', 'App\Models\Vendor')
             ->sum('amount');

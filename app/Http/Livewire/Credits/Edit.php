@@ -20,20 +20,23 @@ class Edit extends Component
     public $payment_date;
     public $amount;
     public $note;
+    public $status;
     public $toastr;
     public $message;
     public $type;
 
     public function mount()
     {
-        $this->payment = Credit::find(request('credit'));
-        $this->member_id = $this->payment->member->id;
+        $this->payment = Credit::where('id', (request('credit')))->first();
+        $creditable = $this->payment->creditable_type::where('id', $this->payment->creditable_id)->first();
+        $this->member_id = $creditable->id;
         $this->member = Member::find($this->member_id);
         $this->showCard = true;
-        $this->name = $this->payment->member->name;
+        $this->name = $creditable->name;
         $this->payment_type = $this->payment->payment_type;
         $this->payment_date = $this->payment->payment_date;
         $this->amount = $this->payment->amount;
+        $this->status = $this->payment->status;
         $this->note = $this->payment->note;
     }
 
@@ -50,14 +53,16 @@ class Edit extends Component
             'amount' => 'required',
             'payment_type' => 'required',
             'payment_date' => 'required',
-            'note' => 'sometimes'
+            'note' => 'sometimes',
+            'status' => 'required'
         ]);
         $this->payment->fill([
             'member_id' => $this->member_id,
             'amount' => $this->amount,
             'payment_type' => $this->payment_type,
             'payment_date' => $this->payment_date,
-            'note' => $this->note
+            'note' => $this->note,
+            'status' => $this->status
         ])->save();
         $this->message = __('credits.Credit added successfully.');
         $this->type = "success";

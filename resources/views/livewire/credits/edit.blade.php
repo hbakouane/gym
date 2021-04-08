@@ -39,13 +39,14 @@
         @endif
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header h4 text-dark font-weight-bold w-100">{{ __('credits.Credit') . ' ' . strtolower(__('general.Details')) }}</div>
+                <div class="card-header h4 text-dark font-weight-bold w-100">{{ __('credits.Credit details') }}</div>
                 <div class="card-body">
+                    @include('partials.credit_status', ['credit' => $payment])
                     <form wire:submit.prevent="update">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{ __('members.Member') }}</label>
+                                    <label>{{ __('members.Member') .' / ' . __('vendors.Vendor') }}</label>
                                     <input wire:model="name" class="form-control input">
                                     @if($members and !$showCard)
                                         @foreach($members as $memberr)
@@ -90,6 +91,16 @@
                                         </div>
                                         <input wire:model="payment_date" type="date" class="form-control input" placeholder="{{ __('payments.Payment date') }}">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="w-100">{{ __('external.Status') }}
+                                        <select wire:model="status" class="form-control" style="height: 49px">
+                                            <option value="Paid" @if($status === "Paid") selected @endif>{{ __('credits.Paid') }}</option>
+                                            <option value="Unpaid" @if($status === "Unpaid") selected @endif>{{ __('credits.Unpaid') }}</option>
+                                        </select>
+                                    </label>
                                 </div>
                             </div>
                             <div class="col-md-12">
