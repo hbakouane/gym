@@ -14,7 +14,7 @@ return [
     'Employees' => 'Employés',
     'Our plans' => 'Nos plans',
     'Subscribe' => 'S\'abonner',
-    'Our plans start from' => 'Nos plans commencent de',
+    'Our plans start from' => 'Nos plans commencent à',
     'Continue to Pay' => 'Continuer à payer',
     'Credit card' => 'Carte de crédit',
     'Paypal' => 'Paypal',
@@ -29,4 +29,13 @@ return [
     'Enjoy' => '',
     'days left' => 'Jours restants',
     'Please select a plan to go with' => 'Veuillez sélectionner un plan',
+    'Upgrade' => 'Améliorer',
+    'Which payment method will you use after your trial?' => 'Quelle méthode de paiement utiliserez-vous après votre essai?',
+    'You already have a project, delete it to create another one. During free trial, you are allowed to create just 1 project.' => 'Vous avez déjà un projet, supprimez-le pour en créer un autre. Pendant l\'essai gratuit, vous êtes autorisé à créer un seul projet.',
+    'Subscription ID' => 'ID d\'abonnement',
+    'Plan' => 'Plan',
+    'Status' => 'Statut',
+    'Payment method' => 'Méthode de payment',
+    'Amount' => 'Amount',
+    'My subscriptions' => 'Mes abonnements'
 ];

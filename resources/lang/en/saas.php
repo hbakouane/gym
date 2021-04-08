@@ -29,4 +29,13 @@ return [
     'Enjoy' => 'Enjoy',
     'days left' => 'days left',
     'Please select a plan to go with' => 'Please select a plan to go with',
+    'Upgrade' => 'Upgrade',
+    'Which payment method will you use after your trial?' => 'Which payment method will you use after your trial?',
+    'You already have a project, delete it to create another one. During free trial, you are allowed to create just 1 project.' => 'You already have a project, delete it to create another one. During free trial, you are allowed to create just 1 project.',
+    'Subscription ID' => 'Subscription ID',
+    'Plan' => 'Plan',
+    'Status' => 'Status',
+    'Payment method' => 'Payment method',
+    'Amount' => 'Amount',
+    'My subscriptions' => 'My subscriptions',
 ];

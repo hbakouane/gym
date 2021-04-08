@@ -9,7 +9,7 @@ class Subscription extends Model
 {
     use HasFactory;
 
-    public $fillable = ['user_id', 'plan_id', 'subscription_id', 'status', 'payment_method'];
+    public $fillable = ['user_id', 'plan_id', 'subscription_id', 'status', 'payment_method', 'amount'];
 
     public $table = 'saas_subscriptions';
 

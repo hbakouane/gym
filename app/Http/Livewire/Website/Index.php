@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Website;
 
 use App\Models\Project;
+use App\Models\Subscription;
 use Livewire\Component;
 
 class Index extends Component
@@ -22,6 +23,8 @@ class Index extends Component
     public $message;
     public $toastr = false;
 
+    public $subscriptions;
+
     public function render()
     {
         return view('livewire.website.index');
@@ -37,6 +40,8 @@ class Index extends Component
         $this->zip = $project->zip;
         $this->country = $project->country;
         $this->currency = $project->currency;
+
+        $this->subscriptions = \App\Models\Saas\Subscription::where('user_id', auth()->id())->get();
     }
 
     public function save()

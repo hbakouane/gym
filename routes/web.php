@@ -54,7 +54,7 @@ Route::prefix('staff')
 Route::get('/dashboard', [RedirectController::class, 'redirect'])->middleware('auth:web,staff');
 Route::view('/upcoming-features', 'upcoming.features')->name('upcoming.features');
 Route::view('/terms-and-conditions', 'terms.and.conditions')->name('terms.and.conditions');
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'createProjectChecker']], function () {
     Route::view('/project/create', 'projects.create')->name('project.create');
 });
 

@@ -19,6 +19,16 @@
                         <a href="{{ route('memberships.create', $prefix) }}" class="btn btn-success text-light ml-4"><i class="fa fa-plus-circle"></i> {{ __('navbar.Membership') }}</a>
                     </div>
                 </li>
+                @php
+                    $currentProject = \App\Models\Project::where('project', request('project_id'))->first();
+                @endphp
+                @if($currentProject->ended_at > now()->toDateString() AND $currentProject->trial == false)
+                <li class="nav-item">
+                    <div id="custom-search" class="top-search-bar">
+                        <a class="btn ml-3 btn-info rounded-pill" href="{{ route('plans.show', ['project' => $currentProject->project, 'upgrade' => true]) }}"><i class="fa fa-crown"></i> {{ __('saas.Upgrade') }} </a>
+                    </div>
+                </li>
+                @endif
 {{--                <li class="nav-item dropdown notification">--}}
 {{--                    <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>--}}
 {{--                    <ul class="dropdown-menu dropdown-menu-right notification-dropdown">--}}

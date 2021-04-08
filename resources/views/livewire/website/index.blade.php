@@ -49,4 +49,43 @@
             </form>
         </div>
     </div>
+
+    @if($subscriptions)
+        <div class="card">
+            <div class="card-header font-16 text-dark"><p class="text-dark font-bold font-20">{{ __('saas.My subscriptions') }}</p></div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead class="bg-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">{{ __('saas.Plan') }}</th>
+                        <th scope="col">{{ __('saas.Amount') }}</th>
+                        <th scope="col">{{ __('saas.Status') }}</th>
+                        <th scope="col">{{ __('saas.Payment method') }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($subscriptions as $subscription)
+                        <tr>
+                            <th scope="row">#{{ $subscription->subscription_id }}</th>
+                            <td>{{ $subscription->plan->Name }} ({{ __('saas.Status') }})</td>
+                            <td>${{ $subscription->amount }}</td>
+                            <td>{{ ucfirst($subscription->status) }}</td>
+                            <td>{{ $subscription->payment_method }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    <tfoot class="bg-light">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">{{ __('saas.Plan') }}</th>
+                        <th scope="col">{{ __('saas.Amount') }}</th>
+                        <th scope="col">{{ __('saas.Status') }}</th>
+                        <th scope="col">{{ __('saas.Payment method') }}</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    @endif
 </div>

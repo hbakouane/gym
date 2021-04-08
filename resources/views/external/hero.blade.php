@@ -11,6 +11,13 @@
                     <p class="font-size-8 text-periwinkle-gray letter-spacing-np4 font-family-5 pr-xl-15 pr-lg-0 pr-md-15 pr-0 mb-11">{{ __('external.slug-details') }}</p>
                     <!-- hero area section title end -->
                     @include('partials.trial_button')
+                    @php
+                        // Get the projects that have been already 'free-trialed'
+                        $free_trial_projects = \App\Models\Project::where('user_id', auth()->id())->where('trial', true)->get();
+                    @endphp
+                    @if(\Illuminate\Support\Facades\Auth::check() AND \Illuminate\Support\Facades\Auth::guard('web')->check())
+                        <a href="{{ route('project.create') }}" class="btn btn-main text-light btn-success py-3">{{ __('project.Create a Project') }}</a>
+                    @endif
                     <p class="font-size-3 text-periwinkle-gray font-family-5 mb-0 mt-5">{{ __('external.credit-card') }}</p>
                 </div>
             </div>

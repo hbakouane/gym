@@ -42,7 +42,8 @@ class MollieController extends Controller
             'plan_id' => $plan->id,
             'subscription_id' => $order_id,
             'status' => 'unpaid',
-            'payment_method' => request('method')
+            'payment_method' => request('method'),
+            'amount' => $plan->price
         ])->save();
 
         if ($plan->duration == 31 OR $plan->duration == 30) {
