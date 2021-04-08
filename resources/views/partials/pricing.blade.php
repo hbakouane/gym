@@ -123,15 +123,19 @@
     $free_trial_projects = \App\Models\Project::where('user_id', auth()->id())->where('trial', true)->get();
 @endphp
 @if(count($free_trial_projects) == 0)
-    <p class="h1 text-center text-dark font-weight-bold pb-3">{{ __('saas.Pick a Plan, Try it free for 7 Days') }}</p>
+    <p class="h3 text-center text-dark font-weight-bold pb-3">{{ __('saas.Pick a Plan, Try it free for 7 Days') }}</p>
+    <p class="h5 mt-0 pt-0 text-center mb-3 text-muted">{{ __('external.credit-card') }}</p>
 @else
-    <p class="h1 text-center text-dark font-weight-bold pb-3">{{ __('saas.Our plans start from') . " just $$cheapest->price" }}</p>
+    <p class="h1 text-center text-dark font-weight-bold pb-3">{{ __('saas.Our plans start from') . " $$cheapest->price" }}</p>
 @endif
 <style>
     #secondStep {
         display: none;
     }
 </style>
+@php
+    $free_trial_projects = \App\Models\Project::where('user_id', auth()->id())->where('trial', true)->get();
+@endphp
 <script>
     function selectPlan(id, price) {
         let firstStep = document.querySelector('#firstStep');
@@ -142,11 +146,13 @@
 
         let plan = document.querySelector('#plan');
         plan.value = id;
+        if ({{ count($free_trial_projects) }} == 0) {
+            document.getElementById('secondForm').submit()
+        }
     }
     function reverse() {
         let firstStep = document.querySelector('#firstStep');
-        let secondStep = document.querySelector('#secondStep');
-
+        let secondStep = document.querySelector('#secondStep')
         firstStep.style.display = 'block';
         secondStep.style.display = 'none';
     }
@@ -312,8 +318,13 @@
     </table>
 </div>
 <div id="secondStep">
-    <form method="GET" action="{{ route('mollie.payment') }}">
+    <form id="secondForm" method="GET" action="{{ route('mollie.payment') }}">
         <div class="row justify-content-center">
+            @if(count($free_trial_projects) == 0)
+                <div class="col-md-8">
+                    <div class="alert alert-info">{{ __('saas.Which payment method will you use after your trial?') }}</div>
+                </div>
+            @endif
             <input type="hidden" name="plan" id="plan">
             <input type="hidden" name="coupon" id="coupon" value="{{ request('coupon') }}">
             <div class="col-md-8">

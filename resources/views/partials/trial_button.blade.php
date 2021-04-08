@@ -1,5 +1,5 @@
 @guest
-    <a href="#" class="btn btn-turquoise btn-xxl-1 font-size-5 text-firefly font-weight-semibold">{{ __('external.trial') }}</a>
+    <a href="{{ route('project.create') }}" class="btn btn-turquoise btn-xxl-1 font-size-5 text-firefly font-weight-semibold">{{ __('external.trial') }}</a>
 @endguest
 
 @auth

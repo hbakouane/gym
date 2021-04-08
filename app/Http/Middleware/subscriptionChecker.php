@@ -19,9 +19,10 @@ class subscriptionChecker
     {
         // Get the current project
         $project = Project::where('project', request('project_id'))->first();
+
         if (empty($project->ended_at)) {
             return redirect(route('plans.show', ['project' => $project->project]))->with('status', __('saas.Please select a plan to go with'));
-            $project->ended_at = now();
+//            $project->ended_at = now();
         }
 
         // Check if the user has an expired free trial

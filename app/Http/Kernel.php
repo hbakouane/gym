@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\createProjectChecker;
 use App\Http\Middleware\localHandler;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -71,5 +72,6 @@ class Kernel extends HttpKernel
         'staff' => \App\Http\Middleware\RedirectIfNotStaff::class,
         'roleChecker' => \App\Http\Middleware\RoleChecker::class,
         'subscriptionChecker' => \App\Http\Middleware\subscriptionChecker::class,
+        'createProjectChecker' => createProjectChecker::class
     ];
 }
