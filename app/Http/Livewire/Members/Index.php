@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Members;
 
+use App\Models\Credit;
 use App\Models\Member;
+use App\Models\Payment;
 use App\Models\Project;
 use App\Models\Subscription;
 use App\Models\User;
@@ -47,6 +49,8 @@ class Index extends Component
     public $zip;
     public $subscriptions;
     public $subscription_id;
+    public $started_at;
+    public $ended_at;
     public $note;
     public $photo_file; // for the uploaded photo
 
@@ -96,6 +100,10 @@ class Index extends Component
         }
         $this->project_id = Project::where('project', $this->prefix)->first();
         $this->subscriptions = Subscription::where('project_id', $this->project_id->id)->get();
+        if (request('edit') AND $this->user) {
+            $this->started_at = $this->user->started_at ?? '';
+            $this->ended_at = $this->user->ended_at ?? '';
+        }
     }
 
     public function edit($id) {
@@ -142,7 +150,9 @@ class Index extends Component
             'country' => $this->country,
             'subscription_id' => $this->subscription_id,
             'note' => $this->note,
-            'project_id' => $this->project_id->id
+            'project_id' => $this->project_id->id,
+            'started_at' => $this->started_at,
+            'ended_at' => $this->ended_at
         ])->save();
 
         // If there is an edit GET var, it means that we are coming from
@@ -163,6 +173,9 @@ class Index extends Component
     public function delete($id)
     {
         Member::find($id)->delete();
+        // Delete the payable as well
+        $payments = Payment::where('payable_type', 'App\Models\Member')->where('payable_id', $id)->delete();
+        $credits = Credit::where('creditable_type', 'App\Models\Member')->where('creditable_id', $id)->delete();
         $this->toastr = true;
         $this->type = "success";
         $this->message = __("general.Member deleted successfully.");

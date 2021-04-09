@@ -15,8 +15,8 @@ class CreateSaasSubscriptionsTable extends Migration
     {
         Schema::create('saas_subscriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('plan_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('plan_id')->constrained()->cascadeOnDelete();
             $table->string('subscription_id')->unique();
             $table->string('status')->nullable();
             $table->timestamps();

@@ -33,7 +33,7 @@
                                 <td class="d-flex justify-content-center">
                                     <div class="d-inline-block">
                                         <a href="{{ route('roles.edit', [$prefix, $role->id]) }}" class="btn btn-brand btn-sm"><i class="fa fa-pencil-alt"></i> {{ __('general.Edit') }}</a>
-                                        <button onclick="confirm('{{ __('general.Are you sure?') }}') || event.stopImmediatePropagation()" wire:click="delete({{ $role->id }})" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i> {{ __('general.Delete') }}</button>
+                                        <button onclick="return confirm('{{ __('general.Are you sure?') . ' ' . __('roles.By deleting this role, all the staves that belong to it will be deleted at well. Are you sure?') }}') || event.stopImmediatePropagation()" wire:click="delete({{ $role->id }})" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i> {{ __('general.Delete') }}</button>
                                     </div>
                                 </td>
                             </tr>

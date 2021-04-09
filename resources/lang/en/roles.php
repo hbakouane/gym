@@ -67,4 +67,6 @@ return [
 
     'Select all' => 'Select all',
     'Unselect all' => 'Unselect all',
+
+    'By deleting this role, all the staves that belong to it will be deleted at well. Are you sure?' => 'By deleting this role, all the staves that belong to it will be deleted at well. Are you sure?',
 ];

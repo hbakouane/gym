@@ -50,7 +50,9 @@
                     </tr>
                     </tbody>
                 </table>
-                @include('external.cta2')
+                @guest
+                    @include('external.cta2')
+                @endguest
             </div>
         </div>
     </div>

@@ -25,14 +25,24 @@
                 <div class="card-header h4 text-dark font-weight-bold">{{ __('general.Details') }}</div>
                 <div class="card-body p-0">
                     <img class="img-fluid w-100" src="{{ makeProfileImg($vendor->photo, true) }}">
+                    <div class="p-3">
+                        <p>{{ __('auth.Name') . ': ' . $vendor->name }}</p>
+                        <p>{{ __('auth.City') . ': ' . $vendor->city }}</p>
+                        <p>{{ __('auth.Country') . ': ' . $vendor->country }}</p>
+                    </div>
                 </div>
                 <div class="card-footer">
                     <div class="col-md-12 d-flex justify-content-center">
-                        <a href="{{ route('members.index', [$prefix, $vendor->id, 'edit' => 'edit', 'user' => $vendor->id]) }}" class="btn btn-warning d-inline-block mr-2"><i class="fa fa-pencil-alt"></i> {{ __('general.Edit') }}</a>
+                        <a href="{{ route('vendors.index', [$prefix, $vendor->id, 'edit' => 'edit', 'user' => $vendor->id]) }}" class="btn btn-warning d-inline-block mr-2"><i class="fa fa-pencil-alt"></i> {{ __('general.Edit') }}</a>
                         <form class="d-inline-block" method="POST" action="{{ route('members.destroy', [$prefix, $vendor->id]) }}">
                             @method('DELETE')
                             @csrf
-                            <button onclick="confirm('{{ __('general.Are you sure?') }}') || event.preventDefault()" class="btn btn-danger"><i class="fa fa-trash"></i> {{ __('general.Delete') }}</button>
+                            <button onclick="return confirm('{{ __('general.Are you sure?') . ' ' .
+                                __('members.All the related records to this member will be deleted, Would you like to continue?') }}')
+                                    , confirm('{{ __('general.Are you sure?') . ' ' .
+                                __('members.All the related records to this member will be deleted, Would you like to continue?') }}')
+
+                                    || event.preventDefault()" class="btn btn-danger"><i class="fa fa-trash"></i> {{ __('general.Delete') }}</button>
                         </form>
                     </div>
                 </div>
@@ -66,7 +76,7 @@
                                         <div class="card-body">
                                             <div class="d-inline-block">
                                                 <h5 class="text-muted">{{ __('vendors.Total paid to this vendor') }}</h5>
-                                                <h2 class="mb-0"> {{ $website->currency ?? '' . $total_paid }}</h2>
+                                                <h2 class="mb-0"> {{ ($website->currency ?? '') . $total_paid }}</h2>
                                             </div>
                                             <div class="float-right icon-circle-medium  icon-box-lg  bg-primary-light mt-1">
                                                 <i class="fa fa-money-bill-alt fa-fw fa-sm text-primary"></i>
@@ -79,7 +89,7 @@
                                         <div class="card-body">
                                             <div class="d-inline-block">
                                                 <h5 class="text-muted">{{ __('vendors.Total Credits by this vendor') }}</h5>
-                                                <h2 class="mb-0"> {{ $website->currency ?? '' . $total_credits }}</h2>
+                                                <h2 class="mb-0"> {{ ($website->currency ?? '') . $total_credits }}</h2>
                                             </div>
                                             <div class="float-right icon-circle-medium  icon-box-lg  bg-info-light mt-1">
                                                 <i class="fa fa-dollar-sign fa-fw fa-sm text-info"></i>
@@ -87,46 +97,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <div class="d-inline-block">
-                                                <h5 class="text-muted">Total Sold Products</h5>
-                                                <h2 class="mb-0"> $149.00</h2>
-                                            </div>
-                                            <div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">
-                                                <i class="fa fa-box fa-fw fa-sm text-secondary"></i>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+{{--                                <div class="col-md-4">--}}
+{{--                                    <div class="card">--}}
+{{--                                        <div class="card-body">--}}
+{{--                                            <div class="d-inline-block">--}}
+{{--                                                <h5 class="text-muted">Total Sold Products</h5>--}}
+{{--                                                <h2 class="mb-0"> $149.00</h2>--}}
+{{--                                            </div>--}}
+{{--                                            <div class="float-right icon-circle-medium  icon-box-lg  bg-secondary-light mt-1">--}}
+{{--                                                <i class="fa fa-box fa-fw fa-sm text-secondary"></i>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header h4 text-dark font-weight-bold">{{ __('general.More information') }}</div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Name') }}</span> {{ $vendor->name }}</p>
-                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Email') }}</span> {{ $vendor->email }}</p>
-                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.CNE') }}</span> {{ $vendor->cne }}</p>
-                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Phone') }}</span> {{ $vendor->phone }}</p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.City') }}</span> {{ $vendor->city }}</p>
-                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Address') }}</span> {{ $vendor->address }}</p>
-                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Phone') }}</span> {{ $vendor->phone }}</p>
-                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Country') }}</span> {{ $vendor->country }}</p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Subscription') }}</span> <a href="{{ route('subscriptions.index', [$prefix]) }}">{{ $vendor->subscription->name }}</a></p>
-                                            <p class="w-100" title="{{ $vendor->updated_at->diffForHumans() }}"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Joined at') }}</span> {{ $vendor->created_at }}</p>
-                                            <p class="w-100" title="{{ $vendor->created_at->diffForHumans() }}"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Updated at') }}</span> {{ $vendor->updated_at }}</p>
-                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Status') }}</span> {{ $vendor->status }}</p>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="alert alert-warning">
+                                <i class="fa fa-lightbulb"></i> {{ __('vendors.Total paid to this vendor = Total payments to this vendor + Total paid credits from this vendor') }}
                             </div>
                         </div>
                     </div>
@@ -149,7 +135,7 @@
                                             <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Country') }}</span> {{ $vendor->country }}</p>
                                         </div>
                                         <div class="col-md-4">
-                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Subscription') }}</span> <a href="{{ route('subscriptions.index', [$prefix]) }}">{{ $vendor->subscription->name }}</a></p>
+                                            <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Subscription') }}</span> <a href="{{ route('subscriptions.index', [$prefix]) }}">{{ $vendor->name }}</a></p>
                                             <p class="w-100" title="{{ $vendor->updated_at->diffForHumans() }}"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Joined at') }}</span> {{ $vendor->created_at }}</p>
                                             <p class="w-100" title="{{ $vendor->created_at->diffForHumans() }}"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Updated at') }}</span> {{ $vendor->updated_at }}</p>
                                             <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Status') }}</span> {{ $vendor->status }}</p>
@@ -191,9 +177,4 @@
             </div>
         </div>
     </div>
-    <h1>ToDos</h1>
-    <ul>
-        <li>Charts with percentage of payments of subscriptions and products</li>
-        <li>Invoices</li>
-    </ul>
 @endsection

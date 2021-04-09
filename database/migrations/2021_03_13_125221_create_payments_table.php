@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->string('membership_id')->nullable();
             $table->morphs('payable');
-            $table->foreignId('project_id')->constrained();
+            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
             $table->integer('amount')->nullable();
             $table->string('payment_type')->nullable();
             $table->date('payment_date')->nullable();

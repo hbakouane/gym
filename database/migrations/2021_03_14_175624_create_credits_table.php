@@ -16,7 +16,7 @@ class CreateCreditsTable extends Migration
         Schema::create('credits', function (Blueprint $table) {
             $table->id();
             $table->morphs('creditable');
-            $table->foreignId('project_id')->constrained();
+            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
             $table->integer('amount')->nullable();
             $table->string('payment_type')->nullable();
             $table->date('payment_date')->nullable();
