@@ -25,8 +25,8 @@ class CreateMembersTable extends Migration
             $table->string('city')->nullable();
             $table->string('zip')->nullable();
 
-            $table->foreignId('subscription_id')->constrained();
-            $table->foreignId('project_id')->constrained();
+            $table->foreignId('subscription_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
 
             $table->longText('note')->nullable();
 

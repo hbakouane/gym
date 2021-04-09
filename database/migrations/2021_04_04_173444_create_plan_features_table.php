@@ -17,7 +17,7 @@ class CreatePlanFeaturesTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('number')->nullable();
-            $table->foreignId('plan_id')->constrained();
+            $table->foreignId('plan_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

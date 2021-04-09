@@ -18,7 +18,7 @@ class CreateFeaturesTable extends Migration
             $table->string('name')->nullable();
             $table->string('description')->nullable();
 
-            $table->foreignId('project_id')->constrained();
+            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
 
             $table->timestamps();
         });

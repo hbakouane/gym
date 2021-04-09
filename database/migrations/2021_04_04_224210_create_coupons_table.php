@@ -16,7 +16,7 @@ class CreateCouponsTable extends Migration
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->integer('percentage')->nullable();
+            $table->integer('percentage')->nullable()->cascadeOnDelete();
             $table->timestamps();
         });
     }

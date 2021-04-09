@@ -24,7 +24,7 @@
                     @foreach($payments as $payment)
                         <tr>
                             <td>
-                                <a target="_blank" href="{{ route(str_contains($payment->payable_type, 'Member') ? 'members.show' : 'vendors.show', [$prefix, $payment->payable->id]) }}">
+                                <a target="_blank" href="{{ route(str_contains($payment->payable_type, 'Member') ? 'members.show' : 'vendors.show', [$prefix, $payment->payable_id]) }}">
                                     <img class="img-fluid user-avatar-md rounded-circle" src="{{ makeProfileImg($payment->payable->photo, true) }}">
                                     {{ $payment->payable->name }}
                                 </a>

@@ -25,7 +25,7 @@ class CreateVendorsTable extends Migration
             $table->string('city')->nullable();
             $table->string('zip')->nullable();
 
-            $table->foreignId('project_id')->constrained();
+            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
 
             $table->longText('note')->nullable();
 

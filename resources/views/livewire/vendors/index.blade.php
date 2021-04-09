@@ -1,4 +1,4 @@
-<div wire:poll.500ms>
+<div wire:poll.5s>
 @include('partials.toastr')
 @if($current === "index")
     <!-- Search Bar -->
@@ -33,7 +33,12 @@
                                 <a href="{{ route('vendors.show', [$prefix, $vendor->id]) }}" class="btn btn-primary btn-sm mx-1">{{ __('general.Show') }}</a>
                                 <a wire:click="edit({{ $vendor->id }})" class="btn btn-warning btn-sm mx-1">{{ __('general.Edit') }}</a>
                                 @method('DELETE')
-                                <button class="btn btn-danger btn-sm mx-1" onclick="confirm('{{ __('general.Are you sure?') }}') || event.stopImmediatePropagation()" wire:click="delete({{ $vendor->id }})">{{ __('general.Delete') }}</button>
+                                <button class="btn btn-danger btn-sm mx-1" onclick="return confirm('{{ __('general.Are you sure?') . ' ' .
+                                    __('members.All the related records to this member will be deleted, Would you like to continue?') }}'),
+                                    confirm('{{ __('general.Are you sure?') . ' ' . __('members.All the related records to this member will be deleted, Would you like to continue?') }}')
+                                    || event.stopImmediatePropagation()" wire:click="delete({{ $vendor->id }})">
+                                    {{ __('general.Delete') }}
+                                </button>
                             </div>
                         </div>
                     </div>

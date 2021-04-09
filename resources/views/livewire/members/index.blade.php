@@ -46,7 +46,14 @@
                                 <a href="{{ route('members.show', [$prefix, $member->id]) }}" class="btn btn-primary btn-sm mx-1">{{ __('general.Show') }}</a>
                                 <a wire:click="edit({{ $member->id }})" class="btn btn-warning btn-sm mx-1">{{ __('general.Edit') }}</a>
                                 @method('DELETE')
-                                <button class="btn btn-danger btn-sm mx-1" onclick="confirm('{{ __('general.Are you sure?') }}') || event.stopImmediatePropagation()" wire:click="delete({{ $member->id }})">{{ __('general.Delete') }}</button>
+                                <button class="btn btn-danger btn-sm mx-1"
+                                    onclick="return confirm('{{ __('general.Are you sure?') . ' ' .
+                                    __('members.All the related records to this member will be deleted, Would you like to continue?') }}'),
+                                        confirm('{{ __('general.Are you sure?') . ' ' .
+                                            __('members.All the related records to this member will be deleted, Would you like to continue?') }}')
+                                        || event.stopImmediatePropagation()" wire:click="delete({{ $member->id }})">
+                                    {{ __('general.Delete') }}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -144,6 +151,19 @@
                                             <input type="radio" wire:model="subscription_id" value="{{ $subscription->id }}" class="custom-control-input" @if($subscription->id === $subscription_id) checked @endif><span class="custom-control-label">{{ $subscription->name }}</span>
                                         </label>
                                     @endforeach
+                                </div>
+                            @endif
+                            @if(isset($started_at) AND isset($ended_at))
+                                @include('partials.membership_status', ['member' => $user])
+                                <div class="form-group">
+                                    <label class="text-dark w-100">{{ __('membership.Started at') }}
+                                        <input wire:model="started_at" type="date" class="form-control input">
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark w-100">{{ __('membership.Ended at') }}
+                                        <input wire:model="ended_at" type="date" class="form-control input">
+                                    </label>
                                 </div>
                             @endif
                         </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Vendors;
 
 use App\Http\Controllers\RolesController;
+use App\Models\Credit;
+use App\Models\Payment;
 use App\Models\Vendor as Member;
 use App\Models\Project;
 use Illuminate\Database\Eloquent\Builder;
@@ -155,7 +157,11 @@ class Index extends Component
     public function delete($id)
     {
         RolesController::checkRole('vendors.delete');
-        Member::find($id)->delete();
+        Member::find($id)->delete(); // Even though we wrote Member::delete, we delete the vendor because we use The Member Vendor as Member see on the top
+        // Delete the payable as well
+        $payments = Payment::where('payable_type', 'App\Models\Vendor')->where('payable_id', $id)->delete();
+        $credits = Credit::where('creditable_type', 'App\Models\Vendor')->where('creditable_id', $id)->delete();
+
         $this->toastr = true;
         $this->type = "success";
         $this->message = __("general.Vendor deleted successfully.");

@@ -15,10 +15,10 @@ class CreateFeatureablesTable extends Migration
     {
         Schema::create('featureables', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('feature_id')->constrained();
+            $table->foreignId('feature_id')->constrained()->cascadeOnDelete();
             $table->morphs('featureable');
 
-            $table->foreignId('project_id')->nullable()->constrained();
+            $table->foreignId('project_id')->nullable()->constrained()->cascadeOnDelete();
 
             $table->timestamps();
         });

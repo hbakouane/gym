@@ -21,9 +21,9 @@ class CreateSubscriptionsTable extends Migration
             $table->string('duration')->nullable();
 
             $table->unsignedBigInteger('created_by');
-            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('created_by')->references('id')->on('users')->cascadeOnDelete();
 
-            $table->foreignId('project_id')->constrained();
+            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
 
             $table->timestamps();
         });

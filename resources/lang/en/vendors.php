@@ -10,4 +10,5 @@ return [
     'Total paid to this vendor' => 'Total paid to this vendor',
     'Total Credits by this vendor' => 'Total Credits by this vendor',
     'Vendor' => 'Vendor',
+    'Total paid to this vendor = Total payments to this vendor + Total paid credits from this vendor' => 'Total paid to this vendor = Total payments to this vendor + Total paid credits from this vendor',
 ];
