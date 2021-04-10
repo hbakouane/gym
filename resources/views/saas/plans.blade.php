@@ -6,6 +6,7 @@
     @endphp
     @include('partials.session')
     <div class="container my-5">
+        @include('partials.saas_subs_status', ['currentProject' => $project])
         @include('partials.pricing')
     </div>
 @endsection

@@ -30,4 +30,5 @@ return [
     'Manage projects' => 'Gérer les projets',
     'You do not have a project yet' => 'Vous n\'avez pas encore un projet',
     'Delete project' => 'Supprimer le projet',
+    'You cannot delete a project during the free trial' => 'Vous ne pouvez pas supprimer un projet durant la période d\'éssai.',
 ];

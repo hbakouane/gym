@@ -137,6 +137,23 @@
     $free_trial_projects = \App\Models\Project::where('user_id', auth()->id())->where('trial', true)->get();
 @endphp
 <script>
+    // Get the GET vars
+    var $_GET = {};
+    if(document.location.toString().indexOf('?') !== -1) {
+        var query = document.location
+                    .toString()
+                    // get the query string
+                    .replace(/^.*?\?/, '')
+                    // and remove any existing hash string (thanks, @vrijdenker)
+                    .replace(/#.*$/, '')
+                    .split('&');
+
+        for(var i=0, l=query.length; i<l; i++) {
+        var aux = decodeURIComponent(query[i]).split('=');
+        $_GET[aux[0]] = aux[1];
+        }
+    }
+
     function selectPlan(id, price) {
         let firstStep = document.querySelector('#firstStep');
         let secondStep = document.querySelector('#secondStep');
@@ -146,7 +163,7 @@
 
         let plan = document.querySelector('#plan');
         plan.value = id;
-        if ({{ count($free_trial_projects) }} == 0) {
+        if ({{ count($free_trial_projects) }} == 0 && !$_GET['upgrade']) {
             document.getElementById('secondForm').submit()
         }
     }
@@ -199,7 +216,9 @@
                 </svg>
                 <br>${{ $plan1->price }}/mo
                 <br>
-                @if(count($free_trial_projects) == 0)
+                @if(request('upgrade') == true)
+                    <a onclick="selectPlan({{ $plan1->id }}, {{ $plan1->price }})" class="btn btn-main"><i class="fa fa-crown"></i> {{ __('saas.Upgrade') }}</a>
+                @elseif(count($free_trial_projects) == 0)
                     <a onclick="selectPlan({{ $plan1->id }}, {{ $plan1->price }})" class="btn btn-main">{{ __('saas.7 Days Free Trial') }}</a>
                 @else
                     <a onclick="selectPlan({{ $plan1->id }}, {{ $plan1->price }})" class="btn btn-main">{{ __('saas.Subscribe') }}</a>
@@ -213,7 +232,9 @@
                 </svg>
                 <br>${{ $plan2->price }}/mo
                 <br>
-                @if(count($free_trial_projects) == 0)
+                @if(request('upgrade') == true)
+                    <a onclick="selectPlan({{ $plan2->id }}, {{ $plan2->price }})" class="btn btn-main"><i class="fa fa-crown"></i> {{ __('saas.Upgrade') }}</a>
+                @elseif(count($free_trial_projects) == 0)
                     <a onclick="selectPlan({{ $plan2->id }}, {{ $plan2->price }})" class="btn btn-main">{{ __('saas.7 Days Free Trial') }}</a>
                 @else
                     <a onclick="selectPlan({{ $plan2->id }}, {{ $plan2->price }})" class="btn btn-main">{{ __('saas.Subscribe') }}</a>
@@ -228,7 +249,9 @@
                 </svg>
                 <br>${{ $plan3->price }}/mo
                 <br>
-                @if(count($free_trial_projects) == 0)
+                @if(request('upgrade') == true)
+                    <a onclick="selectPlan({{ $plan3->id }}, {{ $plan3->price }})" class="btn btn-main"><i class="fa fa-crown"></i> {{ __('saas.Upgrade') }}</a>
+                @elseif(count($free_trial_projects) == 0)
                     <a onclick="selectPlan({{ $plan3->id }}, {{ $plan3->price }})" class="btn btn-main">{{ __('saas.7 Days Free Trial') }}</a>
                 @else
                     <a onclick="selectPlan({{ $plan3->id }}, {{ $plan3->price }})" class="btn btn-main">{{ __('saas.Subscribe') }}</a>
@@ -293,21 +316,27 @@
         <tr>
             <td></td>
             <td class="price">
-                @if(count($free_trial_projects) == 0)
+                @if(request('upgrade') == true)
+                    <a onclick="selectPlan({{ $plan1->id }}, {{ $plan1->price }})" class="btn btn-main"><i class="fa fa-crown"></i> {{ __('saas.Upgrade') }}</a>
+                @elseif(count($free_trial_projects) == 0)
                     <a onclick="selectPlan({{ $plan1->id }}, {{ $plan1->price }})" class="btn btn-main">{{ __('saas.7 Days Free Trial') }}</a>
                 @else
                     <a onclick="selectPlan({{ $plan1->id }}, {{ $plan1->price }})" class="btn btn-main">{{ __('saas.Subscribe') }}</a>
                 @endif
             </td>
             <td class="price">
-                @if(count($free_trial_projects) == 0)
+                @if(request('upgrade') == true)
+                    <a onclick="selectPlan({{ $plan2->id }}, {{ $plan2->price }})" class="btn btn-main"><i class="fa fa-crown"></i> {{ __('saas.Upgrade') }}</a>
+                @elseif(count($free_trial_projects) == 0)
                     <a onclick="selectPlan({{ $plan2->id }}, {{ $plan2->price }})" class="btn btn-main">{{ __('saas.7 Days Free Trial') }}</a>
                 @else
                     <a onclick="selectPlan({{ $plan2->id }}, {{ $plan2->price }})" class="btn btn-main">{{ __('saas.Subscribe') }}</a>
                 @endif
             </td>
             <td class="price">
-                @if(count($free_trial_projects) == 0)
+                @if(request('upgrade') == true)
+                    <a onclick="selectPlan({{ $plan3->id }}, {{ $plan3->price }})" class="btn btn-main"><i class="fa fa-crown"></i> {{ __('saas.Upgrade') }}</a>
+                @elseif(count($free_trial_projects) == 0)
                     <a onclick="selectPlan({{ $plan3->id }}, {{ $plan3->price }})" class="btn btn-main">{{ __('saas.7 Days Free Trial') }}</a>
                 @else
                     <a onclick="selectPlan({{ $plan3->id }}, {{ $plan3->price }})" class="btn btn-main">{{ __('saas.Subscribe') }}</a>
@@ -326,6 +355,7 @@
                 </div>
             @endif
             <input type="hidden" name="plan" id="plan">
+            <input type="hidden" name="upgrade" value="{{ request('upgrade') }}">
             <input type="hidden" name="coupon" id="coupon" value="{{ request('coupon') }}">
             <div class="col-md-8">
                 <div class="col-md-12 card">
@@ -350,7 +380,7 @@
                     <div class="card-body">
                         <label class="w-100 custom-control custom-radio custom-control-inline">
                             <p class="text-dark font-weight-bold font-20">{{ __('saas.Bank transfer') }}</p>
-                            <input required value="Bank transfer" type="radio" name="method" class="custom-control-input"><span class="custom-control-label"></span>
+                            <input disabled required value="Bank transfer" type="radio" name="method" class="custom-control-input"><span class="custom-control-label"></span>
                             <img class="img-fluid ml-3" style="height: 120px" src="{{ url('/images/bank_tranfer.png') }}" loading=lazy>
                         </label>
                         <p>{{ __('saas.To go with this payment method, please contact us per phone or email') }}</p>

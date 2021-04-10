@@ -2,7 +2,7 @@
 
 return [
     'Your free trial has expired, pick up a plan.' => 'Votre essai gratuit a expiré, choisissez un plan.',
-    'Membership expired, please purchase your subscription.' => 'L\'adhésion a expiré, veuillez acheter votre abonnement.',
+    'Membership expired, please purchase your subscription.' => 'Votre abonnement a expiré, veuillez le renouveler.',
     'Pick a Plan, Try it free for 7 Days' => 'Choisissez un forfait, essayez-le gratuitement pendant 7 jours',
     '7 Days Free Trial' => 'Essai gratuit de 7 jours',
     'Starter' => 'Starter',

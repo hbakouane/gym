@@ -50,9 +50,16 @@
         </div>
     </div>
 
-    @if($subscriptions)
+    @if(filled($subscriptions))
         <div class="card">
-            <div class="card-header font-16 text-dark"><p class="text-dark font-bold font-20">{{ __('saas.My subscriptions') }}</p></div>
+            <div class="card-header font-16 text-dark">
+                <p class="text-dark font-bold font-20">
+                    {{ __('saas.My subscriptions') }}
+                    <a class="btn btn-info" href="{{ route('plans.show', ['project' => request('project_id'), 'upgrade' => true]) }}">
+                        <i class="fa fa-crown"></i> {{ __('saas.Upgrade') }}
+                    </a>
+                </p>
+            </div>
             <div class="card-body">
                 <table class="table table-bordered">
                     <thead class="bg-light">
@@ -62,16 +69,19 @@
                         <th scope="col">{{ __('saas.Amount') }}</th>
                         <th scope="col">{{ __('saas.Status') }}</th>
                         <th scope="col">{{ __('saas.Payment method') }}</th>
+                        <th scope="col">{{ __('expenses.Date') }}</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($subscriptions as $subscription)
                         <tr>
                             <th scope="row">#{{ $subscription->subscription_id }}</th>
-                            <td>{{ $subscription->plan->Name }} ({{ __('saas.Status') }})</td>
+                            <td>{{ $subscription->plan->name }}</td>
                             <td>${{ $subscription->amount }}</td>
                             <td>{{ ucfirst($subscription->status) }}</td>
                             <td>{{ $subscription->payment_method }}</td>
+                            <!-- updated_at is the date the user paid in, because we update the subscription from Unpaid to Paid -->
+                            <td>{{ $subscription->updated_at }}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -82,6 +92,7 @@
                         <th scope="col">{{ __('saas.Amount') }}</th>
                         <th scope="col">{{ __('saas.Status') }}</th>
                         <th scope="col">{{ __('saas.Payment method') }}</th>
+                        <th scope="col">{{ __('expenses.Date') }}</th>
                     </tr>
                     </tfoot>
                 </table>

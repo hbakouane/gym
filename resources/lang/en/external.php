@@ -4,7 +4,7 @@ return [
     'slug' => 'Manage your Business, Members, Subscriptions and more ...',
     'slug-details' => 'The easy way to manage your business, members, earnings, expenses, staves and more features.',
     'trial' => 'Start free 7 days trial',
-    'credit-card' => 'No credit card required',
+    'credit-card' => 'No credit card is required',
     'feature1' => 'All-In-One Crm',
     'feature2' => 'Affordable',
     'feature3'=> '24/24 Support',

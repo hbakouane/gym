@@ -20,7 +20,7 @@ class MollieController extends Controller
     {
         // Check if the user wants a free trial
         $free_trial_projects = \App\Models\Project::where('user_id', auth()->id())->where('trial', true)->get();
-        if (count($free_trial_projects) == 0) {
+        if (count($free_trial_projects) == 0 AND (!request('upgrade'))) {
             $projectsToFreeTrial = Project::where('user_id', auth()->id())->get();
             foreach ($projectsToFreeTrial as $projectToFreeTrial) {
                 $projectToFreeTrial->update([
@@ -36,7 +36,7 @@ class MollieController extends Controller
         $plan = Plan::where('id', request('plan'))->first();
         $order_id = Str::random(16);
         $user = auth()->user();
-        // Create a subscription with 'Pending' status
+        // Create a subscription with 'Unpaid' status
         Subscription::create([
             'user_id' => $user->id,
             'plan_id' => $plan->id,
@@ -45,6 +45,12 @@ class MollieController extends Controller
             'payment_method' => request('method'),
             'amount' => $plan->price
         ])->save();
+
+        // Finish the free trial for all the projects of this user
+        $finished_trial_projects = Project::where('user_id', auth()->id())->get();
+        foreach ($finished_trial_projects as $project) {
+            $project->update(['trial' => 1]);
+        }
 
         if ($plan->duration == 31 OR $plan->duration == 30) {
             $plan->duration = 'month';

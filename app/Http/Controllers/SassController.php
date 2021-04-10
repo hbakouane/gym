@@ -20,9 +20,9 @@ class SassController extends Controller
             abort(404);
         }
 
-        if ($project->ended_at >= now()->toDateString()) {
+        if ($project->ended_at >= now()->toDateString() AND request('upgrade') == false) {
             return redirect(route('home', $project->project));
         }
-        return view('saas.plans');
+        return view('saas.plans', ['project' => $project]);
     }
 }
