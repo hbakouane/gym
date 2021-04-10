@@ -8,6 +8,12 @@
         <div class="col-md-3">
             @include('partials.session')
             <p class="text-dark text-center font-weight-bold h1 mb-3">{{ __('project.Manage projects') }}</p>
+            @if ($notice)
+                <div class="alert alert-danger">
+                    <strong>{{ $notice }}</strong>
+                    <a href="{{ route('plans.show', ['project' => App\Models\Project::where('user_id', auth()->id())->first()->project,'upgrade' => true]) }}" class="btn btn-info"><i class="fa fa-crown"></i> {{  __('saas.Upgrade') }}</a>
+                </div>
+            @endif
             @forelse($projects as $project)
                 <div class="card px-0 shadow border">
                     <div class="card-header"><p class="font-weight-bold font-20">{{ __('auth.ID') . ': ' . $project->project }}</p> </div>

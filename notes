@@ -1,6 +1,5 @@
 ** Implement Emails (password reset, new account, ...) for a better user experience. **
 
-user must go to the plans page after signing up
 // Werbung => https://www.facebook.com/FightNightOffical
 Memberships on single member page
 
@@ -15,13 +14,8 @@ Vendor in expenses page
 
 Dark mode extension
 
-sumuw.ma
-
-Add currency conversion
 
 Add a clients sidebar (activities sidebar*)
-
-Currencies Model
 
 Tasks
 
@@ -29,22 +23,12 @@ Invoices
 
 Reports
 
-Settings
-
-Employees
-
 Products
-
-Payments on members.show
 
 Newsletter popup after 10s on the homepage
 
 ?ref=id for referrals
 
-On /project/create, there will be a box showing the existing projects
-
 Links to routes on the 404 page
 
 When creating a staff, send an email after the creation is done
-
-PWA

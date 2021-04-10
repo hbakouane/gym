@@ -9,6 +9,8 @@ class Manage extends Component
 {
     public $projects;
 
+    public $notice = '';
+
     public function render()
     {
         return view('livewire.projects.manage');
@@ -21,7 +23,12 @@ class Manage extends Component
 
     public function deleteProject($id)
     {
-        Project::where('id', $id)->delete();
+        $project = Project::where('id', $id)->first();
+        // Users cannot delete their projects during free trial
+        if ($project->trial === null OR $project->trial === false) {
+            return $this->notice = __('project.You cannot delete a project during the free trial');
+        }
+        $project->delete();
         return $this->projects = Project::getUserProjects();
     }
 }

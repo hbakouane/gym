@@ -41,7 +41,7 @@ class Index extends Component
         $this->country = $project->country;
         $this->currency = $project->currency;
 
-        $this->subscriptions = \App\Models\Saas\Subscription::where('user_id', auth()->id())->get();
+        $this->subscriptions = \App\Models\Saas\Subscription::where('user_id', auth()->id())->orderBy('id', 'DESC')->get();
     }
 
     public function save()

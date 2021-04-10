@@ -30,4 +30,5 @@ return [
     'Manage projects' => 'Manage projects',
     'You do not have a project yet' => 'You do not have a project yet',
     'Delete project' => 'Delete project',
+    'You cannot delete a project during the free trial' => 'You cannot delete a project during the free trial',
 ];
