@@ -20,7 +20,9 @@ class createProjectChecker
 
         // Check if the user has already at least one project and he's on trial
         $projects = Project::where('user_id', auth()->id())->get();
-        if (count($projects) > 0) {
+        // Get the projects that passed the free trial, trial = true
+        $free_trial_projects = Project::where('user_id', auth()->id())->where('trial', true)->first();
+        if (count($projects) > 0 AND !$free_trial_projects) {
             return redirect(route('projects.manage'))->with('status', __('saas.You already have a project, delete it to create another one. During free trial, you are allowed to create just 1 project.'));
         }
 
