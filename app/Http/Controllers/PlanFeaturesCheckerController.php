@@ -17,24 +17,24 @@ class PlanFeaturesCheckerController extends Controller
 {
     public static function check($feature, $prefix = null)
     {
+        $user = getAdmin();
         // Get user projects so we can check if has already some projects or not
-        $projects = Project::where('user_id', auth()->id())->get();
+        $projects = Project::where('user_id', $user->id)->get();
         if (count($projects) == 0) {
             return false;
         }
         $stay = null;
         // Get the current user subscription
-        $subscription = Subscription::where('user_id', auth()->id())->orderBy('id', 'DESC')->first();
+        $subscription = Subscription::where('user_id', $user->id)->orderBy('id', 'DESC')->first();
         // Get the plan which correspends to this subscription
         $planFeature = PlanFeature::where('name', $feature)->where('plan_id', $subscription->plan_id)->first();
         // Get a user project just in case
-        $project = Project::where('user_id', auth()->id())
+        $project = Project::where('user_id', $user->id)
                             ->where('project', $prefix ?? request('project_id'))->first() 
                             ?? 
-                            Project::where('user_id', auth()->id())->first();
+                            Project::where('user_id', $user->id)->first();
         // Continue this script just if the user is subscribed
-        if (!auth()->user()->isSubscribed()) {
-            dd('not subs');
+        if (!$user->isSubscribed()) {
             return redirect(route('plans.show', ['project' => $project->project]));
         }
 

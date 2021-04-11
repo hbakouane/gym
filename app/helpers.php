@@ -71,3 +71,28 @@ if (!function_exists('makeLogo')) {
         return "<img class='img-fluid logo' src='$src' alt='$alt' style='height: $dimensions[0]px; width: $dimensions[1]px'>";
     }
 }
+
+
+if (!function_exists('getAdmin')) {
+    // This method is there to get the admin because sometimes the staff who's connected not the admin himself
+    function getAdmin() {
+        if (auth()->guard('staff')->check()) {
+            // Check if the auth user is a staff => get the admin id
+            $project_id = auth()->guard('staff')->user()->project_id;
+            $project = App\Models\Project::where('id', $project_id)->first();
+            // We already have a relationship between the User and the Project models
+            $user = $project->user;
+        } else {
+            $user = auth()->user();
+        }
+        return $user;
+    }
+}
+
+
+if (!function_exists('staffHasRole')) {
+    // This method is there to get the admin because sometimes the staff who's connected not the admin himself
+    function staffHasRole($routeToCheck) {
+        return App\Http\Controllers\RolesController::hasRole($routeToCheck);
+    }
+}

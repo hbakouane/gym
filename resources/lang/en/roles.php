@@ -57,6 +57,12 @@ return [
     'Show staves' => 'Show staves',
     'Edit staves' => 'Edit staves',
     'Delete staves' => 'Delete staves',
+    /* Memberships */
+    'See members memberships'=> 'See members memberships',
+    'Create members memberships' => 'Create members memberships',
+    'Show members memberships' => 'Show a member\'s membership',
+    'Edit members memberships' => 'Edit members memberships',
+    'Delete members memberships' => 'Delete members memberships',
     /* Example */
     'Staff can see all the members' => 'Staff can see all the members',
     'Staff can create a member' => 'Staff can create a member',
@@ -70,4 +76,6 @@ return [
 
     'By deleting this role, all the staves that belong to it will be deleted at well. Are you sure?' => 'By deleting this role, all the staves that belong to it will be deleted at well. Are you sure?',
     'You don\'t have roles, create them to start assigning them to staves'  => 'You don\'t have roles, create them to start assigning them to staves',
+    'Staves can see the statistiques' => 'Staves can see the statistiques',
+    'You are not allowed to see this page' => 'You are not allowed to see this page',
 ];

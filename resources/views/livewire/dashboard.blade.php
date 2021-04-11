@@ -1,4 +1,5 @@
 <div>
+    @if (staffHasRole('home.allowed'))
     <p class="text-muted text-right" style="cursor: pointer" wire:click="$toggle('filter')">{!! $filter ? '<i class="fa fa-times"></i>' : '<i class="fa fa-info-circle"></i>' !!} {{ __('general.More') }}</p>
     @if($filter)
         <div class="card">
@@ -195,4 +196,9 @@
             </div>
         </div>
     </div>
+    @else
+    <div class='alert alert-warning'>
+        <strong>{{ __('roles.You are not allowed to see this page') }}</strong>
+    </div>
+    @endif
 </div>

@@ -67,7 +67,7 @@ class Index extends Component
     {
         if (!empty($this->search)) {
             $members = Member::whereHas('project', function (Builder $query) {
-                $query->where('project', $this->prefix)->where('user_id', auth()->id());
+                $query->where('project', $this->prefix)->where('user_id', getAdmin()->id);
             })->where('name', 'like', "%$this->search%")
                 ->orWhere('phone', 'like', "%$this->search%")
                 ->orWhere('email', 'like', "%$this->search%")
@@ -78,7 +78,7 @@ class Index extends Component
                 ->paginate($this->pagination);
         } else {
             $members = Member::whereHas('project', function (Builder $query) {
-                $query->where('project', $this->prefix)->where('user_id', auth()->id());
+                $query->where('project', $this->prefix)->where('user_id', getAdmin()->id);
             })->orderBy('id', 'DESC')->paginate($this->pagination);
         }
 

@@ -65,6 +65,12 @@
                 </div>
                 <div class="form-group">
                     <label>{{ __('plan.Features') }}</label> <br>
+                    @if(!filled($features))
+                        {{ __('plan.You have to create features to create subscriptions') }}
+                        <a class="btn btn-success btn-sm mb-2" href="{{ route('features.create', ['project_id' => request('project_id')]) }}">
+                            {{ __('general.Create') }}
+                        </a>
+                    @endif
                     <select multiple class="form-control" name="features[]">
                         @foreach($features as $feature)
                             <option value="{{ $feature->id }}">{{ $feature->name }}</option>

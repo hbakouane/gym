@@ -23,6 +23,11 @@ class Manage extends Component
 
     public function deleteProject($id)
     {
+        // If a staff wants to delete a project, stop the script from running
+        if (auth()->guard('staff')->check()) {
+            dd(__('roles.You are not allowed to do this action'));
+            exit;
+        }
         $project = Project::where('id', $id)->first();
         // Users cannot delete their projects during free trial
         if ($project->trial === null OR $project->trial === false) {

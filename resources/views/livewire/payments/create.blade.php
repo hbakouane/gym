@@ -15,6 +15,7 @@
                              <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Email') }}</span> {{ $member->email }}</p>
                              <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.CNE') }}</span> {{ $member->cne }}</p>
                              <p class="w-100"><span class="text-dark font-weight-bold h6 text-left">{{ __('auth.Phone') }}</span> {{ $member->phone }}</p>
+                             @include('partials.membership_status', ['member' => $member])<br>
                              <a wire:click="$toggle('more')" style="cursor: pointer">{{ $more ? __('general.Hide') : __('general.More information') }}</a>
                              @if($more)
                                  <hr>
