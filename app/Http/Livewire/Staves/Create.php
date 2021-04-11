@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Staves;
 
+use App\Http\Controllers\PlanFeaturesCheckerController;
 use App\Models\Project;
 use App\Models\Role;
 use App\Models\Staff;
@@ -36,7 +37,8 @@ class Create extends Component
         'city' => 'required',
         'country' => 'required',
         'photo' => 'nullable|image|mimes:png,jpg,jpeg,gif',
-        'password' => 'required|min:8'
+        'password' => 'required|min:8',
+        'role_id' => 'required'
     ];
 
     // Toasting
@@ -46,6 +48,7 @@ class Create extends Component
 
     public function render()
     {
+        PlanFeaturesCheckerController::check('staves.create', $this->prefix);
         return view('livewire.staves.create');
     }
 

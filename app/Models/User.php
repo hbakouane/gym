@@ -55,4 +55,12 @@ class User extends Authenticatable
     public function project() {
         return $this->hasMany('App\Models\Projects');
     }
+
+    public function isSubscribed() {
+        $project = Project::where('user_id', auth()->id())->where('subscribed', true)->first();
+        if ($project->subscribed == true) {
+            return true;
+        }
+        return false;
+    }
 }

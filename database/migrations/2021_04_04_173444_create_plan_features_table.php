@@ -16,7 +16,7 @@ class CreatePlanFeaturesTable extends Migration
         Schema::create('plan_features', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('number')->nullable();
+            $table->integer('number')->nullable();
             $table->foreignId('plan_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

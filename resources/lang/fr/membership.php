@@ -15,5 +15,5 @@ return [
     'Status' => 'Statut',
     'ID' => 'ID',
     'Membership' => 'Abonnements',
-    'Paid Memberships' => 'Abonnements payantes',
+    'Paid Memberships' => 'Abonnements payants',
 ];

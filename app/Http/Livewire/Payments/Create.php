@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Payments;
 
+use App\Http\Controllers\PlanFeaturesCheckerController;
 use App\Models\Member;
 use App\Models\Payment;
 use App\Models\Project;
@@ -30,6 +31,7 @@ class Create extends Component
 
     public function render()
     {
+        PlanFeaturesCheckerController::check('payments.create', $this->prefix);
         return view('livewire.payments.create');
     }
 

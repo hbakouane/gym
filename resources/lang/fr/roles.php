@@ -68,5 +68,6 @@ return [
     'Select all' => 'Tout sélectionner',
     'Unselect all' => 'Tout déselectionner',
 
-    'By deleting this role, all the staves that belong to it will be deleted at well. Are you sure?' => 'En supprimant ce rôle, toutes les staffs qui lui appartiennent seront supprimées au puits. Êtes vous sûre?'
+    'By deleting this role, all the staves that belong to it will be deleted at well. Are you sure?' => 'En supprimant ce rôle, toutes les staffs qui lui appartiennent seront supprimées au puits. Êtes vous sûre?',
+    'You don\'t have roles, create them to start assigning them to staves' => 'Vous n\'aves pas des roles, créez des roles afin de les assigner aux staffs.',
 ];
