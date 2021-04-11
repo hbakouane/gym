@@ -15,8 +15,13 @@ use Illuminate\Routing\Redirector;
 
 class PlanFeaturesCheckerController extends Controller
 {
-    public static function check($feature, $prefix)
+    public static function check($feature, $prefix = null)
     {
+        // Get user projects so we can check if has already some projects or not
+        $projects = Project::where('user_id', auth()->id())->get();
+        if (count($projects) == 0) {
+            return false;
+        }
         $stay = null;
         // Get the current user subscription
         $subscription = Subscription::where('user_id', auth()->id())->orderBy('id', 'DESC')->first();
@@ -38,9 +43,11 @@ class PlanFeaturesCheckerController extends Controller
         if ($feature == "project.create") {
             // get all user projects
             $projects = Project::getUserProjects();
-            if (count($projects) >= $planFeature->number) {
-                $stay = false;
-                $response = __('features-check.project_advertissement', ['plan_projects_nbr' => $planFeature->number, 'actual_nbr' => count($projects)]);
+            if (count($projects) >= 1) {
+                if (count($projects) >= $planFeature->number) {
+                    $stay = false;
+                    $response = __('features-check.project_advertissement', ['plan_projects_nbr' => $planFeature->number, 'actual_nbr' => count($projects)]);
+                }
             }
         }
 

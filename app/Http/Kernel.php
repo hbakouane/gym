@@ -72,6 +72,7 @@ class Kernel extends HttpKernel
         'staff' => \App\Http\Middleware\RedirectIfNotStaff::class,
         'roleChecker' => \App\Http\Middleware\RoleChecker::class,
         'subscriptionChecker' => \App\Http\Middleware\subscriptionChecker::class,
-        'createProjectChecker' => createProjectChecker::class
+        'createProjectChecker' => createProjectChecker::class,
+        'projectLimitChecker' => \App\Http\Middleware\projectLimitChecker::class,
     ];
 }
