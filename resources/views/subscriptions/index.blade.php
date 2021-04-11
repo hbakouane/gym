@@ -37,6 +37,34 @@
                     </div>
                     <div class="card-footer text-muted">
                         <p>{{ __('general.Created by') }} <a href="">{{ $subscription->user->name }}</a> | {{ $subscription->created_at->diffForHumans() }}</p>
+                        <div class="w-100 d-flex justify-content-center">
+                            <script>
+                                function validate(event) {
+                                    let form = document.querySelector('#form')
+                                    if (confirm("[1] {{ __('response.All the related records to this subscription will be deleted (members, payments, memberships and ...), Would you like to continue?') }}")) {
+                                        if (confirm("[2] {{ __('response.All the related records to this subscription will be deleted (members, payments, memberships and ...), Would you like to continue?') }}")) {
+                                                confirm("[3] {{ __('response.All the related records to this subscription will be deleted (members, payments, memberships and ...), Would you like to continue?') }}")
+                                            if (confirm("[4] {{ __('response.All the related records to this subscription will be deleted (members, payments, memberships and ...), Would you like to continue?') }}")) {
+                                                form.method = "POST"
+                                                form.action = "{{ route('subscriptions.destroy', [request('project_id'), $subscription->id]) }}"
+                                            }
+                                        }
+                                    } else {
+                                        event.stopImmediatePropagation()
+                                    }
+                                }
+                            </script>
+                            <form id="form" action="#">
+                                @csrf
+                                @method('DELETE')
+                                <button
+                                    onclick="validate()"
+                                    class="btn btn-sm btn-danger">
+                                    <i class="fa fa-trash"></i> 
+                                    {{ __('general.Delete') }}
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
