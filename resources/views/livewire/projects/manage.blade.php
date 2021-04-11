@@ -1,7 +1,7 @@
 <div>
     <style>
         body {
-            overflow: hidden;
+            overflow-x: hidden;
         }
     </style>
     <div class="row justify-content-center mt-5 py-5">

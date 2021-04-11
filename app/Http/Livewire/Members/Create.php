@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Members;
 
+use App\Http\Controllers\PlanFeaturesCheckerController;
 use App\Models\Member;
 use App\Models\Project;
 use Illuminate\Support\Facades\Storage;
@@ -40,6 +41,7 @@ class Create extends Component
 
     public function render()
     {
+        PlanFeaturesCheckerController::check('members.create', $this->project_id);
         return view('livewire.members.create');
     }
 

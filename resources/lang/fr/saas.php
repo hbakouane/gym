@@ -37,5 +37,5 @@ return [
     'Status' => 'Statut',
     'Payment method' => 'Méthode de payment',
     'Amount' => 'Amount',
-    'My subscriptions' => 'Mes abonnements'
+    'My subscriptions' => 'Mes abonnements',
 ];

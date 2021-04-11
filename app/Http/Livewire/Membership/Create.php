@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Membership;
 
+use App\Http\Controllers\PlanFeaturesCheckerController;
 use App\Models\Member;
 use App\Models\Membership;
 use App\Models\Payment;
@@ -33,6 +34,7 @@ class Create extends Component
 
     public function render()
     {
+        PlanFeaturesCheckerController::check('memberships.create', $this->prefix);
         return view('livewire.membership.create');
     }
 
@@ -114,7 +116,7 @@ class Create extends Component
         ])->save();
 
         // Reset the properties
-        $this->reset(['member_id', 'payment_date', 'amount', 'note']);
+        $this->reset(['member_id', 'amount', 'note', 'member', 'showCard']);
 
         // Toast success
         $this->type = 'success';

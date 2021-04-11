@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Vendors;
 
+use App\Http\Controllers\PlanFeaturesCheckerController;
 use App\Models\Vendor;
 use App\Models\Project;
 use Illuminate\Support\Facades\Storage;
@@ -37,6 +38,7 @@ class Create extends Component
 
     public function render()
     {
+        PlanFeaturesCheckerController::check('vendors.create', $this->project_id);
         return view('livewire.vendors.create');
     }
 

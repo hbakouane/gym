@@ -58,11 +58,20 @@
                          </div>
                          <div class="form-group">
                              <label class="w-100">{{ __('auth.Role') }}
+                                 @if(filled($roles))
                                  <select wire:model="role_id" class="form-control" style="height: 49px">
-                                     @foreach($roles as $role)
-                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                     @endforeach
-                                 </select>
+                                    @foreach($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                                @else
+                                    <div class="w-100">
+                                        <p>
+                                            {{ __('roles.You don\'t have roles, create them to start assigning them to staves') }}
+                                        </p>
+                                        <a href="{{ route('roles.create', $prefix) }}">{{ __('roles.Create roles') }}</a>
+                                    </div>
+                                @endif
                              </label>
                          </div>
                      </div>

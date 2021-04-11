@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Projects;
 
+use App\Http\Controllers\PlanFeaturesCheckerController;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -34,6 +35,7 @@ class CreateProject extends Component
 
     public function render()
     {
+        PlanFeaturesCheckerController::check('project.create');
         return view('livewire.projects.create-project');
     }
 
@@ -81,6 +83,11 @@ class CreateProject extends Component
         $this->step3 = false;
         $this->step4 = true;
 
+        // Get the projects where subscribed is true so that we can make the new project subscribed too
+        $projects = Project::where('user_id', auth()->id())->where('subscribed', true)->get();
+        // get one subscribed project
+        $subscribed_project = Project::where('user_id', auth()->id())->where('subscribed', true)->first();
+
         // Save the project information
         $project = new Project();
         $project->create([
@@ -92,7 +99,10 @@ class CreateProject extends Component
             'address' => $this->Address,
             'zip' => $this->Zip,
             'plan_id' => 1,
-            'currency' => $this->Currency
+            'currency' => $this->Currency,
+            'subscribed' => $projects ? true : null,
+            'started_at' => $subscribed_project ? $subscribed_project->started_at : null,
+            'ended_at' => $subscribed_project ? $subscribed_project->ended_at : null,
         ])->save();
 
         // Save the user information

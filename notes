@@ -1,5 +1,8 @@
 ** Implement Emails (password reset, new account, ...) for a better user experience. **
 
+User won't we redirected to plans.show if he has the PRO subscription
+When a user paid a plan, updated all the projects to one plan id
+
 // Werbung => https://www.facebook.com/FightNightOffical
 Memberships on single member page
 
