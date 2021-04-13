@@ -101,9 +101,9 @@
 </style>
 @php
     // Get the plans so we can get their IDs
-    $plan1 = \App\Models\Plan::where('price', '9.99')->first();
+    $plan1 = \App\Models\Plan::where('price', '14.99')->first();
     $plan2 = \App\Models\Plan::where('price', '24.99')->first();
-    $plan3 = \App\Models\Plan::where('price', '49.99')->first();
+    $plan3 = \App\Models\Plan::where('price', '39.99')->first();
 
     if (request('coupon')) {
         $coupon = request('coupon');

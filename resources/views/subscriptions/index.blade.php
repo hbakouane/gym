@@ -30,7 +30,7 @@
 
                     </div>
                     <div class="card-body">
-                        <p class="font-weight-bold h5 text-center">{{ $project->devise ?? '' . $subscription->price . '/' . makeDuration($subscription) }}</p>
+                        <p class="font-weight-bold h5 text-center">{{ ($website->currency ?? '') . $subscription->price . '/' . makeDuration($subscription) }}</p>
                         @foreach($subscription->features as $feature)
                             <p class="card-text text-center"><i class="fa fa-check text-success"></i> {{ $feature->name }}</p>
                         @endforeach

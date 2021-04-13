@@ -99,7 +99,7 @@
         </div>
     </div>
 </div>
-<div class="video-area section-bg-img-3 pt-lg-23 pt-19 pb-lg-21 pb-15" id="video">
+<div class="video-area section-bg-img-3 pt-lg-23 pt-19 pb-lg-21 pb-15" style="display: none" id="video">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">

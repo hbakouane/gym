@@ -66,10 +66,10 @@ class Index extends Component
         if (str_contains($this->search, "expired")) {
              $members = Member::whereProject($this->prefix)
                 ->where('ended_at', '<', Carbon::today())
+                ->orWhere('ended_at', null)
                 ->paginate($this->pagination);
         } elseif (str_contains($this->search, "active")) {
              $members = Member::whereProject($this->prefix)
-                ->where('started_at', '<', Carbon::today())
                 ->where('ended_at', '>', Carbon::today())
                 ->paginate($this->pagination);
         } elseif (!empty($this->search)) {

@@ -55,6 +55,7 @@
     <link rel="icon" type="image/png" href="{{ url('images/icon-512x512.png') }}">
     <link rel="apple-touch-icon" type="image/png" href="{{ url('images/icon-512x512.png') }}">
     <link rel="msapplication-TileImage" content="{{ url('images/icon-512x512.png') }}">
+    <link rel="shortcut icon" href="{{ url('images/favicon.png') }}" type="image/x-icon">
 
     <!-- SEO -->
     @include('partials.seo')

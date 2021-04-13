@@ -56,4 +56,28 @@ return [
     'Haven\'t started yet? We\'re offering a free trial!' => 'Vous n\'avez pas encore commencé? Nous offrons un essai gratuit!',
     'Contact us' => 'Contacter nous',
     'Message sent successfully!' => 'Message envoyé avec succès.',
+    /* First Project */
+    'Good for small businesses' => 'Bon pour les petites businesses',
+    '1 Project' => '1 Projet',
+    '5 Staves' => '5 Staffs par projet',
+    '200 Members' => '200 Membres par projet',
+    '200 Memberships' => '200 Abonnements par projet',
+    '7 Days Trial' => '7 Jours d\'essai',
+    'Data backup' => 'Data backup',
+    /* Second Plan */
+    'Good for intermediate businesses' => 'Bon pour les businesses intermédiaires',
+    '3 Project' => '3 Projets',
+    '15 Staves' => '15 staffs par projet',
+    '500 Members' => '500 Membres par projet',
+    '500 Memberships' => '500 Abonnements par projet',
+    '7 Days Trial' => '7 Jours d\'essai',
+    'Data backup' => 'Data backup',
+    /* Third Plan */
+    'Good for big businesses' => 'Bon pour les grandes businesses',
+    '5 Project' => '5 Projets',
+    '30 Staves' => '30 Staffs par projet',
+    '800 Members' => '800 Membres par projet',
+    '800 Memberships' => '800 Abonnements par projet',
+    '7 Days Trial' => '7 Jours d\'essai',
+    'Data backup' => 'Data backup',
 ];
