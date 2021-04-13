@@ -43,5 +43,7 @@ return [
     'Permissions' => 'Permissions',
     'Number of users' => 'Nombre d\'utilisateurs',
     'Mot de passe oublié?' => 'Mot de passe oublié?',
-    'Staff portal' => 'Portail du personnel',
+    'Staff portal' => 'Portail du staff',
+    'Subject' => 'Sujet',
+    'Message' => 'Message',
 ];

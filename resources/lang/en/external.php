@@ -54,4 +54,6 @@ return [
     'Status' => 'Status',
     'Coming soon' => 'Coming soon',
     'Haven\'t started yet? We\'re offering a free trial!' => 'Haven\'t started yet? We\'re offering a free trial!',
+    'Contact us' => 'Contact us',
+    'Message sent successfully!' => 'Message sent successfully!',
 ];

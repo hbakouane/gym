@@ -54,4 +54,6 @@ return [
     'Status' => 'Statut',
     'Coming soon' => 'Bientôt disponible',
     'Haven\'t started yet? We\'re offering a free trial!' => 'Vous n\'avez pas encore commencé? Nous offrons un essai gratuit!',
+    'Contact us' => 'Contacter nous',
+    'Message sent successfully!' => 'Message envoyé avec succès.',
 ];
