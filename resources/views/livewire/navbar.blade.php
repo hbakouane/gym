@@ -122,7 +122,9 @@
                         </div>
                         {{--                            <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>--}}
                         <a class="dropdown-item" href="{{ route('user.settings.show', $prefix) }}"><i class="fas fa-cog mr-2"></i>{{ __('settings.Settings') }}</a>
-                        <a class="dropdown-item" href="{{ route('projects.manage') }}"><i class="fas fa-cog mr-2"></i>{{ __('settings.Manage my projects') }}</a>
+                        @if(auth()->guard('web')->check())
+                            <a class="dropdown-item" href="{{ route('projects.manage') }}"><i class="fas fa-cog mr-2"></i>{{ __('settings.Manage my projects') }}</a>
+                        @endif
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button type="submit" class="dropdown-item" style="cursor: pointer"><i class="fas fa-power-off mr-2"></i>Logout</button>

@@ -49,4 +49,5 @@ return [
     'Pick up a day' => 'Choisissez une date',
     'Soon' => 'Prochaînement',
     'Go to dashboard' => 'Aller au tableau de board',
+    'Send' => 'Envoyer',
 ];

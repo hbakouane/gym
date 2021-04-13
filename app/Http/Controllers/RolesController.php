@@ -44,5 +44,14 @@ class RolesController extends Controller
         if (Auth::guard('staff')->check() AND !str_contains(Auth::guard('staff')->user()->role->permissions, $routeToCheck)) {
             return abort(403);
         }
+        return true;
+    }
+
+    public static function hasRole($routeToCheck)
+    {
+        if (Auth::guard('staff')->check() AND !str_contains(Auth::guard('staff')->user()->role->permissions, $routeToCheck)) {
+            return false;
+        }
+        return true;
     }
 }

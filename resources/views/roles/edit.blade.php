@@ -15,7 +15,10 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label>
-                            <input type="checkbox" {{ checkRole($role->permissions, 'home') }} name="permissions[]" value="home"> Dashboard <br>
+                            <input type="checkbox" {{ checkRole($role->permissions, 'home') }} name="permissions[]" value="home"> {{ __('general.Dashboard') }} <br>
+                        </label><br>
+                        <label>
+                            <input type="checkbox" {{ checkRole($role->permissions, 'home.allowed') }} name="permissions[]" value="home.allowed"> {{ __('roles.Staves can see the statistiques') }} <br>
                         </label>
 
                         <hr>
@@ -182,6 +185,24 @@
                         </label><br>
                         <label>
                             <input type="checkbox" {{ checkRole($role->permissions, 'staves.delete') }} name="permissions[]" value="staves.delete"> {{ __('roles.Delete staves') }}
+                        </label><br>
+
+                        <hr>
+
+                        <label>
+                            <input type="checkbox" {{ checkRole($role->permissions, 'memberships.index') }} name="permissions[]" value="memberships.index"> {{ __('roles.See members memberships') }}
+                        </label><br>
+                        <label>
+                            <input type="checkbox" {{ checkRole($role->permissions, 'memberships.create') }} name="permissions[]" value="memberships.create"> {{ __('roles.Create members memberships') }}
+                        </label><br>
+                        <label>
+                            <input type="checkbox" {{ checkRole($role->permissions, 'memberships.show') }} name="permissions[]" value="memberships.show"> {{ __('roles.Show members memberships') }}
+                        </label><br>
+                        <label>
+                            <input type="checkbox" {{ checkRole($role->permissions, 'memberships.edit') }} name="permissions[]" value="memberships.edit"> {{ __('roles.Edit members memberships') }}
+                        </label><br>
+                        <label>
+                            <input type="checkbox" {{ checkRole($role->permissions, 'memberships.delete') }} name="permissions[]" value="memberships.delete"> {{ __('roles.Delete members memberships') }}
                         </label><br>
                     </div>
                 </div>

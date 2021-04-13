@@ -95,158 +95,229 @@
                         <li class="nav-item ">
                             <a class="nav-link @if($route === "home") active @endif()" href="{{ route('home', $prefix) }}"><i class="fa fa-fw fa-user-circle"></i>{{ __('Dashboard') }} <span class="badge badge-success">6</span></a>
                         </li>
+                        @if(staffHasRole('members.index') OR staffHasRole('members.create'))
                         <li class="nav-item ">
                             <a class="nav-link @if(Str::startsWith($route, 'members.')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#members_menu" aria-controls="submenu-1"><i class="fa fa-users"></i>{{ __('pages.Members') }}</a>
                             <div id="members_menu" class="submenu collapse @if(Str::startsWith($route, 'members.')) show @endif()" style="">
                                 <ul class="nav flex-column">
+                                    @if(staffHasRole('members.index'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'members.index')) active @endif()" href="{{ route('members.index', $prefix) }}">{{ __('members.All members') }}</a>
                                     </li>
+                                    @endif
+                                    @if(staffHasRole('members.create'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'members.create')) active @endif()" href="{{ route('members.create', $prefix) }}">{{ __('members.Add a member') }}</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item">
+                        @endif
+                        @if(staffHasRole('features.index') OR staffHasRole('features.create') 
+                            OR staffHasRole('subscriptions.index') OR staffHasRole('subscriptions.create'))
+                            <li class="nav-item">
                                 <a class="nav-link @if(Str::startsWith($route, 'features') or Str::startsWith($route, 'subscriptions')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-fw fa-money-check"></i>{{ __('Plans') }}</a>
                             <div id="submenu-2" class="collapse submenu @if(Str::startsWith($route, 'features') or Str::startsWith($route, 'subscriptions')) show @endif()" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
+                                        @if (staffHasRole('features.index') OR staffHasRole('features.create'))
                                         <a class="nav-link collapsed @if(Str::startsWith($route, 'features')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#features_menu" aria-controls="features_menu">{{ __('Features') }}</a>
-                                        <div id="features_menu" class="submenu collapse @if(Str::startsWith($route, 'features')) show @endif()" style="">
+                                        <div id="features_menu" class="submenu collapse @if(Str::startsWith($route, 'features')) show @endif()">
                                             <ul class="nav flex-column">
+                                                @if(staffHasRole('features.index'))
                                                 <li class="nav-item">
                                                     <a class="nav-link @if(Str::startsWith($route, 'features.index')) active @endif()" href="{{ route('features.index', $prefix) }}">{{ __('All features') }}</a>
                                                 </li>
+                                                @endif
+                                                @if(staffHasRole('features.create'))
                                                 <li class="nav-item">
                                                     <a class="nav-link @if(Str::startsWith($route, 'features.create')) active @endif()" href="{{ route('features.create', $prefix) }}">{{ __('Add features') }}</a>
                                                 </li>
+                                                @endif
                                             </ul>
                                         </div>
+                                        @endif
 
+                                        @if (staffHasRole('subscriptions.index') OR staffHasRole('subscriptions.create'))
                                         <a class="nav-link collapsed @if(Str::startsWith($route, 'subscriptions')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#subscriptions_menu" aria-controls="subscriptions_menu">{{ __('Subscriptions') }}</a>
                                         <div id="subscriptions_menu" class="submenu collapse @if(Str::startsWith($route, 'subscriptions')) show @endif()" style="">
                                             <ul class="nav flex-column">
+                                                @if (staffHasRole('subscriptions.index'))
                                                 <li class="nav-item">
                                                     <a class="nav-link @if(Str::startsWith($route, 'subscriptions.index')) active @endif()" href="{{ route('subscriptions.index', $prefix) }}">{{ __('All subscriptions') }}</a>
                                                 </li>
+                                                @endif
+                                                @if (staffHasRole('subscriptions.create'))
                                                 <li class="nav-item">
                                                     <a class="nav-link @if(Str::startsWith($route, 'subscriptions.create')) active @endif()" href="{{ route('subscriptions.create', $prefix) }}">{{ __('Add subscription') }}</a>
                                                 </li>
+                                                @endif
                                             </ul>
                                         </div>
+                                        @endif
                                     </li>
                                 </ul>
                             </div>
                         </li>
+                        @endif
+                        @if (staffHasRole('payments.index') OR staffHasRole('payments.create'))
                         <li class="nav-item">
                             <a class="nav-link collapsed @if(Str::startsWith($route, 'payments')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#payments_menu" aria-controls="features_menu"><i class="fa fa-dollar-sign"></i> {{ __('pages.Payments') }}</a>
                             <div id="payments_menu" class="submenu collapse @if(Str::startsWith($route, 'payments')) show @endif()" style="">
                                 <ul class="nav flex-column">
+                                    @if (staffHasRole('payments.index'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'payments.index')) active @endif()" href="{{ route('payments.index', $prefix) }}">{{ __('payments.All payments') }}</a>
                                     </li>
+                                    @endif
+                                    @if (staffHasRole('payments.create'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'payments.create')) active @endif()" href="{{ route('payments.create', $prefix) }}">{{ __('payments.Add a payment') }}</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
+                        @endif
+                        @if (staffHasRole('vendors.index') OR staffHasRole('vendors.create'))
                         <li class="nav-item">
                             <a class="nav-link collapsed @if(Str::startsWith($route, 'vendors')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#vendors_menu" aria-controls="vendors_menu"><i class="fa fa-store"></i> {{ __('pages.Vendors') }}</a>
                             <div id="vendors_menu" class="submenu collapse @if(Str::startsWith($route, 'vendors')) show @endif()" style="">
                                 <ul class="nav flex-column">
+                                    @if (staffHasRole('vendors.index'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'vendors.index')) active @endif()" href="{{ route('vendors.index', $prefix) }}">{{ __('pages.All vendors') }}</a>
                                     </li>
+                                    @endif
+                                    @if (staffHasRole('vendors.create'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'vendors.create')) active @endif()" href="{{ route('vendors.create', $prefix) }}">{{ __('pages.Add a vendor') }}</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
+                        @endif
+                        @if(staffHasRole('credits.index') OR staffHasRole('credits.create'))
                         <li class="nav-item">
                             <a class="nav-link collapsed @if(Str::startsWith($route, 'credits')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#credits_menu" aria-controls="credits_menu"><i class="fa fa-hand-holding-usd"></i> {{ __('pages.Credits') }}</a>
                             <div id="credits_menu" class="submenu collapse @if(Str::startsWith($route, 'credits')) show @endif()" style="">
                                 <ul class="nav flex-column">
+                                    @if (staffHasRole('credits.create'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'credits.index')) active @endif()" href="{{ route('credits.index', $prefix) }}">{{ __('credits.All credits') }}</a>
                                     </li>
+                                    @endif
+                                    @if (staffHasRole('credits.create'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'credits.create')) active @endif()" href="{{ route('credits.create', $prefix) }}">{{ __('credits.Add a credit') }}</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
+                        @endif
+                        @if (staffHasRole('expenses.index') OR staffHasRole('expenses.create'))
                         <li class="nav-item">
                             <a class="nav-link collapsed @if(Str::startsWith($route, 'expenses')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#expenses_menu" aria-controls="expenses_menu"><i class="fa fa-coins"></i> {{ __('pages.Expenses') }}</a>
                             <div id="expenses_menu" class="submenu collapse @if(Str::startsWith($route, 'expenses')) show @endif()" style="">
                                 <ul class="nav flex-column">
+                                    @if (staffHasRole('expenses.index'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'expenses.index')) active @endif()" href="{{ route('expenses.index', $prefix) }}">{{ __('expenses.All expenses') }}</a>
                                     </li>
+                                    @endif
+                                    @if (staffHasRole('expenses.create'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'expenses.create')) active @endif()" href="{{ route('expenses.create', $prefix) }}">{{ __('expenses.Add an expense') }}</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
+                        @endif
+                        @if (staffHasRole('roles.index') OR staffHasRole('roles.create'))
                         <li class="nav-item">
                             <a class="nav-link collapsed @if(Str::startsWith($route, 'roles')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#roles_menu" aria-controls="roles_menu"><i class="fa fa-user-tag"></i> {{ __('pages.Roles') }}</a>
                             <div id="roles_menu" class="submenu collapse @if(Str::startsWith($route, 'roles')) show @endif()" style="">
                                 <ul class="nav flex-column">
+                                    @if (staffHasRole('roles.index'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'roles.index')) active @endif()" href="{{ route('roles.index', $prefix) }}">{{ __('pages.All roles') }}</a>
                                     </li>
+                                    @endif
+                                    @if (staffHasRole('roles.create'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'roles.create')) active @endif()" href="{{ route('roles.create', $prefix) }}">{{ __('pages.Add a role') }}</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
+                        @endif
+                        @if (staffHasRole('staves.index') OR staffHasRole('staves.create'))
                         <li class="nav-item">
                             <a class="nav-link collapsed @if(Str::startsWith($route, 'staves')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#staves_menu" aria-controls="staves_menu"><i class="fa fa-users-cog"></i> {{ __('pages.Staves') }}</a>
                             <div id="staves_menu" class="submenu collapse @if(Str::startsWith($route, 'staves')) show @endif()" style="">
                                 <ul class="nav flex-column">
+                                    @if (staffHasRole('staves.index'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'staves.index')) active @endif()" href="{{ route('staves.index', $prefix) }}">{{ __('pages.All staves') }}</a>
                                     </li>
+                                    @endif
+                                    @if (staffHasRole('staves.create'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'staves.create')) active @endif()" href="{{ route('staves.create', $prefix) }}">{{ __('pages.Add a staff') }}</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
+                        @endif
+                        @if (staffHasRole('memberships.index') OR staffHasRole('memberships.create'))
                         <li class="nav-item">
                             <a class="nav-link collapsed @if(Str::startsWith($route, 'memberships')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#memberships_menu" aria-controls="memberships_menu"><i class="fa fa-tags"></i> {{ __('membership.Membership') }}</a>
                             <div id="memberships_menu" class="submenu collapse @if(Str::startsWith($route, 'memberships')) show @endif()" style="">
                                 <ul class="nav flex-column">
+                                    @if (staffHasRole('memberships.index'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'memberships.index')) active @endif()" href="{{ route('memberships.index', $prefix) }}">{{ __('pages.All Memberships') }}</a>
                                     </li>
+                                    @endif
+                                    @if (staffHasRole('memberships.create'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'memberships.create')) active @endif()" href="{{ route('memberships.create', $prefix) }}">{{ __('pages.Add a membership') }}</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
+                        @endif
+                        @if (staffHasRole('website.settings') OR staffHasRole('user.settings.show') OR staffHasRole('projects.manage'))
                         <li class="nav-item">
                             <a class="nav-link collapsed @if(Str::startsWith($route, 'website.settings') OR Str::startsWith($route, 'user.settings.show')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#settings_menu" aria-controls="settings_menu"><i class="fa fa-cogs"></i> {{ __('pages.Settings') }}</a>
                             <div id="settings_menu" class="submenu collapse @if(Str::startsWith($route, 'website.settings') OR Str::startsWith($route, 'user.settings.show')) show @endif()" style="">
                                 <ul class="nav flex-column">
+                                    @if (staffHasRole('user.settings.show'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'user.settings.show')) active @endif()" href="{{ route('user.settings.show', $prefix) }}">{{ __('general.Settings') }} <span class="badge badge-success">6</span></a>
                                     </li>
+                                    @endif
+                                    @if (staffHasRole('website.settings'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'website.settings')) active @endif()" href="{{ route('website.settings', $prefix) }}">{{ __('pages.Project settings') }}</a>
                                     </li>
+                                    @endif
+                                    @if (staffHasRole('projects.manage'))
                                     <li class="nav-item">
                                         <a class="nav-link @if(Str::startsWith($route, 'projects.manage')) active @endif()" href="{{ route('projects.manage', $prefix) }}">{{ __('project.Manage projects') }}</a>
                                     </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>
+                        @endif
                         <li class="nav-item ">
                             <a class="nav-link @if($route === "upcoming.features") active @endif()" href="{{ route('upcoming.features', $prefix) }}"><i class="fa fa-hourglass-end"></i>{{ __('home.Upcoming Features') }} <span class="badge badge-success">6</span></a>
                         </li>

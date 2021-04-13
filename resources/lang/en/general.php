@@ -49,4 +49,5 @@ return [
     'Pick up a day' => 'Pick up a day',
     'Soon' => 'Soon',
     'Go to dashboard' => 'Go to dashboard',
+    'Send' => 'Send',
 ];

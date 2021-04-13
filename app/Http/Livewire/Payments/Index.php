@@ -15,10 +15,12 @@ class Index extends Component
     public $type = "success";
     public $prefix;
 
+    public $payments;
+
     public function render()
     {
-        $payments = Payment::where('project_id', Project::getProjectId($this->prefix))->asc()->get();
-        return view('livewire.payments.index', ['payments' => $payments]);
+        $this->payments = Payment::where('project_id', Project::getProjectId($this->prefix))->asc()->get();
+        return view('livewire.payments.index', ['payments' => $this->payments]);
     }
 
     public function delete($id, $modelType)
@@ -26,10 +28,12 @@ class Index extends Component
         // Check if the user is able to do this action
         RolesController::checkRole('payments.delete');
         // Delete
-        Payment::find($id)->delete();
+        Payment::where('id', $id)->first()->delete();
         // Toast success
         $this->type = "success";
         $this->message = __('general.Deleted successfully.');
         $this->toastr = true;
+
+        $this->payments = Payment::where('project_id', Project::getProjectId($this->prefix))->asc()->get();
     }
 }

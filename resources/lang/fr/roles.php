@@ -57,9 +57,16 @@ return [
     'Show staves' => 'Voir un staff',
     'Edit staves' => 'Éditer des staffs',
     'Delete staves' => 'Supprimer des staffs',
+    'Delete roles' => 'Supprimer des roles',
+    /* Memberships */
+    'See members memberships'=> 'Voir les abonnements des membres',
+    'Create members memberships' => 'Créer des abonnements',
+    'Show members memberships' => 'Voir un abonnement',
+    'Edit members memberships' => 'Éditer des abonnements',
+    'Delete members memberships' => 'Supprimer des abonnements',
     /* Example */
     'Staff can see all the members' => 'Le staff peut voir tous les membres',
-    'Staff can create a member' => 'Le personnel peut créer un membre',
+    'Staff can create a member' => 'Le staff peut créer un membre',
     'Staff can see a member\'s details' => 'Le staff peut voir les détails d\'un membre',
     'Staff can edit and update a member\'s information' => 'Le staff peut modifier et mettre à jour les informations d\'un membre',
 
@@ -70,4 +77,6 @@ return [
 
     'By deleting this role, all the staves that belong to it will be deleted at well. Are you sure?' => 'En supprimant ce rôle, toutes les staffs qui lui appartiennent seront supprimées au puits. Êtes vous sûre?',
     'You don\'t have roles, create them to start assigning them to staves' => 'Vous n\'aves pas des roles, créez des roles afin de les assigner aux staffs.',
+    'Staves can see the statistiques' => 'Les stafs peuvent voir les statistiques',
+    'You are not allowed to see this page' => 'Vous n\'êtes pas autorisé à voir cette page',
 ];

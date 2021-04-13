@@ -30,7 +30,7 @@ class Project extends Model
 
     public static function getUserProjects()
     {
-        return Project::where('user_id', auth()->id())->get();
+        return Project::where('user_id', getAdmin()->id)->get();
     }
 
     public function subscription()
