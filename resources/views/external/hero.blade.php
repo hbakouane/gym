@@ -1,34 +1,17 @@
-<!-- hero area -->
-<div class="gradient-bg-1 pt-23 pt-sm-25 pt-md-25 pt-lg-31 pb-lg-0 pb-md-15 pb-11 position-relative z-index-1 font-family-5">
-    <div class="section-bg-img-2 pos-abs-tl w-100 h-100 z-index-n1"></div>
-    <div class="container">
-        <div class="row position-relative justify-content-center">
-            <!-- hero area content start -->
-            <div class="col-xl-10 col-lg-7 col-md-10 pb-lg-20 pb-10 pr-0" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
-                <div class="hero-content text-center">
-                    <!-- hero area section title start -->
-                    <h1 class="font-size-22 font-family-5 text-white letter-spacing-np3 mb-6 ">{{ __('external.slug') }}</h1>
-                    <p class="font-size-8 text-periwinkle-gray letter-spacing-np4 font-family-5 pr-xl-15 pr-lg-0 pr-md-15 pr-0 mb-11">{{ __('external.slug-details') }}</p>
-                    <!-- hero area section title end -->
-                    @include('partials.trial_button')
-                    @php
-                        // Get the projects that have been already 'free-trialed'
-                        $free_trial_projects = \App\Models\Project::where('user_id', auth()->id())->where('trial', true)->get();
-                    @endphp
-                    @if(\Illuminate\Support\Facades\Auth::check() AND \Illuminate\Support\Facades\Auth::guard('web')->check())
-                        <a href="{{ route('project.create') }}" class="btn btn-main text-light btn-success py-3">{{ __('project.Create a Project') }}</a>
-                    @endif
-                    <p class="font-size-3 text-periwinkle-gray font-family-5 mb-0 mt-5">{{ __('external.credit-card') }}</p>
-                </div>
-            </div>
-            <div class="col-md-11">
-                <!-- abs img start -->
-                <div class="abs-img-1 mb-xl-n34 mb-lg-n30 mb-md-n32 mb-n5 mr-n1 w-100 shadow-9 z-index-1">
-                    <img src="{{ url('images/screenshots/hero.png') }}" alt="" class="w-100 light-shape default-shape">
-                </div>
-                <!-- abs img end -->
-            </div>
-            <!-- hero area content end -->
+<div class="container-fluid py-10" style="margin-top: 35px;">
+    <div class="row py-5 bg-main">
+        <div class="col-md-1 py-10"></div>
+        <div class="col-md-5 py-10 my-auto">
+            <p class="h2 text-light mt-10">Manage your Business, Members, Subscriptions and more</p>
+            <p class="h6 text-light mb-4">
+                The easy way to manage your business, members, earnings, <br />
+                expenses, staves and more features.
+            </p>
+            @include('partials.trial_button')
+            <p class="text-muted small">No credit card is required</p>
+        </div>
+        <div class="col-md-6 py-10">
+            <img src="hero.png" class="img-fluid">
         </div>
     </div>
 </div>

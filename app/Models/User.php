@@ -59,7 +59,7 @@ class User extends Authenticatable
     public function isSubscribed() {
         $user = getAdmin();
         $project = Project::where('user_id', $user->id)->where('subscribed', true)->first();
-        if ($project->subscribed == true) {
+        if (filled($project) AND $project->subscribed == true) {
             return true;
         }
         return false;

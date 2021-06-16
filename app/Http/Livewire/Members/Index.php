@@ -64,11 +64,11 @@ class Index extends Component
     public function render()
     {
         if (str_contains($this->search, "expired")) {
-             $members = Member::whereProject($this->prefix)
+            $members = Member::whereProject($this->prefix)
                 ->where('ended_at', '<', Carbon::today())
                 ->paginate($this->pagination);
         } elseif (str_contains($this->search, "active")) {
-             $members = Member::whereProject($this->prefix)
+            $members = Member::whereProject($this->prefix)
                 ->where('started_at', '<', Carbon::today())
                 ->where('ended_at', '>', Carbon::today())
                 ->paginate($this->pagination);

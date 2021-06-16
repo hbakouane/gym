@@ -26,7 +26,8 @@ class PlanFeaturesCheckerController extends Controller
         $stay = null;
         // Get the current user subscription
         $subscription = Subscription::where('user_id', $user->id)->orderBy('id', 'DESC')->first();
-        // Get the plan which correspends to this subscription
+        if (filled($subscription)) {
+            // Get the plan which correspends to this subscription
         $planFeature = PlanFeature::where('name', $feature)->where('plan_id', $subscription->plan_id)->first();
         // Get a user project just in case
         $project = Project::where('user_id', $user->id)
@@ -104,6 +105,7 @@ class PlanFeaturesCheckerController extends Controller
         if (filled($stay) AND $stay == false) {
             session()->flash('status', $response ?? null);
             return redirect(route($route ?? 'home', $params ?? $project->project));
+        }
         }
     }
 }

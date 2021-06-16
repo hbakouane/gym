@@ -1,4 +1,4 @@
-<div wire:poll.5s>
+<div wire:poll.10s>
     @include('partials.toastr')
     @if($current === "index")
         <!-- Search Bar -->

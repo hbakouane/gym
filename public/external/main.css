@@ -604,9 +604,8 @@ body[data-theme='light'] .dark-mode-texts .light-shape.default-shape, .light-mod
   background: #4eab08;
   color: #fff;
 }
-
-.dynamic-sticky-bg.reveal-header {
-  background: var(--bg);
+header.l8-site-header.site-header--menu-center.dynamic-sticky-bg.dark-mode-texts.px-9.site-header--absolute.site-header--sticky {
+  background: #1F2837;
 }
 
 .sticky-bg-white.reveal-header {
@@ -12045,6 +12044,45 @@ p {
 .img-pos-1 {
   position: relative;
 }
+.bg-main {
+  background-color: #1f2837 !important;
+}
+.text-main {
+  color: #9be600 !important;
+}
+.btn-main {
+  background-color: #9be600 !important;
+  color: white !important;
+  border-radius: 12px;
+}
+.btn-main:hover {
+  color: #9be600 !important;
+  background-color: white !important;
+}
+.btn-blue {
+  background-color: #0e0c28 !important;
+  color: white !important;
+  border-radius: 12px;
+}
+.btn-blue:hover {
+  color: #0e0c28 !important;
+  background-color: white !important;
+}
+.text-blue {
+  color: #0e0c28 !important;
+}
+.section-icon {
+  height: 170px !important;
+}
+.line-height {
+  line-height: 34px !important;
+}
+.bg-gray-light {
+  background-color: #DEE7EB !important;
+}
+.radius {
+  border-radius: 12px !important;
+}
 
 @media (min-width: 992px) {
   .img-pos-1 {
@@ -12717,3 +12755,8 @@ img.w-100.light-shape.default-shape {
 }
 
 /*# sourceMappingURL=maps/main.css.map */
+
+.nav-left-sidebar .submenu {
+  background-color: #ffffff78 !important;
+  background: #ffffff78 !important;
+}

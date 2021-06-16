@@ -1,5 +1,5 @@
 <div class="dashboard-header">
-    <nav class="navbar navbar-expand-lg bg-white fixed-top">
+    <nav class="navbar navbar-expand-lg bg-main fixed-top">
         @php
             $project = \App\Models\Project::where('project', request('project_id'))->first();
         @endphp

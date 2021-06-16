@@ -80,7 +80,7 @@
     <!-- ============================================================== -->
     <!-- left sidebar -->
     <!-- ============================================================== -->
-    <div class="nav-left-sidebar sidebar-dark">
+    <div class="nav-left-sidebar sidebar-dark" style="background: #A3F200">
         <div class="menu-list">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
