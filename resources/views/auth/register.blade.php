@@ -37,7 +37,10 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
                         </div>
-                        <input type="password" name="password" id="password" class="form-control input" placeholder="{{ __('settings.Password') }}">
+                        <input type="password" name="password" id="password" class="form-control password input" placeholder="{{ __('settings.Password') }}">
+                        <div class="input-group-prepend" onclick="showPassword()" style="cursor: pointer;">
+                            <span class="input-group-text" id="pass_btn"><i class="fa fa-eye"></i></span>
+                        </div>
                     </div>
                     @error('password')
                     <p class="text-danger">{{ $message }}</p>
@@ -47,7 +50,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
                         </div>
-                        <input type="password" id="password_confirm" name="password_confirmation" class="form-control input" placeholder="{{ __('settings.Password_confirm') }}">
+                        <input type="password" id="password_confirm" name="password_confirmation" class="form-control password input" placeholder="{{ __('settings.Password_confirm') }}">
                     </div>
                     @error('password_confirm')
                     <p class="text-danger">{{ $message }}</p>
@@ -70,5 +73,23 @@
         </div>
     </div>
     <div class="col-md-8 bg-side"></div>
+    
+    <script>
+        let showPassword = () => {
+            document.querySelectorAll('input[type="password"]').forEach(password => {
+                password.type = "text"
+            });
+            if (document.querySelector('#pass_btn > i').classList.contains('fa-eye-slash')) {
+                document.querySelectorAll('.password').forEach(password => {
+                    password.type = "password"
+                });
+                document.querySelector('#pass_btn > i').classList.add('fa-eye')
+                return document.querySelector('#pass_btn > i').classList.remove('fa-eye-slash')
+            }
+            document.querySelector('#pass_btn > i').classList.remove('fa-eye')
+            document.querySelector('#pass_btn > i').classList.add('fa-eye-slash')
+        }
+    </script>
+
 </div>
 @endsection
