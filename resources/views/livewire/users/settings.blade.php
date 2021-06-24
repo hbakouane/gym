@@ -52,9 +52,6 @@
 
                             <div class="col-md-6">
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i></span>
-                                    </div>
                                     <input type="text" id="phone" wire:model="phone" class="form-control input" placeholder="{{ __('settings.Phone') }}">
                                 </div>
                             </div>
@@ -389,3 +386,16 @@
             </div>
     @endif
 </div>
+
+<script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+        // any initialisation options go here
+    });
+</script>
+
+<style>
+    .iti.iti--allow-dropdown {
+        width: 100%;
+    }
+</style>

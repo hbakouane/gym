@@ -194,6 +194,10 @@
             stroke-dasharray: 500;
         }
 
+        .iti.iti--allow-dropdown {
+            width: 100%;
+        }
+
         @keyframes spin {
             0% {
                 transform: rotate(0deg);
@@ -328,7 +332,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Phone') }}
-                                                                <input type="text" class="{{ handleErrorClass($errors, 'UserPhone', ' ') }} form-control input" wire:model="UserPhone">
+                                                                <input id="phone" type="text" class="{{ handleErrorClass($errors, 'UserPhone', ' ') }} w-100 form-control input" wire:model="UserPhone">
                                                             </label>
                                                             @error('UserPhone')
                                                             <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
@@ -496,3 +500,10 @@
         @endif
     </div>
 </div>
+
+<script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+        // any initialisation options go here
+    });
+</script>

@@ -26,6 +26,9 @@
     <!-- Data tables Css -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
 
+    <!-- Phone Input CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css">
+
     <!-- Page infos -->
     @php
         $page = $page ?? __('Dashboard');
@@ -79,6 +82,14 @@
     $(document).ready( function () {
         $('#datatable').DataTable();
     } );
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
+<script>
+  var input = document.querySelector("#phone");
+  window.intlTelInput(input, {
+    // any initialisation options go here
+  });
 </script>
 
 </body>
