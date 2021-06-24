@@ -85,12 +85,6 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput.min.js"></script>
-<script>
-  var input = document.querySelector("#phone");
-  window.intlTelInput(input, {
-    // any initialisation options go here
-  });
-</script>
 
 </body>
 

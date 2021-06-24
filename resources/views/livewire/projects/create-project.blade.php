@@ -393,6 +393,12 @@
                                             </form>
                                         </div>
                                     </fieldset>
+                                    <script>
+                                            var input = document.querySelector("#phone");
+                                            window.intlTelInput(input, {
+                                                // any initialisation options go here
+                                            });
+                                    </script>
                                 @endif
 {{--                                @if($step3)--}}
 {{--                                    <fieldset>--}}
@@ -500,10 +506,3 @@
         @endif
     </div>
 </div>
-
-<script>
-    var input = document.querySelector("#phone");
-    window.intlTelInput(input, {
-        // any initialisation options go here
-    });
-</script>
