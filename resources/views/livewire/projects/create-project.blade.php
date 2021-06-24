@@ -327,12 +327,20 @@
                                         <hr class="mt-0 mb-4">
                                         <div class="w-75 mx-auto">
                                             <p class="text-dark h5 text-left">{{ __('project.Tell us a little about your self.') }}</p>
-                                            <form wire:submit.prevent="saveStepTwo">
+                                            <form wire:submit.prevent="saveStepTwo" id="second_form">
+                                                <script>
+                                                    let makeTel = () => {
+                                                        var input = document.querySelector("#phone");
+                                                        window.intlTelInput(input, {
+                                                            // any initialisation options go here
+                                                        });
+                                                    }
+                                                </script>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="w-100 text-left">{{ __('project.Phone') }}
-                                                                <input id="phone" type="text" class="{{ handleErrorClass($errors, 'UserPhone', ' ') }} w-100 form-control input" wire:model="UserPhone">
+                                                                <input onchange="makeTel()" id="phone" type="text" class="{{ handleErrorClass($errors, 'UserPhone', ' ') }} w-100 form-control input" wire:model="UserPhone">
                                                             </label>
                                                             @error('UserPhone')
                                                             <p class="text-left"><small class="text-danger">{{ $message }}</small></p>
@@ -393,12 +401,6 @@
                                             </form>
                                         </div>
                                     </fieldset>
-                                    <script>
-                                            var input = document.querySelector("#phone");
-                                            window.intlTelInput(input, {
-                                                // any initialisation options go here
-                                            });
-                                    </script>
                                 @endif
 {{--                                @if($step3)--}}
 {{--                                    <fieldset>--}}

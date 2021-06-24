@@ -65,6 +65,15 @@
     <!-- Crisp Chat -->
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="708a26c9-331b-4309-a2d2-2dbe78fbc252";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
+    <script>
+        function makeTel() {
+            var input = document.querySelector("#phone");
+            window.intlTelInput(input, {
+                // any initialisation options go here
+            });
+        }
+    </script>
+
     <title>{{ ($website->name ?? env('APP_NAME')) . ' - ' . $page }} | {{ $saas->sentence ?? '' }}</title>
 </head>
 
