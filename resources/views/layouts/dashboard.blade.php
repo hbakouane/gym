@@ -285,11 +285,7 @@
                         @endif
                         @if (staffHasRole('website.settings') OR staffHasRole('user.settings.show') OR staffHasRole('projects.manage'))
                         <li class="nav-item">
-                            <a class="nav-link collapsed @if(Str::startsWith($route, 'website.settings') OR Str::startsWith($route, 'user.settings.show')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#settings_menu" aria-controls="settings_menu"><i class="fa fa-cogs"></i> 
-                                <span onclick="r('')">
-                                    {{ __('pages.Settings') }}
-                                </span>
-                            </a>
+                            <a class="nav-link collapsed @if(Str::startsWith($route, 'website.settings') OR Str::startsWith($route, 'user.settings.show')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#settings_menu" aria-controls="settings_menu"><i class="fa fa-cogs"></i> {{ __('pages.Settings') }}</a>
                             <div id="settings_menu" class="submenu collapse @if(Str::startsWith($route, 'website.settings') OR Str::startsWith($route, 'user.settings.show')) show @endif()" style="">
                                 <ul class="nav flex-column">
                                     @if (staffHasRole('user.settings.show'))

@@ -1,4 +1,4 @@
-<div wire:poll>
+<div>
     @if($toastr)
         <script>
             let timeOut = 3000;
