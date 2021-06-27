@@ -330,11 +330,14 @@
                                             <form wire:submit.prevent="saveStepTwo" id="second_form">
                                                 <script>
                                                     let makeTel = () => {
+                                                        alert('hello')
                                                         var input = document.querySelector("#phone");
                                                         window.intlTelInput(input, {
                                                             // any initialisation options go here
                                                         });
                                                     }
+                                                    window.makeTel = makeTel()
+                                                    setInterval(makeTel(), 1000)
                                                 </script>
                                                 <div class="row">
                                                     <div class="col-md-12">
