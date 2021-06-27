@@ -58,6 +58,7 @@ Route::view('/terms-and-conditions', 'external.terms-and-conditions')->name('ter
 Route::group(['middleware' => ['auth', 'createProjectChecker']], function () {
     Route::get('/project/create', [CreateProjectController::class, 'index'])->name('project.create');
 });
+Route::get('/logout', function() { return redirect('/'); });
 
 Route::get('/pay', [SassController::class, 'index'])->name('plans.show');
 Route::get('/projects/manage', [ProjectsController::class, 'manageProjects'])->name('projects.manage')->middleware(['auth', 'password.confirm']);
