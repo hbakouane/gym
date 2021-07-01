@@ -46,7 +46,7 @@ if (!function_exists('getRouteName'))
 
 if (!function_exists('checkRole')) {
     function checkRole($permissions, $needle) {
-        if(str_contains($permissions, $needle)):
+        if(str_contains($permissions ?? '', $needle)):
             echo "checked";
         endif;
     }

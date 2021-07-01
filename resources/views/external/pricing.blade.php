@@ -27,57 +27,7 @@
 
 
             <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
-                <!-- single-price start -->
-                <div class="single-price border bg-default pt-9 pb-10 mb-lg-0 mb-9 pl-12 pr-lg-21 pr-sm-15 pr-11 shadow-13 hover-shadow-3 aos-init aos-animate" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
-                    <!-- price-top start -->
-                    <div class="price-top justify-content-between mb-2">
-                        <span class="font-size-2 letter-spacing-np43 line-height-2p66 text-oslogray text-uppercase font-weight-bold mb-2">Starter</span>
-                    </div>
-                    <!-- price-top end -->
-                    <!-- main-price start -->
-                    <div class="main-price">
-                        <div class="price mt-3 position-relative pl-7">
-                            <h2 class="heading-default-color d-inline-block mb-0 font-size-22 font-weight-bold font-family-3 line-height-1p304 dynamic-value" data-active="15" data-monthly="39.90" data-yearly="149"></h2>RM
-                            <span class="text-default-color-2 font-size-6 font-family-5 font-weight-bold letter-spacing-np3 dynamic-value line-height-reset" data-active="/mo" data-monthly="/mo" data-yearly="/ year"></span>
-                        </div>
-                    </div>
-                    <!-- main-price end -->
-                    <p class="font-family-5 font-size-3 letter-spacing-np4 text-default-color-4 mb-0">Good for small businesses</p>
-                    <!-- price-body start -->
-                    <div class="price-body pt-8">
-                        <ul class="pricing-list with-check-icon list-unstyled mb-9">
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3"> 
-                                <i class="icon text-success icon-check-2-2 mr-4 text-default-color-2"></i> 1 Project
-                            </li>
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3"> 
-                                <i class="icon text-success icon-check-2-2 mr-4 text-default-color-2"></i> 5 Staves per project
-                            </li>
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3">
-                                <i class="icon text-success icon-check-2-2 mr-4"></i> 150 Members per project
-                            </li>
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3">
-                                <i class="icon text-success icon-check-2-2 mr-4"></i> 150 Memberships per project
-                            </li>
-                            
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3">
-                                <i class="icon text-success icon-check-2-2 mr-4"></i> 7 Days Trial
-                            </li>
-                            
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3">
-                                <i class="icon text-success icon-check-2-2 mr-4"></i> Data backup
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- price-body end -->
-                    <!-- price-btn start -->
-                    <div class="price-btn">
-                        @include('partials.trial_button')
-
-                    </div>
-                    <!-- price-btn end -->
-                    <p class="font-size-3 text-dovegray font-family-5 mb-0 mt-5">No credit card is required</p>
-                </div>
-                <!-- single-price end -->
+                
             </div>
             <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
                 <div class="alert border-0 mb-0 rounded-0 text-center alert-success shadow border aos-init aos-animate" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
@@ -137,57 +87,7 @@
                 <!-- single-price end -->
             </div>
             <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
-                <!-- single-price start -->
-                <div class="single-price border bg-default pt-9 pb-10 mb-lg-0 mb-9 pl-12 pr-lg-21 pr-sm-15 pr-11 shadow-13 hover-shadow-3 aos-init aos-animate" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
-                    <!-- price-top start -->
-                    <div class="price-top justify-content-between mb-2">
-                        <span class="font-size-2 letter-spacing-np43 line-height-2p66 text-oslogray text-uppercase font-weight-bold mb-2">Pro</span>
-                    </div>
-                    <!-- price-top end -->
-                    <!-- main-price start -->
-                    <div class="main-price">
-                        <div class="price mt-3 position-relative pl-7">
-                            <h2 class="heading-default-color d-inline-block mb-0 font-size-22 font-weight-bold font-family-3 line-height-1p304 dynamic-value" data-active="15" data-monthly="109.90" data-yearly="149"></h2>RM
-                            <span class="text-default-color-2 font-size-6 font-family-5 font-weight-bold letter-spacing-np3 dynamic-value line-height-reset" data-active="/mo" data-monthly="/mo" data-yearly="/ year"></span>
-                        </div>
-                    </div>
-                    <!-- main-price end -->
-                    <p class="font-family-5 font-size-3 letter-spacing-np4 text-default-color-4 mb-0">Good for big businesses</p>
-                    <!-- price-body start -->
-                    <div class="price-body pt-8">
-                        <ul class="pricing-list with-check-icon list-unstyled mb-9">
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3"> 
-                                <i class="icon text-success icon-check-2-2 mr-4 text-default-color-2"></i> 5 Projects
-                            </li>
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3"> 
-                                <i class="icon text-success icon-check-2-2 mr-4 text-default-color-2"></i> 30 Staves per project
-                            </li>
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3">
-                                <i class="icon text-success icon-check-2-2 mr-4"></i> 650 Members per project
-                            </li>
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3">
-                                <i class="icon text-success icon-check-2-2 mr-4"></i> 650 Memberships per project
-                            </li>
-                            
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3">
-                                <i class="icon text-success icon-check-2-2 mr-4"></i> 7 Days Trial
-                            </li>
-                            
-                            <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3">
-                                <i class="icon text-success icon-check-2-2 mr-4"></i> Data backup
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- price-body end -->
-                    <!-- price-btn start -->
-                    <div class="price-btn">
-                        @include('partials.trial_button')
-
-                    </div>
-                    <!-- price-btn end -->
-                    <p class="font-size-3 text-dovegray font-family-5 mb-0 mt-5">No credit card is required</p>
-                </div>
-                <!-- single-price end -->
+                
             </div>
         </div>
     </div>
