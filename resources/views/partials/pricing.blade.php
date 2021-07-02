@@ -126,7 +126,7 @@
     <p class="h3 text-center text-dark font-weight-bold pb-3">{{ __('saas.Pick a Plan, Try it free for 7 Days') }}</p>
     <p class="h5 mt-0 pt-0 text-center mb-3 text-muted">{{ __('external.credit-card') }}</p>
 @else
-    <p class="h1 text-center text-dark font-weight-bold pb-3">{{ __('saas.Our plans start from') . " $$cheapest->price" }}</p>
+    <p class="h1 text-center text-dark font-weight-bold pb-3">{{ __('saas.Our plans start from') . " RM59.90" }}</p>
 @endif
 <style>
     #secondStep {

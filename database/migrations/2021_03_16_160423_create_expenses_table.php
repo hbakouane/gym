@@ -21,7 +21,7 @@ class CreateExpensesTable extends Migration
             $table->string('vendor');
             $table->date('date');
             $table->string('service');
-            $table->longText('note');
+            $table->longText('note')->nullable();
             $table->timestamps();
         });
     }

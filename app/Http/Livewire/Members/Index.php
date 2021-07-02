@@ -73,15 +73,11 @@ class Index extends Component
                 ->where('ended_at', '>', Carbon::today())
                 ->paginate($this->pagination);
         } elseif (!empty($this->search)) {
-            $members = Member::whereHas('project', function (Builder $query) {
-                $query->where('project', $this->prefix)->where('user_id', getAdmin()->id);
-            })->where('name', 'like', "%$this->search%")
-                ->orWhere('phone', 'like', "%$this->search%")
-                ->orWhere('email', 'like', "%$this->search%")
-                ->orWhere('address', 'like', "%$this->search%")
-                ->orWhere('cne', 'like', "%$this->search%")
-                ->orWhere('city', 'like', "%$this->search%")
+            $members = Member::where('name', 'like', "%$this->search%")
                 ->orderBy('id', 'DESC')
+                ->whereHas('project', function (Builder $query) {
+                    $query->where('project', $this->prefix)->where('user_id', getAdmin()->id);
+                })
                 ->paginate($this->pagination);
         } else {
             $members = Member::whereHas('project', function (Builder $query) {

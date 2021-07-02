@@ -28,7 +28,7 @@
                              </label>
                          </div>
                          <div class="form-group">
-                             <label class="w-100">{{ __('auth.CNE') }}
+                             <label class="w-100">NRIC or Passport Number
                                  <input wire:model="cne" type="text" class="form-control input">
                              </label>
                          </div>
