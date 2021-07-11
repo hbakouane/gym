@@ -1,5 +1,5 @@
-<div class="container-fluid" id="features">
-    <div class="container my-10">
+<div class="container-fluid bg-light mt-0" id="features">
+    <div class="container py-10">
         <p class="text-center h2 text-dark">WHAT WE OFFER</p>
         <div class="row">
             <div class="col-md-4 text-center">

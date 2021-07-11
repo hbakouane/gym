@@ -29,17 +29,17 @@
         <div class="row mt-4">
             @foreach($members as $member)
                 <div class="col-md-2">
-                    <div class="card">
+                    <div class="card h-100">
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
                                 <img src="{{ makeProfileImg($member->photo, true) }}" class="img-fluid profile-img">
                             </div>
-                            <p class="text-dark text-center h5 mt-2 font-bold">{{ $member->name }}</p>
+                            <p class="text-dark text-center h5 mt-2 font-bold">
+                                @include('partials.membership_status', ['member' => $member])
+                                {{ $member->name }}
+                            </p>
                             <p class="text-center my-0"><i class="fa fa-map-marker-alt"></i> {{ $member->city }}</p>
                             <p class="text-center my-0"><i class="fa fa-phone"></i> {{ $member->phone }}</p>
-                            <p class="text-center my-0">
-                                @include('partials.membership_status', ['member' => $member])
-                            </p>
                         </div>
                         <div class="card-footer w-100 mx-auto">
                             <div class="d-flex justify-content-center">
@@ -59,6 +59,15 @@
                     </div>
                 </div>
             @endforeach
+            <div class="col-md-2">
+                <div class="card mx-auto h-100">
+                    <div class="card-body text-center" style="margin-top: 130px;">
+                        <i class="fa fa-plus text-success h1" style=""></i>
+                        <br />
+                        <a href="{{ route('members.create', $prefix) }}" class="h4 font-weight-bold">Add a member</a>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="d-flex justify-content-center">
             {{ $members->links() }}
@@ -190,4 +199,9 @@
             </ul>
         </form>
     @endif
+    <style>
+        .col-md-2 {
+            margin-bottom: 20px;
+        }
+    </style>
 </div>

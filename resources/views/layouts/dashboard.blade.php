@@ -43,6 +43,16 @@
     <!-- Bootstrap-select Css -->
     <link rel="stylesheet" href="{{ url('assets/vendor/bootstrap-select/css/bootstrap-select.css') }}">
 
+    <style>
+        .table.table-striped.table-bordered.first.dataTable > thead > tr, .table.table-striped.table-bordered.first.dataTable > tfoot > tr {
+            background: #a3f200;
+            color: white !important;
+        }
+        .table.table-striped.table-bordered.first.dataTable > thead > tr > th {
+            color: #555 !important;
+        }
+    </style>
+
     <!-- Page infos -->
     @php
         $page = $page ?? __('Dashboard');

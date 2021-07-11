@@ -17,41 +17,31 @@
             </div>
         </div>
         <div class="row justify-content-center" id="table-price-value" data-pricing-dynamic="" data-value-active="monthly">
-
-
-
-
-
-
-
-
-
-            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
-                
-            </div>
-            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
-                <div class="alert border-0 mb-0 rounded-0 text-center alert-success shadow border aos-init aos-animate" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
+            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 text-center">
+                <!--<div class="alert border-0 mb-0 rounded-0 text-center alert-success shadow border aos-init aos-animate" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
                     <strong>Popular</strong>
-                </div>
+                </div>-->
                 <!-- single-price start -->
-                <div class="single-price border bg-default pt-9 pb-10 mb-lg-0 mb-9 pl-12 pr-lg-21 pr-sm-15 pr-11 shadow-13 hover-shadow-3 aos-init aos-animate" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
+                <div style="border-radius: 24px;" class="shadow bg-white single-price border bg-default pt-9 pb-10 mb-lg-0 mb-9 pl-12 pr-lg-21 pr-sm-15 pr-11 shadow-13 hover-shadow-3 aos-init aos-animate" data-aos="fade-right" data-aos-duration="800" data-aos-once="true">
                     <!-- price-top start -->
                     <div class="price-top justify-content-between mb-2">
-                        <span class="font-size-2 letter-spacing-np43 line-height-2p66 text-oslogray text-uppercase font-weight-bold mb-2">Standart</span>
+                        <span class="text-default-color-2 h1 text-center letter-spacing-np43 line-height-2p66 text-uppercase font-weight-bold mb-2">Monthly Fees</span>
+                        <span class="text-success h5 text-center text-success letter-spacing-np43 line-height-2p66 text-uppercase font-weight-bold mb-2">We have the most affordable price.</span>
                     </div>
                     <!-- price-top end -->
                     <!-- main-price start -->
                     <div class="main-price">
                         <div class="price mt-3 position-relative pl-7">
                             <span class="text-default-color-2 d-inline-block letter-spacing-n1p2 mb-0 font-size-13 font-weight-bold font-family-5 dynamic-value pos-abs-tl mt-md-3"></span>
-                            <h2 class="heading-default-color d-inline-block mb-0 font-size-22 font-weight-bold font-family-3 line-height-1p304 dynamic-value" data-active="15" data-monthly="59.90" data-yearly="149"></h2>RM
-                            <span class="text-default-color-2 font-size-6 font-family-5 font-weight-bold letter-spacing-np3 dynamic-value line-height-reset" data-active="/mo" data-monthly="/mo" data-yearly="/ year"></span>
+                            <h2 class="heading-default-color d-inline-block mb-0 font-size-22 font-weight-bold font-family-3 line-height-1p304 dynamic-value" data-active="15" data-monthly="RM 59.90" data-yearly="149"></h2>
+                            <span class="text-default-color-2 font-size-6 font-family-5 font-weight-bold letter-spacing-np3 dynamic-value line-height-reset text-success" data-active="/month" data-monthly="/month" data-yearly="/ year"></span>
                         </div>
                     </div>
                     <!-- main-price end -->
-                    <p class="font-family-5 font-size-3 letter-spacing-np4 text-default-color-4 mb-0">Good for intermediate businesses</p>
+                    <p class="font-family-5 font-size-3 letter-spacing-np4 text-default-color-4 mb-0 text-success">Minimum 5 users</p>
+                    <p class="font-family-5 font-size-3 letter-spacing-np4 text-default-color-4 mb-0 text-success">Price is exclusive of tax</p>
                     <!-- price-body start -->
-                    <div class="price-body pt-8">
+                    <!--<div class="price-body pt-8">
                         <ul class="pricing-list with-check-icon list-unstyled mb-9">
                             <li class="font-size-5 text-default-color-2 letter-spacing-np45 font-weight-normal font-family-5 mb-3"> 
                                 <i class="icon text-success icon-check-2-2 mr-4 text-default-color-2"></i> 3 Projects
@@ -74,20 +64,16 @@
                                 <i class="icon text-success icon-check-2-2 mr-4"></i> Data backup
                             </li>
                         </ul>
-                    </div>
+                    </div>-->
                     <!-- price-body end -->
                     <!-- price-btn start -->
                     <div class="price-btn">
                         @include('partials.trial_button')
-
                     </div>
                     <!-- price-btn end -->
                     <p class="font-size-3 text-dovegray font-family-5 mb-0 mt-5">No credit card is required</p>
                 </div>
                 <!-- single-price end -->
-            </div>
-            <div class="col-xl-4 col-lg-5 col-md-6 col-sm-8">
-                
             </div>
         </div>
     </div>

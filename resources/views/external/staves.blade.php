@@ -1,4 +1,4 @@
-<div class="container-fluid py-10">
+<div class="container-fluid py-10 bg-white">
     <div class="container py-10">
         <div class="row">
             <div class="col-md-6 my-auto">

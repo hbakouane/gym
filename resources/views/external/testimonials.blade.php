@@ -1,5 +1,5 @@
 <!-- testimonial-area start -->
-<div class="testimonial-area pt-7 pb-20" id="testimonials">
+<div class="testimonial-area bg-white pt-7 pb-20" id="testimonials">
     <div class="container">
         <h2 class="text-center font-size-20 text-default-color-2 letter-spacing-np3 font-weight-bold font-family-5 mb-6">{{ __('external.What are our clients saying about us?') }}</h2>
         <div class="row no-gutters border-collapse-1">

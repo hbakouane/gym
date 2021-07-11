@@ -1,5 +1,5 @@
 @if($member->ended_at < \Carbon\Carbon::today())
-    <span class="badge badge-danger">{{ __('membership.Membership not paid') }}</span>
+    <i class="fa fa-circle small text-danger" title="{{ __('membership.Membership not paid') }}"></i>
 @else
-    <span class="badge badge-success">{{ __('membership.Membership paid') }}</span>
+    <i class="fa fa-circle small text-success" title="{{ __('membership.Membership paid') }}"></i>
 @endif

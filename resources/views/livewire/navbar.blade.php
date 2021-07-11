@@ -3,7 +3,7 @@
         @php
             $project = \App\Models\Project::where('project', request('project_id'))->first();
         @endphp
-        <a class="navbar-brand" href="{{ route('home', $project->project) }}">{{ $project->name }}</a>
+            <img class="img-fluid" src="{{ url('logo.png') }}" style="height: 75px;">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,11 +23,11 @@
                     $currentProject = \App\Models\Project::where('project', request('project_id'))->first();
                 @endphp
                 @if($currentProject->ended_at > now()->toDateString() AND $currentProject->trial == false)
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <div id="custom-search" class="top-search-bar">
                         <a class="btn ml-3 btn-info rounded-pill" href="{{ route('plans.show', ['project' => $currentProject->project, 'upgrade' => true]) }}"><i class="fa fa-crown"></i> {{ __('saas.Upgrade') }} </a>
                     </div>
-                </li>
+                </li>-->
                 @endif
 {{--                <li class="nav-item dropdown notification">--}}
 {{--                    <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>--}}
@@ -76,7 +76,7 @@
 {{--                        </li>--}}
 {{--                    </ul>--}}
 {{--                </li>--}}
-                <li class="nav-item dropdown nav-user my-auto">
+                <!--<li class="nav-item dropdown nav-user my-auto">
                     <div class="dropdown show">
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-language"></i> </a>
 
@@ -90,9 +90,9 @@
                             </label>
                         </form>
                     </div>
-                </li>
+                </li>-->
                 @if(\Illuminate\Support\Facades\Auth::guard('web')->check())
-                    <li class="nav-item dropdown connection">
+                    <!--<li class="nav-item dropdown connection">
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-fw fa-th"></i> </a>
                         <ul class="dropdown-menu dropdown-menu-right connection-dropdown">
                             <li class="connection-list">
@@ -111,10 +111,12 @@
                             {{--                                <div class="conntection-footer"><a href="#">More</a></div>--}}
                             {{--                            </li>--}}
                         </ul>
-                    </li>
+                    </li>-->
                 @endif
                 <li class="nav-item dropdown nav-user">
-                    <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ makeProfileImg(auth()->user()->profile_img) }}" alt="" class="user-avatar-md rounded-circle"></a>
+                    <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="img-fluid rounded-circle" style="height: 40px;" src="{{ url('user.png') }}">
+                    </a>
                     <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                         <div class="nav-user-info">
                             <h5 class="mb-0 text-white nav-user-name">{{ auth()->user()->name }} </h5>
