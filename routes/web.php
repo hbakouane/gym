@@ -76,7 +76,3 @@ Route::group(['prefix' => '{project_id}', 'middleware' => ['auth:web,staff', 'ch
     Route::resource('/memberships', MembershipController::class);
     Route::get('/settings', [ProjectsController::class, 'index'])->name('website.settings');
 });
-
-Route::fallback(function () {
-    return "404";
-});

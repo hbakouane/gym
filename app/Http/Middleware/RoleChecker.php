@@ -22,9 +22,7 @@ class RoleChecker
         if (Auth::guard('staff')->check()) {
             $rules = Auth::guard('staff')->user()->role->permissions;
             $route = Route::currentRouteName();
-            if (!str_contains($rules, $route)) {
-                dd('you are not allowed to see this page.');
-            }
+            abort_if(!str_contains($rules, $route), 403, 'You are not authorized to do this action.');
         }
         return $next($request);
     }
