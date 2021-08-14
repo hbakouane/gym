@@ -1,0 +1,1 @@
+In this view will be sign in and up buttons

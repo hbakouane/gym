@@ -1,0 +1,1 @@
+@livewire('navbar', ['prefix' => $prefix])
