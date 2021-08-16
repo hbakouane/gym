@@ -1,0 +1,88 @@
+:root {
+    --main: #17a2b8;
+    --main-clear: #17a3b82a;
+}
+body {
+    background-color: #f4f4f4f4;
+    font-family: 'Mulish' !important;
+}
+.logo {
+    height: 50px;
+}
+.hero {
+    background-color: white;
+}
+.btn-demo {
+    transition: .5s;
+}
+.btn-main {
+    background-color: var(--main);
+    color: white;
+    border: 1px solid white;
+}
+.btn-main:hover {
+    background-color: white;
+    color: var(--main);
+    border: 1px solid var(--main);
+}
+.btn-main-outline {
+    background-color: white;
+    color: var(--main);
+    border: 1px solid var(--main);
+}
+.btn-main-outline:hover {
+    background-color: var(--main);
+    color: white;
+    border: 1px solid white;
+}
+#btn {
+    transition: .3s;
+}
+.text-main {
+    color: var(--main) !important;
+}
+.bold {
+    font-weight: bold !important;
+}
+.hero-content {
+    position: relative;
+}
+#visual {
+    position: absolute;
+}
+a:hover {
+    text-decoration: none;
+}
+.border-main {
+    border: 2px solid var(--main-clear) !important;
+}
+.feature-box {
+    transition: .3s;
+}
+.feature-box:hover {
+    transition: .3s;
+    transform: scale(1.04);
+    cursor: pointer;
+}
+.bg-main {
+    background-color: var(--main) !important;
+}
+.screenshot {
+    cursor: pointer !important;
+    transition: .3s;
+}
+.screenshot:hover {
+    transform: scale(1.03);
+}
+.flag {
+    height: 50px;
+}
+
+@media screen and (max-width: 835px) {
+    .hero {
+        background-color: var(--main);
+    }
+    .hero p {
+        font-size: 20px;
+    }
+}
