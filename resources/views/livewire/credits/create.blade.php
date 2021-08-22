@@ -57,7 +57,7 @@
                             @if($creditable_type)
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{ __('members.Member') }}</label>
+                                    <label>{{ __('members.Member') . ' / ' . __('vendors.Vendor') }}</label>
                                     <input wire:model="name" wire:keydown="getMember" class="form-control input">
                                     @if($members and !$showCard)
                                         @foreach($members as $memberr)

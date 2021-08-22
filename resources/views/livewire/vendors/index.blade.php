@@ -17,8 +17,8 @@
 
         <!-- vendors Boxes -->
         <div class="row mt-4">
-            @foreach($vendors as $vendor)
-                <div class="col-md-2">
+            @forelse($vendors as $vendor)
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
@@ -43,7 +43,9 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+            <p class="text-muted pl-3">No data to show.</p>
+            @endforelse
         </div>
         <div class="d-flex justify-content-center">
             {{ $vendors->links() }}

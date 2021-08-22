@@ -16,4 +16,5 @@ return [
     'ID' => 'ID',
     'Membership' => 'Membership',
     'Paid Memberships' => 'Paid Memberships',
+    'Not subscribed yet' => 'Not subscribed yet'
 ];
