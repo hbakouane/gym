@@ -173,8 +173,8 @@ class Index extends Component
     {
         Member::find($id)->delete();
         // Delete the payable as well
-        $payments = Payment::where('payable_type', 'App\Models\Member')->where('payable_id', $id)->delete();
-        $credits = Credit::where('creditable_type', 'App\Models\Member')->where('creditable_id', $id)->delete();
+        Payment::where('payable_type', 'App\Models\Member')->where('payable_id', $id)->delete();
+        Credit::where('creditable_type', 'App\Models\Member')->where('creditable_id', $id)->delete();
         $this->toastr = true;
         $this->type = "success";
         $this->message = __("general.Member deleted successfully.");

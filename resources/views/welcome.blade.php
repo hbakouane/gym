@@ -19,7 +19,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-light bg-info border-bottom justify-content-between sticky-top py-3">
+    <nav class="navbar navbar-light bg-main border-bottom justify-content-between sticky-top py-3">
         <div class="container">
             <a class="navbar-brandtext-light" href="/">
                 <span class="text-light h1 bold">GYMEO CRM</span>
@@ -40,7 +40,7 @@
 
     <!-- Hero -->
     <div class="container-fluid hero px-0 border-bottom">
-        <svg id="visual" viewBox="0 0 900 600" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 302L75 305.3C150 308.7 300 315.3 450 289.7C600 264 750 206 825 177L900 148L900 0L825 0C750 0 600 0 450 0C300 0 150 0 75 0L0 0Z" fill="#17a2b8" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
+        <svg id="visual" viewBox="0 0 900 600" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"><path d="M0 302L75 305.3C150 308.7 300 315.3 450 289.7C600 264 750 206 825 177L900 148L900 0L825 0C750 0 600 0 450 0C300 0 150 0 75 0L0 0Z" fill="#1B1F53" stroke-linecap="round" stroke-linejoin="miter"></path></svg>
         <div class="container text-center py-5 hero-content" data-aos="fade-up">
             <h1 class="text-light">GYMEO CRM</h1>
             <p class="h4 text-light">

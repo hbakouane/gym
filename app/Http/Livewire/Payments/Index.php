@@ -20,7 +20,6 @@ class Index extends Component
     public function render()
     {
         $this->payments = Payment::where('project_id', Project::getProjectId($this->prefix))->orderBy('id', 'DESC')->get();
-        dd($this->payments);
         return view('livewire.payments.index', ['payments' => $this->payments]);
     }
 

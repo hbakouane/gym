@@ -89,25 +89,6 @@
                         <li class="nav-item ">
                             <a class="nav-link @if($route === "home") active @endif()" href="{{ route('home', $prefix) }}"><i class="fa fa-fw fa-user-circle"></i>{{ __('Dashboard') }} <span class="badge badge-success">6</span></a>
                         </li>
-                        @if(staffHasRole('members.index') OR staffHasRole('members.create'))
-                        <li class="nav-item ">
-                            <a class="nav-link @if(Str::startsWith($route, 'members.')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#members_menu" aria-controls="submenu-1"><i class="fa fa-users"></i>{{ __('pages.Members') }}</a>
-                            <div id="members_menu" class="submenu collapse @if(Str::startsWith($route, 'members.')) show @endif()" style="">
-                                <ul class="nav flex-column">
-                                    @if(staffHasRole('members.index'))
-                                    <li class="nav-item">
-                                        <a class="nav-link @if(Str::startsWith($route, 'members.index')) active @endif()" href="{{ route('members.index', $prefix) }}">{{ __('members.All members') }}</a>
-                                    </li>
-                                    @endif
-                                    @if(staffHasRole('members.create'))
-                                    <li class="nav-item">
-                                        <a class="nav-link @if(Str::startsWith($route, 'members.create')) active @endif()" href="{{ route('members.create', $prefix) }}">{{ __('members.Add a member') }}</a>
-                                    </li>
-                                    @endif
-                                </ul>
-                            </div>
-                        </li>
-                        @endif
                         @if(staffHasRole('features.index') OR staffHasRole('features.create') 
                             OR staffHasRole('subscriptions.index') OR staffHasRole('subscriptions.create'))
                             <li class="nav-item">
@@ -151,6 +132,25 @@
                                         </div>
                                         @endif
                                     </li>
+                                </ul>
+                            </div>
+                        </li>
+                        @endif
+                        @if(staffHasRole('members.index') OR staffHasRole('members.create'))
+                        <li class="nav-item ">
+                            <a class="nav-link @if(Str::startsWith($route, 'members.')) active @endif()" href="#" data-toggle="collapse" aria-expanded="false" data-target="#members_menu" aria-controls="submenu-1"><i class="fa fa-users"></i>{{ __('pages.Members') }}</a>
+                            <div id="members_menu" class="submenu collapse @if(Str::startsWith($route, 'members.')) show @endif()" style="">
+                                <ul class="nav flex-column">
+                                    @if(staffHasRole('members.index'))
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'members.index')) active @endif()" href="{{ route('members.index', $prefix) }}">{{ __('members.All members') }}</a>
+                                    </li>
+                                    @endif
+                                    @if(staffHasRole('members.create'))
+                                    <li class="nav-item">
+                                        <a class="nav-link @if(Str::startsWith($route, 'members.create')) active @endif()" href="{{ route('members.create', $prefix) }}">{{ __('members.Add a member') }}</a>
+                                    </li>
+                                    @endif
                                 </ul>
                             </div>
                         </li>

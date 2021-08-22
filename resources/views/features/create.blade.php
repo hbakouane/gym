@@ -19,8 +19,4 @@
             @livewire('features.form', ['prefix' => $prefix])
         </div>
     </div>
-
-    <div class="information">
-        <i class="fa fa-info"></i>
-    </div>
 @endsection
