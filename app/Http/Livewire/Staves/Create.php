@@ -54,7 +54,7 @@ class Create extends Component
     public function mount()
     {
         $this->roles = Role::where('project_id', Project::getProjectId($this->prefix))->get();
-        $this->role_id = $this->roles[0] ?? '';
+        $this->role_id = $this->roles[0]->id;
     }
 
     public function save()

@@ -33,6 +33,9 @@
         <code>php artisan migrate</code>
     </li>
     <li>
+        <code>php artisan storage:link</code>
+    </li>
+    <li>
         <code>php artisan serve --port=3000</code>
     </li>
     <li>
